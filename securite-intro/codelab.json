@@ -1,0 +1,27 @@
+{
+  "environment": "web",
+  "format": "html",
+  "prefix": "https://storage.googleapis.com",
+  "mainga": "UA-49880327-14",
+  "updated": "2023-02-27T22:47:41+01:00",
+  "id": "securite-intro",
+  "duration": 172,
+  "title": "La sécurité, par où commencer ? Install party 🎉",
+  "authors": "David Aparicio",
+  "summary": "La sécurité, par où commencer ? Install party",
+  "source": "securite-intro.md",
+  "theme": "",
+  "status": [
+    "published"
+  ],
+  "category": [
+    "devsecops",
+    "security"
+  ],
+  "tags": [
+    "devoxxfr",
+    "gbu-7756"
+  ],
+  "feedback": "https://github.com/davidaparicio/davidaparicio.github.io/issues",
+  "url": "securite-intro"
+}

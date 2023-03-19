@@ -1,0 +1,611 @@
+
+<!doctype html>
+
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <meta name="theme-color" content="#4F7DC9">
+  <meta charset="UTF-8">
+  <title>La sécurité, par où commencer ? Install party 🎉</title>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
+  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://storage.googleapis.com/claat-public/codelab-elements.css">
+  <style>
+    .success {
+      color: #1e8e3e;
+    }
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <google-codelab-analytics gaid="UA-49880327-14"></google-codelab-analytics>
+  <google-codelab codelab-gaid=""
+                  id="securite-intro"
+                  title="La sécurité, par où commencer ? Install party 🎉"
+                  environment="web"
+                  feedback-link="https://github.com/davidaparicio/davidaparicio.github.io/issues">
+    
+      <google-codelab-step label="Présentation" duration="3">
+        <p>Votre entreprise a connu une croissance inattendue, des carnets de commandes qui débordent, un tas d&#39;idées nouvelles de projets, et avec la crise actuelle outre-atlantique touchant les GAFAM, la conjecture n&#39;est pas favorable à recruter massivement.</p>
+<p>De plus, votre dernier produit de l&#39;équipe a connu un succès fou, DevoxxGPT. Tous les médias en parlent, les serveurs tiennent tant bien que mal à la charge, et après quelques analyses de logs, vous remarquez que certains petits malins réussissent à bénéficier de l&#39;offre commerciale, sans débourser le moindre sou.</p>
+<p class="image-container"><img alt="DevoxxGPT logo" src="img/c9aba750fcee32ce.jpg"></p>
+<p>Avec l&#39;euphorie des développeurs, et l&#39;engouement des utilisateurs, vous avez mis en production de nouvelles fonctionnalités dans la précipitation, sans revue préalable, ni la réalisation de test d&#39;intrusion.</p>
+<p>Vous ne voyez plus qu&#39;une solution, face à la charge de travail déjà colossale dans l&#39;équipe, l&#39;application immédiate de la méthologie DevSecOps: pour sécuriser votre outil et maintenir la position de l&#39;entreprise sur son piédestal. Car vous devez éviter, à tout prix pour votre image, la fuite de toutes vos données clientes, ainsi que vos secrets de fabrication, comme ce fût le cas pour <a href="https://arstechnica.com/information-technology/2021/10/twitch-admits-to-major-leak-exposing-source-code-creator-earnings/" target="_blank">Twitch, le 6 Octobre 2021</a>.</p>
+<p class="image-container"><img alt="Twitter Twitch" src="img/ffedf5e1e4d167c1.jpg"></p>
+<p>En guise d&#39;encouragement, votre CTO cite Google avec son livre <a href="https://sre.google/books/building-secure-reliable-systems/" target="_blank">Building Secure and Reliable Systems (xxvi | Preface)</a>: &#34;Parce que la <strong>sécurité</strong> et la <strong>fiabilité</strong> sont l&#39;<strong>affaire de tous</strong>, nous visons un large public : les personnes qui conçoivent, mettent en œuvre et maintiennent les systèmes. Nous remettons en question les lignes de démarcation entre les rôles professionnels traditionnels des développeurs, des architectes, des SRE des administrateurs de systèmes et des ingénieurs en sécurité.&#34;</p>
+<p><strong>Objectif:</strong> Vous vous retrouvez donc, à devoir mettre en place cette méthologie, en plus de votre activité habituelle...</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Qui sommes-nous ?" duration="1">
+        <h2 is-upgraded>David Aparicio</h2>
+<p>Ingénieur passionné en Informatique, diplômé INSA Lyon 2014, après deux années passées à UNICAMP au Brésil, participe activement à la communauté, à travers des Meetups et des conférences. Sa devise: « Nul développeur n&#39;est censé ignorer la sécurité ».</p>
+<p>J&#39;ai rejoint <a href="https://www.ovhcloud.com/fr/" target="_blank">OVHcloud</a> en juillet 2019 en tant que DataOps au sein de l&#39;équipe GIS-Datalake.</p>
+<ul>
+<li><a href="https://fr.linkedin.com/in/davidaparicio1" target="_blank">Mon LinkedIn</a></li>
+<li><a href="https://davidaparicio.gitlab.io/" target="_blank">Mon site web</a></li>
+</ul>
+<h2 is-upgraded>Christopher Aparicio</h2>
+<p>Responsable du Back-end chez <a href="https://42crunch.com/" target="_blank">42Crunch</a> et développeur de la solution d&#39;Audit et de Scan</p>
+<ul>
+<li><a href="https://www.linkedin.com/in/christopher-aparicio-37069b111/" target="_blank">Mon LinkedIn</a></li>
+</ul>
+<p><strong>PS:</strong> Comme vous pouvez en doutez, les entreprises qui nous emploient, continuent à recruter activement ;-)</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Motivations" duration="3">
+        <h2 is-upgraded>Le saviez-vous ?</h2>
+<p>Une <a href="https://archive.fosdem.org/2019/schedule/event/crypto_pitfalls/attachments/slides/3209/export/events/attachments/crypto_pitfalls/slides/3209/crypto_pitfalls.pdf" target="_blank">étude de 2017</a> a démontré que <strong>98%</strong> des snippets de code sur StackOverFlow concernant la thématique de la sécurité ne sont pas sûrs. Un comble n&#39;est-ce pas ?</p>
+<p>Cela est même devenu un sujet de conférence au FOSDEM en 2019 <a href="https://archive.fosdem.org/2019/schedule/event/crypto_pitfalls/" target="_blank">Comment éviter les pièges cryptographiques par la conception ?</a>.</p>
+<h2 is-upgraded>Et l&#39;IA souffre des mêmes biais</h2>
+<p>Une <a href="https://cyber.nyu.edu/2021/10/15/ccs-researchers-find-github-copilot-generates-vulnerable-code-40-of-the-time/" target="_blank">étude de 2021</a> de l&#39;université de New York a montré que <strong>40%</strong> du code proposé par <a href="https://github.com/features/copilot/" target="_blank">GitHub Copilot</a> n&#39;était pas sécurisé, présentant des failles applicatives.</p>
+<p>Donc <a href="https://chat.openai.com/" target="_blank">ChatGPT</a> ne devrait pas tarder à subir ce genre d&#39;études avec un même ordre de grandeur.</p>
+<h2 is-upgraded>Afin d&#39;éviter ceci</h2>
+<p>Le déroulement de la cyberattaque par un rançongiciel contre le <a href="https://twitter.com/zigazou/status/1269889177178574852" target="_blank">CHU de Rouen en 2019 (thread @zigazou)</a>.</p>
+<p>Ou un autre exemple, parmi tant qu&#39;autres sur la Sécurité Dès la Conception, extrait du <a href="http://www.acbm.com/virus/num_44/VirusInfo44.pdf" target="_blank">magazine le 44e Virus Info (2020)</a></p>
+<p class="image-container"><img alt="Faille logicielle, obliger de rebooter tous les 51 jours les Boeing 787 Dreamliner" src="img/ddac101a5dfa589e.jpg"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="OWASP" duration="2">
+        <p>Un constat, en l&#39;espace de 8 ans, le <a href="https://owasp.org/Top10/fr/" target="_blank">Top 10</a> des attaques <strong>n&#39;a pas évolué</strong>. Ce classement est realisé et mis à jour par l&#39;<a href="https://owasp.org/" target="_blank">OWASP, Open Web Application Security Project</a>, une organisation internationale à but non lucratif qui se consacre à la sécurité des applications web.</p>
+<p>42Crunch a realisée une <a href="https://info.42crunch.com/112119-webinar-owasp-recording" target="_blank">vidéo</a> sur le <a href="https://owasp.org/www-project-api-security/" target="_blank">Top10 des API (2019)</a></p>
+<p class="image-container"><img alt="OWASP" src="img/1dd507372490f792.jpg"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Objectifs" duration="1">
+        <h2 is-upgraded>Ce que nous allons réaliser durant ce workshop</h2>
+<ul>
+<li>Suivre la méthologie DevSecOps</li>
+<li>Modéliser la menace</li>
+<li>Outiller son éditeur de texte ou IDE favori</li>
+<li>Appliquer la sécurité as code, en ayant une confiance nulle (Zéro Trust)</li>
+<li>Programmer des tests de sécurité</li>
+<li>Configurer des tests statiques et dynamiques des applications</li>
+<li>Activer la signature numérique</li>
+<li>Transférer les binaires de manière sécurisée</li>
+<li>Mettre en place des scans et des patchs de sécurité</li>
+<li>Étudier les Audits de sécurité</li>
+<li>Monitorer et alerter sur les menaces actuelles</li>
+</ul>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="DevSecOps" duration="1">
+        <p>Pour catégoriser les outils et les différentes étapes, de la DEV jusqu&#39;à la PROD, en passant par le cycle de vie et la maintenance de l&#39;application, on se base sur les bonnes pratiques de la &#34;US DoD Enterprise DevSecOps Reference Design&#34; (du Département de la Défense américaine), publiées à l&#39;adresse suivante : <a href="https://public.cyber.mil/devsecops/" target="_blank">https://public.cyber.mil/devsecops/</a></p>
+<p>Et nous allons plus précisément nous attarder sur le diagramme/<strong>Figure 1</strong> à la page 19/89. Êtes-vous prêt.e.s ? Alors allons-y !</p>
+<p class="image-container"><img alt="DevSecOps Figure 1" src="img/669b9a86bd19c50f.png"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Modélisation" duration="3">
+        <h2 is-upgraded>Planifier: Modélisation de la menace (le fameux Threat Model)</h2>
+<p>Avant de partir dans les spécifications de notre MVP et la programmation itérative, nous devons réunir toute l&#39;équipe autour d&#39;un ou plusieurs ateliers sur l&#39;Analyse du Risque. Mozilla nous propose le format de 30 minutes du <a href="https://infosec.mozilla.org/guidelines/risk/rapid_risk_assessment.html" target="_blank">RRA : Analyse/évaluation rapide des risques</a> (anglais).</p>
+<p class="image-container"><img alt="RRA Risk table" src="img/98dfad8fc1a094c3.png"></p>
+<p>Et les guides de l&#39;ANSSI, comme l&#39;<a href="https://www.ssi.gouv.fr/uploads/2018/11/guide-securite-numerique-agile-anssi-pa-v1.pdf" target="_blank">&#34;Agilité &amp; Sécurité Numériques&#34;</a> présente les ateliers à réaliser ainsi que le vocabulaire adéquat, comme la définition du DICT:</p>
+<ul>
+<li>Disponibilité</li>
+<li>Intégrité</li>
+<li>Confidentialité</li>
+<li>Preuve</li>
+</ul>
+<p>et donne quelques cas pertinents, par <a href="https://cloudsecdocs.com/devops/how_to/design/rra/#3-identifying-and-measuring-risks" target="_blank">exemple</a></p>
+<p>Vous pouvez désormais avoir quelques user stories &#34;sécurité&#34;.</p>
+<p class="image-container"><img alt="User story" src="img/82d7831328bce15.jpg"></p>
+<p>Pour vous aider, voici un tableau d&#39;identification de l&#39;attaquant :</p>
+<p class="image-container"><img alt="Tableau des attaquants" src="img/6d142639ec2dca7f.jpg"></p>
+<p>Enfin, pour illustrer une attaque d&#39;ampleur préparée par un attaquant isolé, nous vous recommandons l&#39;écoute ultérieure de la fiction de France Inter <a href="https://www.radiofrance.fr/franceinter/podcasts/affaires-sensibles/la-nuit-tous-les-hackers-sont-gris-8287559" target="_blank">« La nuit tous les hackers sont gris »</a>.</p>
+<p>Pour notre atelier, on vous laisse ces informations pour réaliser ces spécifications ultérieurement.</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Ex: Créer SECURITY.md" duration="5">
+        <p>Après ces définitions, passons à la pratique en rédigeant un petit document <code>SECURITY.md</code> dans votre repôt de code. La &#34;Security Policy&#34;, politique de sécurité décrit comment vous allez supporter vos versions et surtout permettre à vos utilisateur.trice.s de pouvoir remonter des bugs ou des failles de sécurité à travers un canal sécurisé avec vous, développeur.se.</p>
+<p>Un exemple pour le <a href="https://github.com/traefik/traefik/blob/master/SECURITY.md" target="_blank">proxy Traefik</a> ou celui d&#39;un <a href="https://github.com/davidaparicio/namecheck/blob/main/SECURITY.md" target="_blank">autre repôt</a>. Comme autre source d&#39;inspiration, voici la documentation K8s sur le sujet: <a href="https://kubernetes.io/docs/reference/issues-security/security/" target="_blank">Kubernetes Security and Disclosure Information (en)</a></p>
+<p><strong>Objectifs de cette étape</strong>:</p>
+<ul>
+<li>Copier l&#39;une d&#39;entre elles pour la modifier ultérieurement</li>
+<li>Préparer un formulaire de signalement (facultatif)</li>
+</ul>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Réduire la surface d&#39;attaque" duration="6">
+        <h2 is-upgraded>Planifier: Réduction de la menace</h2>
+<p>Réduire la surface d&#39;attaque est très courant dans le monde de la sécurité, d&#39;autant plus, depuis l&#39;essor des containers. Snyk a dénombré <a href="https://snyk.io/opensourcesecurity-2019" target="_blank">78% des vulnérabilités d&#39;applications</a>, dans les dépendances profondes/internes (c&#39;est à dire, à minima, les dépendances de vos dépendances). Notamment, les images Docker &#34;node&#34; ou &#34;postgres&#34; peuvent embarquer les failles de Debian ou d&#39;Alpine, puisqu&#39;elles sont construites par-dessus. Il en va de même pour les containers basés sur d&#39;autres systèmes d&#39;exploitation.</p>
+<p>Pour notre <strong>MVP</strong> ou bien même pour nos <strong>projets finaux</strong>: Faut-il implémenter une solution complète d&#39;authentification, avec le choix de l&#39;<strong>algorithme de chiffrement</strong> en BDD ainsi que les sels (salt) à utiliser ? Ou pouvons-nous nous contenter d&#39;utiliser celui du <strong>framework</strong> ? Un mot de passe fort est-il indispensable (et donc oubliable par l&#39;utilisateur) ? Pourquoi ces questions ? Car la désactivation des fonctionnalités inutiles permet de limiter les risques de sécurité.</p>
+<p>De plus, nous savons que les mots de passe sont une contrainte pour la plupart de nos clients. Dans le papier <a href="https://goog.gl/v1dBmj" target="_blank">&#34;Secrets, Lies, and Account Recovery [...]&#34;</a> à la conférence internationale WWW&#39;15, Google relève que plus d&#39;1/5 de ses utilisateurs oubliaient leurs mots de passe de leur compte ainsi que la réponse à la question secrète dans les 3 premiers mois.</p>
+<p>Plus récemment, en 2021, ANSSI recommande l&#39;utilisation de <a href="https://www.ssi.gouv.fr/particulier/guide/recommandations-relatives-a-lauthentification-multifacteur-et-aux-" target="_blank">coffre-forts (KeePass) et de l&#39;authentification multi-facteurs</a> au lieu de forcer le changement régulier des mots de passe (car contre-productif).  Microsoft, Apple et Google ont annoncé le <a href="https://fidoalliance.org/apple-google-and-microsoft-commit-to-expanded-support-for-fido-standard-to-accelerate-" target="_blank">5 Mai 2022</a>, le souhait de supprimer les mots de passe, dès 2023 grâce à la norme WebAuth ainsi que FIDO.</p>
+<p>De ce fait, est-ce possible et acceptable pour votre projet d&#39;utiliser de l&#39;<strong>OpenID Connect</strong>, de l&#39;OAuth2 ? Ou au contraire un outil SaaS comme <a href="https://magic.link/" target="_blank">Magic</a>, un logiciel open source dit <strong>passwordless</strong> tel que <a href="https://github.com/mxstbr/passport-magic-login" target="_blank">passport-magic-login</a> qui envoie un lien temporaire à l&#39;email demandé ? Sinon, dans le cas où vous utilisez une authentification basique : votre outil se protège-t-il bien contre les <a href="https://owasp.org/www-community/attacks/SQL_Injection" target="_blank">injections</a> ? Tolère-t-il des limites d&#39;essais/compte ? Bannit-il des IP après un trop gros nombre de tentatives ? Utilise-t-il des sels avec des algorithmes de chiffrement à jour ?</p>
+<p>Ce sont les questions que nous devons nous poser, selon le risque pris et le type d&#39;attaquant. Cet exemple concerne la brique d&#39;authentification, mais cela s&#39;applique également aux autres éléments qui composent votre système.</p>
+<p>Poursuivons avec la suite de l&#39;atelier :)</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Ex: Extensions (IDE)" duration="5">
+        <h2 is-upgraded>Développer : Code sécurisé</h2>
+<p>Dans la philosophie du &#34;Security Shift-Left&#34;, nous allons nous outiller afin de remonter directement dans l&#39;éditeur ou l&#39;IDE du développeur. Il existe déjà les &#34;linters&#34; pour chaque langage de programmation (ShellCheck, golangci-lint, etc ...), mais également des extensions dédiées à la sécurité et la liste est longue (pourtant pas [exhaustive): SonarLint, Sonatype Nexus IQ, Snyk, Qualys IaC, RedHat Dependency Analytics, GitHub Code Scanning, JFrog XRay... Et la liste complète pour VSCode est <a href="https://s.42l.fr/vs_sec" target="_blank">disponible</a></p>
+<p>D&#39;autant plus, que leur nom <a href="https://devdojo.com/yoda/top-vs-code-extensions-for-application-security-in-2021" target="_blank">change régulièrement</a> au fil des rachats, exemple avec DeepCode.AI (acheté par Snyk) ou Mend Advise (ex-WhiteSource), ou sont spécifique à un langage comme C#/XML avec Microsoft Security IntelliSense, node.JS avec npm audit, Redshift Security pour Java, <a href="https://golangci-lint.run/usage/linters/#gosec" target="_blank">gosec</a> pour Go.</p>
+<p>Pour les utilisateurs de Github Copilot, s&#39;il est installé dans votre IDE, l&#39;<a href="https://marketplace.visualstudio.com/items?itemName=GitHub.copilot" target="_blank">extension</a> devrait vous faire quelques remontées par rapport à des attaques classiques (injections SQL et cie) d&#39;après leur site...</p>
+<p><strong>Objectifs de cette étape</strong>:</p>
+<ul>
+<li>Installer une ou plusieurs extensions pour votre éditeur ou IDE favori.</li>
+<li>Par exemple, <a href="https://marketplace.visualstudio.com/items?itemName=snyk-security.snyk-vulnerability-scanner" target="_blank">Snyk Code (lien pour VSCode)</a></li>
+<li>Si vous utilisez souvent OpenAPI (Swagger), nous vous recommendons l&#39;installation de l&#39;<a href="https://marketplace.visualstudio.com/items?itemName=42Crunch.vscode-openapi" target="_blank">extension de 42Crunch (lien pour VSCode)</a></li>
+</ul>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Virage à gauche toute" duration="4">
+        <h2 is-upgraded>Développer : Sécurité comme Code</h2>
+<p>D&#39;après O&#39;Reilly, SaC (Security as Code) consiste à intégrer la sécurité dans les flux DevOps, alias CI/CD. Néanmoins, si l&#39;outil n&#39;est pas trop gourmand en ressources, il peut être installé dans l&#39;éditeur. Car nous avons des ordinateurs plus puissants, grâce à l&#39;apparition des puces ARM ou les IDE en ligne, comme AWS Cloud9, Gitpod, ou GitHub Codespaces. Au niveau des containers sécurisés, des implémentations existent avec <a href="https://gvisor.dev/" target="_blank">gVisor</a>, les <a href="https://katacontainers.io/" target="_blank">Kata Containers</a> et les <a href="https://youtu.be/G0SwSWKGyuM" target="_blank">Confidential containers</a>.</p>
+<p>D&#39;une part, l&#39;application de la configuration (HBAC, RBAC, règle pare-feu) peut-être une opération critique en cas d&#39;oubli ([bucket S3 accessible en public sur Internet, <a href="https://blog.newsblur.com/2021/06/28/story-of-a-hacking/" target="_blank">base de données sans mot de passe</a>). Il est préférable de déclarer son besoin avec des fichiers et de laisser l&#39;orchestrateur les réaliser plutôt qu&#39;agir de manière impérative sur le système.</p>
+<p>Par exemple, le projet <a href="https://cilium.io/" target="_blank">Cilium</a> permet d&#39;interagir avec le réseau et d&#39;appliquer des politiques de sécurité. De plus, les maillage de services (services-mesh) comme Istio, Traefik maesh ou Solo.io avec GlooEdge génèrent automatiquement des certificats SSL et ne laissent passer ainsi que les communications sécurisées entre vos containers. D&#39;<a href="https://platform9.com/blog/the-ultimate-guide-to-using-calico-flannel-weave-and-cilium/" target="_blank">autres projets</a> existent comme: <a href="https://github.com/flannel-io/flannel" target="_blank">Flannel</a>, <a href="https://github.com/projectcalico/calico" target="_blank">Calico</a> ou <a href="https://github.com/weaveworks/weave" target="_blank">Weave</a>.</p>
+<p>D&#39;autre part, les commandes <code>docker scan</code>, <code>trivy image mon_Image_Docker:tag</code> analysent les vulnérabilités connues de votre Dockerfile. Avant de pousser du code contenant des secrets, un hook peut-être installé avec <a href="https://gitguardian.com/" target="_blank">GitGuardian</a>, <a href="https://github.com/GitGuardian/ggshield" target="_blank">ggshield</a>, <a href="https://github.com/aquasecurity/trivy" target="_blank">Trivy</a> (<code>trivy fs —security-checks secret ./</code>) ou le projet <a href="https://github.com/awslabs/git-secrets" target="_blank">awslabs/git-secrets</a>. Comme l&#39;erreur est humaine, il est préférable d&#39;automatiser toutes ces actions et analyses.</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Ex: Diagramme de flux" duration="7">
+        <h2 is-upgraded>Développer : Environnement sécurisé</h2>
+<p>Nous allons définir les règles pour passer de la sécurité périmétrique (<a href="https://www.clever-cloud.com/blog/guests/2015/06/16/the-end-of-the-fortress-metaphor/" target="_blank">modèle de la forteresse de Vauban</a>) avec l&#39;approche de la confiance Zéro/<a href="https://www.redhat.com/fr/topics/security/what-is-zero-trust" target="_blank">Zero trust</a> (modèle de l&#39;aéroport)</p>
+<p class="image-container"><img alt="Exemple d&amp;rsquo;interactions entre services" src="img/66962f2b9e3a55ec.png"></p>
+<p><strong>Objectifs de cette étape</strong>:</p>
+<ul>
+<li>Définir les interactions de votre projet avec: <ul>
+<li>les autres microservices</li>
+<li>les bases de données (SQL/NoSQL/Clé-Valeur)</li>
+<li>les messages brokers (Kafka/Pulsar/RedPanda &amp; cie)</li>
+<li>les services d&#39;annuaire (LDAP, Kerberos)</li>
+</ul>
+</li>
+<li>Coder ces interactions (en déclarant/ouvrant les flux) <ul>
+<li>à l&#39;ancienne avec les règles pare-feu (iptables, ufw, etc)</li>
+<li>avec votre maillage de services (<a href="https://www.infoq.com/fr/articles/service-mesh-ultimate-guide/" target="_blank">Service Mesh</a>) comme: <ul>
+<li>Istio avec Kiali</li>
+<li>Gloo Mesh, Linkerd Nginx Mesh</li>
+<li>Kuma, Consul, AWS App Mesh</li>
+</ul>
+</li>
+<li>ou avec <a href="https://www.youtube.com/watch?v=JJ1bFnJenms" target="_blank">Cilium &amp; eBPF</a></li>
+</ul>
+</li>
+<li>Bonus: Étudier les projets <a href="https://spiffe.io/" target="_blank">SPIFFE &amp; SPIRE</a>, <a href="https://www.datocms-assets.com/2885/1666193737-hashicorp_zts_whitepaper.pdf" target="_blank">Hashicorp Boundary</a> pour faire du Zero-Trust, ainsi que <a href="https://www.crowdsec.net/blog/kubernetes-crowdsec-integration" target="_blank">CrowdSec</a></li>
+</ul>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Traffic sortant" duration="4">
+        <h2 is-upgraded>Attention même au traffic sortant, comme le DNS</h2>
+<p>La réponse se cache dans la banalité, comme nous pouvons le lire en images</p>
+<p class="image-container"><img alt="DNS exfiltration 😈" src="img/56c6f7930b21e16d.jpg"></p>
+<p><strong>Objectifs de cette étape</strong>:</p>
+<ul>
+<li>Définir les interactions, même celles qui sembleraient être légitimes</li>
+<li>Reprendre l&#39;exercice précédent, si besoin ;)</li>
+</ul>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Compilation" duration="3">
+        <h2 is-upgraded>Compilation : Tests statiques de sécurité des applications</h2>
+<p>Le podium des SAST est <a href="https://checkmarx.com/" target="_blank">Checkmarx</a>, <a href="https://www.sonarsource.com/products/sonarqube/" target="_blank">SonarQube</a>, <a href="https://www.veracode.com/" target="_blank">Veracode</a>, suivi de <a href="https://www.open-scap.org/" target="_blank">OpenSCAP</a>, <a href="https://github.com/insidersec/insider" target="_blank">Insider CLI</a> (couvrant OWASP Top 10), <a href="https://pmd.github.io/" target="_blank">PMD - Don&#39;t shoot the messenger</a>, <a href="https://mend.io/" target="_blank">Mend Advise (ex-WhiteSource)</a>, <a href="https://www.argon.io/" target="_blank">Argon Supply Chain</a> qui a rejoint <a href="https://blog.aquasec.com/argon-supply-chain-security" target="_blank">Aqua</a>, <a href="https://brakemanscanner.org/" target="_blank">Brakeman</a>, <a href="https://www.codacy.com/" target="_blank">Codacy</a>, <a href="https://www.contrastsecurity.com/" target="_blank">Contrast Security</a>, <a href="https://www.microfocus.com/en-us/cyberres" target="_blank">CyberRes</a>, <a href="https://find-sec-bugs.github.io/" target="_blank">Find Security Bugs</a> (Java), <a href="https://www.grammatech.com/" target="_blank">Grammatech</a>, <a href="https://www.hcltechsw.com/appscan" target="_blank">HCL AppScan</a>, <a href="https://www.jit.io/" target="_blank">JIT.io</a>, <a href="https://www.perforce.com/products/klocwork" target="_blank">Klocwork</a>, <a href="https://lgtm.com/" target="_blank">LGTM.com</a> racheté par <a href="https://github.blog/2022-08-15-the-next-step-for-lgtm-com-github-code-scanning/" target="_blank">Github</a>, <a href="https://www.perforce.com/blog/kw/what-is-sast" target="_blank">Perforce SAST</a>, Redshift renommé récemment en <a href="https://www.softwaresecured.com/" target="_blank">Software Secured</a> probablement pour un différent juridique avec AWS, <a href="https://snyk.io/" target="_blank">Snyk</a>, <a href="https://spectralops.io/" target="_blank">SpectralOps</a>, <a href="https://www.synopsys.com/software-integrity/security-testing/static-analysis-sast.html" target="_blank">Synopsys Coverity</a>, <a href="https://slscan.io/" target="_blank">slscan.io</a>, <a href="https://42crunch.com/free-tools/" target="_blank">42Crunch API SAST</a>.</p>
+<p><img alt="Gitlab - SAST" src="img/c7ee230c7ddabfba.jpg"> Exemple: lorsqu&#39;on crée un nouveau projet sur Gitlab. Ce dernier nous propose dès l&#39;<a href="https://gitlab.com/projects/new#blank_project" target="_blank">initiation du projet</a>, d&#39;activer le GitLab SAST.</p>
+<p>Pour compléter, nous vous recommandons de visiter le site de la <a href="https://owasp.org/www-community/Vulnerability_Scanning_Tools" target="_blank">Fondation OWASP qui a un tableau (en anglais)</a> sur ce sujet</p>
+<p>Au niveau des systèmes de contrôle de version pour la gestion du code source, <a href="https://docs.gitlab.com/ee/user/application_security/sast/" target="_blank">GitLab a son propre SAST intégré</a>: principalement gratuit (à quelques fonctionnalités près) depuis la version GitLab 13.3.</p>
+<p>Github a son équivalent avec <a href="https://codeql.github.com/" target="_blank">CodeQL</a> (ou vous pouvez intégrer un outil tiers à travers de la <a href="https://github.com/marketplace?type=" target="_blank">Marketplace</a>). Il est activable facilement à partir du lien : <code>https://github.com/MON_USER/MON_REPO/security/code-scanning</code></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Ex: Scan durant CI" duration="10">
+        <h2 is-upgraded>Compilation : Tests statiques de sécurité des applications</h2>
+<p>Nous allons activer <a href="https://codeql.github.com/" target="_blank">CodeQL sur Github</a> pour venir réaliser un scan lors des PR sur la branche <code>main</code>, ainsi que de manière hebdomadaire.</p>
+<p>Si besoin, aidez-vous du site web <a href="https://crontab.guru/#17_03_*_*_1" target="_blank">Crontab Guru</a> pour définir vos lancements automatiques. Voici un exemple de workflow (GitHub Action), GitHub lancera le scan tous les lundis à 3h17 du matin.</p>
+<pre><code language="language-YAML" class="language-YAML">name: &#34;Security Scan (CodeQL)&#34;
+
+on:
+  push:
+    branches: [ &#34;main&#34; ]
+  pull_request:
+    branches: [ &#34;main&#34; ]
+  schedule:
+    - cron: &#39;17 03 * * 1&#39;
+
+jobs:
+  analyze:
+    name: Analyze CodeQL
+    runs-on: ubuntu-latest
+    permissions:
+      actions: read
+      contents: read
+      security-events: write
+
+    strategy:
+      fail-fast: false
+      matrix:
+        language: [ &#39;go&#39; ]
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    # Initializes the CodeQL tools for scanning.
+    - name: Initialize CodeQL
+      uses: github/codeql-action/init@v2
+      with:
+        languages: $&#123;&#123; matrix.language }}
+
+    - name: Autobuild
+      uses: github/codeql-action/autobuild@v2
+
+    - name: Perform CodeQL Analysis
+      uses: github/codeql-action/analyze@v2
+</code></pre>
+<p><strong>Objectifs de cette étape</strong>:</p>
+<ul>
+<li>Activer l&#39;action GitHub de CodeQL</li>
+<li>Définir le language de programmation de scan</li>
+<li>Valider l&#39;exécution correcte de sa GitHub action en réalisant une PR</li>
+<li>Modifier le jour et l&#39;heure du cron (facultatif)</li>
+<li>Activer un deuxième outil, comme gosec pour Go, ou SonarCloud (facultatif)</li>
+</ul>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Résultat" duration="1">
+        <h2 is-upgraded>Le résultat sur PR (GitHub)</h2>
+<p>Visible directement sur <a href="https://github.com/davidaparicio/namecheck/pull/10" target="_blank">Github</a> ou sur l&#39;image ci-dessous.</p>
+<p>Note: CodeQL donne le même style de résultat que cet exemple avec GoSec. J&#39;en ai profité pour activer la version gratuite de SonarCloud ;-)</p>
+<p class="image-container"><img alt="Exemple avec gosec" src="img/b1ff473611772c4a.jpg"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Ex: Corriger une erreur" duration="2">
+        <h2 is-upgraded>Tenter de corriger une erreur remontée</h2>
+<p>Visible directement sur <a href="https://github.com/davidaparicio/namecheck/security/code-scanning/3" target="_blank">Github</a> ou sur l&#39;image ci-dessous.</p>
+<p class="image-container"><img alt="Exemple avec gosec" src="img/add97893272263c1.jpg"></p>
+<p><strong>Objectifs de cette étape</strong>:</p>
+<ul>
+<li>Si vous avez le temps,</li>
+<li>Fixer une des erreurs éventuelles remontées par CodeQL</li>
+<li>Committer dans une nouvelle branche, et créer une PR</li>
+<li>Vérifier que votre action a corrigé l&#39;alerte remontée dans <code>https://github.com/VOTRE_PSEUDO/VOTRE_REPO/security/code-scanning/1</code></li>
+</ul>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Ex: Test E2E" duration="10">
+        <h2 is-upgraded>Compilation : Tests basiques de sécurité des applications (de bout en bout)</h2>
+<p class="image-container"><img alt="NewsBlur - Logo" src="img/13781bbbb2005845.jpg"></p>
+<p>En effet, vous vous rappelez des conséquences de l&#39;attaque contre fournisseur de données pour DevoxxGPT: <a href="https://blog.newsblur.com/2021/06/28/story-of-a-hacking/" target="_blank">NewsBlur</a>. Pour éviter la même mésaventure, vous prenez les devant. Tester votre déploiement, en vérifiant les Best Practices en Sécurité ()</p>
+<p><strong>Objectifs de cette étape</strong>:</p>
+<ul>
+<li>Codez deux petites fonctions de test qui valide (SUCCÈS) si elle n&#39;arrive à se connecter à votre BDD sans identifiants, et ceux par défaut comme <code>admin:admin</code></li>
+<li>Intégrez ce test dans votre CI/CD, pour valider la bascule Bleue/Verte (<a href="https://traefik.io/glossary/kubernetes-deployment-strategies-blue-green-canary/" target="_blank">blue/green</a>) avant la mise à jour progressive/<a href="https://kubernetes.io/blog/2018/04/30/zero-downtime-deployment-kubernetes-jenkins/" target="_blank">rolling update</a> (facultatif)</li>
+</ul>
+<p class="image-container"><img alt="NewsBlur - Hack Timeline" src="img/a2d89a17382a138d.png"></p>
+<p><a href="https://blog.newsblur.com/2021/06/28/story-of-a-hacking/" target="_blank">Source la timeline, le blog de NewsBlur - lien direct</a></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Tests" duration="3">
+        <h2 is-upgraded>Test : Tests dynamiques de sécurité des applications</h2>
+<p>Comme vous pouvez vous en douter, ce thème converge un peu avec le sujet précédent. Au lieu d&#39;analyser le code, l&#39;outil va tester votre application de l&#39;extérieur (en mode boîte noire/blackbox), tentant d&#39;exploiter votre programme en cours d&#39;exécution. Les logiciels DAST sont: <a href="https://owasp.org/www-project-zap/" target="_blank">OWASP Zed Attack Proxy (ZAP)</a> avec l&#39;opérateur Kubernetes <a href="https://github.com/banzaicloud/dast-operator" target="_blank">banzaicloud/dast-operator</a>, <a href="https://github.com/eliasgranderubio/dagda" target="_blank">Dagda</a> avec <a href="https://www.clamav.net/" target="_blank">ClamAV</a>, <a href="https://www.indusface.com/web-application-scanning.php" target="_blank">Indusface WAS</a>, <a href="https://www.invicti.com/" target="_blank">Invicti</a> ex-Netspaker, <a href="https://www.acunetix.com/" target="_blank">Acunetix</a>, <a href="https://www.getastra.com/pentest" target="_blank">Astra Pentest</a>, <a href="https://portswigger.net/" target="_blank">PortSwigger</a>, <a href="https://probely.com/" target="_blank">Probely</a>, <a href="https://detectify.com/" target="_blank">Detectify</a>, <a href="https://appcheck-ng.com/" target="_blank">AppCheck</a>, <a href="https://hdivsecurity.com/" target="_blank">Hdiv Security</a> racheté par <a href="https://investors.datadoghq.com/news-releases/news-release-details/datadog-signs-definitive-agreement-acquire-hdiv-security" target="_blank">Datadog</a> en 2022, <a href="https://www.hcltechsw.com/appscan" target="_blank">AppScan</a>, <a href="https://checkmarx.com/checkmarx-dast/" target="_blank">Checkmarx DAST</a>, <a href="https://www.rapid7.com/products/insightappsec/" target="_blank">Rapid7 InsightAppSec</a>, <a href="https://www.misterscanner.com/" target="_blank">MisterScanner</a>, <a href="https://github.com/s0md3v/XSStrike" target="_blank">XSStrike</a>.</p>
+<p>Au niveau des API, la version Ultimate de GitLab propose le DAST API (REST, SOAP, GraphQL), aussi pour les plates-formes de <a href="https://probely.com/" target="_blank">Probely</a>, <a href="https://devpost.com/software/api-security-tester" target="_blank">Intelligence/API Security Tester</a> de Postman, <a href="https://datanews.levif.be/ict/actualite/les-fondateurs-de-zionsecurity-creent-une-nouvelle-entreprise-de-securite/article-news-1265961.html" target="_blank">Shift Left Security</a>, <a href="https://42crunch.com/" target="_blank">42Crunch</a>. Une remarque concernant <a href="https://42crunch.com/" target="_blank">42Crunch</a>, l&#39;entreprise française veut être l&#39;outil audit-scan-protéger de l&#39;API, à l&#39;instar de <a href="https://github.com/aquasecurity/trivy" target="_blank">Trivy</a>, prévenir-protéger-détecter-réagir, pour la partie Cloud Native.</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Ex: Scan d&#39;API" duration="15">
+        <h2 is-upgraded>Démonstrations des fonctionnalités de 42Crunch</h2>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Pentest" duration="3">
+        <h2 is-upgraded>Test : Pentest</h2>
+<p>Sauf si vous avez une équipe de pentesteurs en interne, ou vous êtes experts des outils <a href="https://www.kali.org/" target="_blank">Kali Linux</a>, <a href="https://www.parrotsec.org/" target="_blank">Parrot Security</a>, <a href="https://hetty.xyz/" target="_blank">hetty</a> ou <a href="https://portswigger.net/burp/" target="_blank">Burp Suite Pro</a>, <a href="https://github.com/ElSicarius/SuperTruder" target="_blank">SuperTruder</a>, <a href="https://github.com/ffuf/ffuf" target="_blank">ffuf</a>, <a href="https://www.metasploit.com/" target="_blank">Metasploit</a>..., il est possible de demander à une entreprise spécialisée de réaliser les pentests ou vous pouvez participer à un programme de <a href="https://geekflare.com/bug-bounty-platforms/" target="_blank">Bug Bounty</a>: <a href="https://www.yeswehack.com/" target="_blank">YesWeHack</a>, <a href="https://yogosha.com/" target="_blank">Yogosha</a>, <a href="https://www.openbugbounty.org/" target="_blank">Open Bug Bounty</a>, <a href="https://www.hackerone.com/" target="_blank">Hackerone</a>, <a href="https://www.bugcrowd.com/" target="_blank">Bugcrowd</a>, <a href="https://app.safehats.com/enterprises/programs" target="_blank">SafeHats</a>, <a href="https://www.intigriti.com/" target="_blank">Intigriti</a>, <a href="https://www.synack.com/" target="_blank">Synack</a>.</p>
+<p>Même les grands groupes utilisent ces techniques. En effet, Google a annoncé récemment (Février 2023) avoir attribué plus de 12 millions de dollars de récompenses en 2022 pour l&#39;identification de plus de 2 900 problèmes de sécurité (cf <a href="https://www.zdnet.fr/actualites/google-s-aligne-financierement-sur-microsoft-pour-son-programme-de-bug-bounty-39954634.htm" target="_blank">ZDNet</a> et le tweet de <a href="https://twitter.com/Stormshield/status/1630206661167050754" target="_blank">Stormshield</a>).</p>
+<p class="image-container"><img alt="Google - Tweet de Stormshield" src="img/89eb3bc82a7b11be.jpg"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Signature" duration="3">
+        <h2 is-upgraded>Distribution : Signature numérique</h2>
+<p>SCA (Software Composition Analysis) et les SBOM (Software Bill Of Materials) permettent de générer la nomenclature logicielle : l&#39;ensemble des packages du système d&#39;exploitation ainsi que vos dépendances présentes dans votre programme ou dans votre image Docker.</p>
+<p>Le site <a href="https://cyclonedx.org/tool-center/" target="_blank">OWASP CycloneDX</a> recense <a href="https://github.com/CycloneDX/bom-examples" target="_blank">le standard</a> dont les implémentations sont : <a href="https://github.com/anchore/syft" target="_blank">Syft d&#39;Anchore</a>, <a href="https://github.com/tern-tools/tern" target="_blank">tern-tools/tern</a>, <a href="https://github.com/microsoft/sbom-tool" target="_blank">microsoft/sbom-tool</a>, <a href="https://github.com/opensbom-generator/spdx-sbom-generator" target="_blank">SPDX SBOM Generator</a> et les <a href="https://www.csoonline.com/article/3667483/8-top-sbom-tools-to-consider.html" target="_blank">produits</a> de <a href="https://dependencytrack.org/" target="_blank">Dependency Track</a>, <a href="https://fossa.com/lp/simplify-sbom-generation-fossa" target="_blank">FOSSA</a>, <a href="https://www.mend.io/sbom/" target="_blank">Mend</a>, <a href="https://www.rezilion.com/platform/sca-dynamic-sbom/" target="_blank">Rezilion</a>, <a href="https://www.tauruseer.com/platform/dynamic-software-bill-of-materials-SBOM" target="_blank">TauruSeer</a>, <a href="https://www.vigilant-ops.com/products/" target="_blank">Vigilant Ops</a>.</p>
+<p>En effet, l&#39;ENISA (Agence de l&#39;Union européenne pour la cybersécurité) en analysant les attaques récentes (&#34;Sunburst&#34; avec Orion de SolarWinds, Mimecast CDN, Codecov, Kaseya, NotPetya) ont montré que les chaînes d&#39;approvisionnement logicielles trop longues sont également une menace sérieuse. Dans le rapport de l&#39;<a href="https://www.enisa.europa.eu/publications/threat-landscape-for-supply-chain-attacks" target="_blank">ENISA</a>, nous pouvons lire: &#34;une organisation peut être vulnérable à une attaque de la chaîne d&#39;approvisionnement logicielles, même si ses propres défenses sont assez bonnes. Par conséquent, les attaquants tentent d&#39;explorer de nouvelles voies potentielles pour les infiltrer en se déplaçant vers leurs fournisseurs et en faisant d&#39;eux une cible&#34;.</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Ex: SBOM" duration="10">
+        <h2 is-upgraded>Génération des SBOM avec GoReleaser et Syft</h2>
+<p>Reprenons notre programme écrit en Go, de tout à l&#39;heure et y ajoutons une GitHub Action pour générer le SBOM avec Syft, pendant la génération des binaires par GoReleaser.</p>
+<pre><code language="language-YAML" class="language-YAML">name: Release (GoReleaser)
+
+on:
+  push:
+    tags:
+      - &#39;*&#39;
+
+jobs:
+  goreleaser:
+    permissions:
+      contents: write
+      packages: write
+      deployments: write
+      id-token: write # needed for signing the images with GitHub OIDC Token **not production ready**
+
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        go-version: [1.19]
+
+    needs: [test] # sequential
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: Set up Go
+        uses: actions/setup-go@v3
+        with:
+          go-version: $&#123;&#123; matrix.go-version }}
+          cache: true
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v2
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          #registry: ghcr.io
+          username: $&#123;&#123; secrets.DOCKERHUB_USERNAME }}
+          password: $&#123;&#123; secrets.DOCKERHUB_TOKEN }}
+
+      - uses: sigstore/cosign-installer@v2.8.1          # installs cosign
+      - uses: anchore/sbom-action/download-syft@v0.13.3 # installs syft
+      - name: Run GoReleaser
+        uses: goreleaser/goreleaser-action@v4
+        with:
+          distribution: goreleaser
+          version: latest
+          args: release --rm-dist
+        env:
+          # https://goreleaser.com/errors/resource-not-accessible-by-integration/
+          GITHUB_TOKEN: $&#123;&#123; secrets.GH_PAT }}
+</code></pre>
+<p><strong>Objectifs de cette étape</strong>:</p>
+<ul>
+<li>Activer l&#39;action GitHub de GoReleaser</li>
+<li>Lancer la pipeline pour générer les binaires</li>
+<li>Explorer le fichier SBOM créé</li>
+</ul>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Transfert" duration="3">
+        <h2 is-upgraded>Transfert : Transfert sécurisé</h2>
+<p>Les gestionnaires d&#39;artefacts, paquets d&#39;OS, d&#39;images Docker, les plus connus sont <a href="https://jfrog.com/artifactory/" target="_blank">JFrog Artifactory</a>, <a href="https://www.sonatype.com/products/nexus-repository" target="_blank">Sonatype Nexus</a>, <a href="https://inedo.com/proget" target="_blank">ProGet</a>.</p>
+<p>Il est possible de renforcer l&#39;intégrité en certifiant vos images <a href="https://blog.octo.com/la-signature-dimages-docker-sur-une-registry-avec-notary/" target="_blank">Docker avec Notary</a>. Plus d&#39;informations sur la documentation spécifique <a href="https://docs.docker.com/engine/security/trust/" target="_blank">&#34;Content trust in Docker&#34;</a></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Déploiement" duration="3">
+        <h2 is-upgraded>Déploiement : Configuration sécurisée</h2>
+<p>Au niveau des SCM (Software Configuration Management Tools), les classiques sont : <a href="https://www.ansible.com/" target="_blank">Ansible</a>, <a href="https://www.puppet.com/" target="_blank">Puppet</a>, <a href="https://www.chef.io/" target="_blank">Chef</a>, mais également <a href="https://www.atlassian.com/software/bamboo" target="_blank">Bamboo</a>, <a href="https://blog.jetbrains.com/teamcity/2019/03/teamcity-and-plastic-scm/" target="_blank">TeamCity</a>, <a href="https://octopus.com/" target="_blank">Octopus Deploy</a>, <a href="https://www.rudder.io/" target="_blank">Rudder</a>, <a href="https://jaas.ai/" target="_blank">Juju/JAAS</a>, <a href="https://saltproject.io/" target="_blank">SaltStack</a>, <a href="https://cfengine.com/" target="_blank">CFEngine</a>, <a href="https://www.auvik.com/" target="_blank">Auvik</a>, <a href="https://www.solarwinds.com/" target="_blank">SolarWinds</a>.</p>
+<p>Sans oublier de sécuriser vos secrets avec <a href="https://www.vaultproject.io/" target="_blank">Hashicorp Vault</a>, <a href="https://www.akeyless.io/" target="_blank">Akeyless Vault</a>, <a href="https://delinea.com/products/secret-server" target="_blank">Thycotic Secret Server renommé Delinea</a>, les projets <a href="https://github.com/mozilla/sops" target="_blank">Mozilla/sops</a> et <a href="https://github.com/cloudflare/gokey" target="_blank">cloudflare/gokey</a> ou à travers de votre cloud provider par exemple <a href="https://aws.amazon.com/fr/secrets-manager/" target="_blank">AWS Secrets Manager</a>.</p>
+<p>Enfin pour maintenir une infrastructure immutable (IaC), il existe ArgoCD (avec le <a href="https://www.cncf.io/blog/2020/12/17/solving-configuration-drift-using-gitops-with-argo-cd/" target="_blank">concept de Synchronisation</a>), <a href="https://driftctl.com/" target="_blank">Driftctl de CloudSkiff</a>, <a href="https://www.weave.works/blog/magalix-joins-weaveworks-to-bring-policy-to-gitops" target="_blank">Magalix racheté par Weaveworks GitOps</a>, <a href="https://www.fairwinds.com/insights" target="_blank">Fairwinds Insights</a>, <a href="https://github.com/weaveworks/kubediff" target="_blank">le projet GitHub Kubediff de Weaveworks</a>.</p>
+<p>La combinaison <a href="https://neonmirrors.net/post/2022-07/attesting-image-scans-kyverno/" target="_blank">Trivy+Cosign+Kyverno</a> peut être utilisée pour imposer un déploiement sur Kubernetes d&#39;une image docker sans vulnérabilité, avec un scan récent inférieur à X jours. Nous vous invitons à lire ce <a href="https://neonmirrors.net/post/2022-07/attesting-image-scans-kyverno/" target="_blank">billet de blog</a></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Scan" duration="3">
+        <h2 is-upgraded>Déploiement : Scans de sécurité</h2>
+<p><a href="https://shodan.io/" target="_blank">Shodan.io</a> est un site assez connu qui crawle Internet à la recherche de ports ouverts, de failles de sécurité connues. <a href="https://fullhunt.io/" target="_blank">FullHunt.io</a> est aussi une plate-forme pour découvrir tous vos équipements connectés à Internet et votre surface d&#39;attaque.</p>
+<p>Enfin pour les infrastructures Kubernetes, nous pouvons utiliser les scanners de <a href="https://github.com/quay/clair" target="_blank">quay/clair</a>, <a href="https://aquasecurity.github.io/trivy/" target="_blank">Trivy</a> ou <a href="https://falco.org" target="_blank">Falco</a>.</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Patch" duration="3">
+        <h2 is-upgraded>Opération : Patchs de sécurité</h2>
+<p>Pour activer les patchs de sécurité pour les environnements &#34;pets&#34;, vous pouvez utiliser vos playbooks <a href="https://www.ansible.com/" target="_blank">Ansible</a> (avec <a href="https://github.com/ansible/awx" target="_blank">AWX</a>/<a href="https://www.ansible.com/products/controller" target="_blank">Ansible Tower</a> ou <a href="https://hewlettpackard.github.io/squest/" target="_blank">HP Squest</a>), <a href="https://saltproject.io/" target="_blank">SaltStack</a>, <a href="https://www.puppet.com/" target="_blank">Puppet</a>, <a href="https://www.chef.io/" target="_blank">Chef</a>, ou <a href="https://www.rudder.io/" target="_blank">Rudder</a>.</p>
+<p>Pour la partie &#34;cattle&#34; alias Cloud Native, vous pouvez utiliser votre pipeline CI/CD, <a href="https://argoproj.github.io/" target="_blank">ArgoCI</a>, <a href="https://fluxcd.io/" target="_blank">Flux</a>, <a href="https://tekton.dev/" target="_blank">Tekton</a> avec la nouvelle image Docker construite, avec vos procédures de mise à jour habituelles (rolling update).</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Audit" duration="3">
+        <h2 is-upgraded>Surveillance : Audit de sécurité et des bonnes pratiques</h2>
+<p>En open source, il existe les projets <a href="https://github.com/derailed/popeye" target="_blank">Popeye</a>, <a href="https://github.com/FairwindsOps/polaris" target="_blank">Polaris</a>, <a href="https://github.com/zegl/kube-score" target="_blank">kube-score</a>, <a href="https://falco.org/docs/rules/" target="_blank">Falco</a> et <a href="https://aquasecurity.github.io/trivy/v0.29.2/docs/misconfiguration/scanning/" target="_blank">Trivy</a> pour Kubernetes.</p>
+<p>Pour le multi-cloud <a href="https://github.com/nccgroup/ScoutSuite" target="_blank">nccgroup/ScoutSuite</a> et <a href="https://github.com/SecurityFTW/cs-suite" target="_blank">Cloud Security Suite</a>, ou <a href="https://github.com/prowler-cloud/prowler" target="_blank">Prowler</a> pour AWS/Azure, et le NIST <a href="https://github.com/OpenSCAP/openscap" target="_blank">OpenSCAP</a>. Libhunt en recense d&#39;<a href="https://www.libhunt.com/r/ScoutSuite" target="_blank">autres</a>, comme <a href="https://linuxsecurity.expert/tools/scout2/alternatives/" target="_blank">Linux Security</a> mais une partie est orientée pour les infrastructures spécifiques à AWS, ou non opensourcé comme Cloud Security Suite.</p>
+<p>Si vous ou vos clients en avez besoin, vous pouvez passer des certifications normatives pour vos produits: ISO/CEI 27001 - 27017 - 27018, PCI, HITRUST, CSA STAR, HDS.</p>
+<p>Pour la robustesse SI/logiciel: CSPN, CC EAL 3+, CC EAL 4+.</p>
+<p>Enfin les qualifications des services SSI: SecNumCloud, PSCE, PRIS, PDIS, PASSI, PSHE.</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Surveillance" duration="3">
+        <h2 is-upgraded>Surveillance : Sécurité monitorée</h2>
+<p>Le logiciel open source <a href="https://falco.org/" target="_blank">Falco</a> permet de surveiller l&#39;activité de Kubernetes et détecter des comportements anormaux ou malicieux. Nous vous recommandons de visionner la conférence de <a href="https://archive.fosdem.org/2020/schedule/event/kubernetes/" target="_blank">Kris Nova</a> au FOSDEM 2020 <a href="https://youtu.be/6NhHnVYpOFw" target="_blank">&#34; Fixing the Kubernetes clusterfuck - Understanding security from the kernel up&#34;</a> (en anglais). Les Système de détection d&#39;intrusion (IDS), sont aussi pratiques, les projets <a href="https://www.crowdsec.net/" target="_blank">CrowdSec</a>, <a href="https://suricata.io/" target="_blank">suricata</a>, <a href="https://www.fail2ban.org/" target="_blank">fail2ban</a>, <a href="https://www.ossec.net/" target="_blank">OSSEC</a>, <a href="https://wazuh.com/" target="_blank">Wazuh</a>, <a href="https://www.snort.org/" target="_blank">Snort</a>, <a href="https://www.pfsense.org/" target="_blank">pfSense</a>, <a href="https://www.tripwire.com/products/tripwire-enterprise" target="_blank">Tripwire Enterprise</a>, <a href="https://www.la-samhna.de/samhain/" target="_blank">Samhain</a>, <a href="https://securityonionsolutions.com/" target="_blank">Security Onion</a> valent la peine d&#39;être consultés.</p>
+<p>Pour l&#39;ensemble de l&#39;infrastructure, un système SIEM (Security information and event management) est indispensable. <a href="https://www.splunk.com/" target="_blank">Splunk</a>, <a href="https://www.elastic.co/security" target="_blank">Elastic Security</a>, <a href="https://www.ibm.com/products/qradar-siem" target="_blank">IBM QRadar</a>, <a href="https://www.unifiedthreatworks.com/USM-Appliance" target="_blank">AlienVault USM</a> ou <a href="https://www.solarwinds.com/security-event-manager/use-cases/threat-detection" target="_blank">SolarWinds Threat Monitor</a> sont dans ce domaine.</p>
+<p>Si vous devez vous connecter en SSH sur votre infrastructure, passez par une machine intermédiaire, dite de rebond, qui apporte la gestion d&#39;utilisateurs/groupes, l&#39;auditabilité ainsi que la traçabilité des actions. <a href="https://www.ovhcloud.com/fr/" target="_blank">OVHcloud</a> a opensourcé leur projet de <a href="https://github.com/ovh/the-bastion/" target="_blank">bastion sur GitHub</a></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Veille technologique" duration="3">
+        <h2 is-upgraded>Retour : Analyse de sécurité</h2>
+<p>Nous recommandons de maintenir une veille technologique quotidienne ainsi que la lecture des CVE sur les sites <a href="https://www.opencve.io/" target="_blank">OpenCVE.io</a>, <a href="https://www.cert.ssi.gouv.fr/" target="_blank">CERT-FR</a>. La plate-forme <a href="https://feedly.com/" target="_blank">Feedly.com</a> propose une <a href="https://feedly.com/i/landing/cybersecurity" target="_blank">&#34;Threat Intelligence&#34;</a> sur différents thèmes (abonnement payant). En complément, <a href="https://www.ssi.gouv.fr/" target="_blank">ANSSI</a> a créé le projet libre <a href="https://github.com/OpenCTI-Platform/opencti" target="_blank">OpenCTI.io</a> et <a href="https://otx.alienvault.com/" target="_blank">AlienVault OTX</a> présente les menaces actuelles dans le cybermonde. Et pour finir, voici quelques podcasts en français, <a href="https://www.nolimitsecu.fr/" target="_blank">NoLimitSecu</a>, <a href="https://securite.fm/" target="_blank">La French Connection</a>, <a href="https://www.comptoirsecu.fr/podcast/" target="_blank">Le comptoir Sécu</a>, <a href="https://www.radiofrance.fr/societe/tech-web/cybersecurite" target="_blank">RadioFrance</a> a proposé quelques explications sur l&#39;attaque récente d&#39;un rançongiciel à l&#39;encontre de La <a href="https://www.radiofrance.fr/franceinter/sept-questions-pour-comprendre-le-piratage-de-l-operateur-la-poste-mobile-et-ses-consequences-6393466" target="_blank">Poste Mobile</a>.</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Ex: Veille" duration="10">
+        <h2 is-upgraded>Explorons les outils suivants</h2>
+<ul>
+<li><a href="https://www.opencve.io/" target="_blank">OpenCVE.io</a></li>
+<li><a href="https://otx.alienvault.com/" target="_blank">AlienVault OTX</a></li>
+</ul>
+<p>avec des logins spécialement créés pour DevoxxFR 2023</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Cycle de vie" duration="3">
+        <h2 is-upgraded>Fin de vie : Donnez une date d&#39;échéance à vos projets</h2>
+<p>Voici une vue d&#39;ensemble rapide sur une liste d&#39;outils (non exhaustive) qui vont vous accompagner durant le cycle de vie du projet : de la conception jusqu&#39;à la <strong>fin de vie de votre logiciel</strong>. Cette dernière étape est également <strong>indispensable</strong>. Sinon votre produit vivra trop longtemps, au-delà de la maintenance de vos dépendances, mais aussi de votre système d&#39;exploitation. Les exemples à ce sujet sont nombreux: les banques ont payé les mises à jours étendues de <strong>Windows XP</strong> en 2014 car ce système d&#39;exploitation équipait toujours <a href="https://www.numerama.com/politique/28852-windows-xp-distributeurs.html" target="_blank">90% des distributeurs automatiques de billets</a>.</p>
+<p>Ajoutons encore la panne globale du système météorologique de l&#39;aéroport d&#39;Orly, le 7 Novembre 2015, qui a empêché les avions de décoller ou atterrir, et qui tournait toujours sur <a href="https://www.lemondeinformatique.fr/actualites/lire-le-trafic-aerien-d-orly-paralyse-a-cause-d-une-panne-systeme-windows-31-62953.html" target="_blank">Windows 3.1</a>.</p>
+<p>Mettre les applications à jour, permet à la fois d&#39;obtenir les nouvelles features (comme la version 2.37 de <a href="https://github.blog/2022-06-27-highlights-from-git-2-37/" target="_blank">git</a>) et les derniers patchs de sécurité (ex: OpenSSL 3.0.5 doit corriger d&#39;une faille potentielle plus grave que celle de <a href="https://www.theregister.com/2022/06/27/openssl_304_memory_corruption_bug/" target="_blank">Heartbleed</a> ou les multiples vulnérabilités dans le noyau Linux d&#39;Ubuntu du 15 juillet 2022, <a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2022-AVI-645/" target="_blank">CERTFR-2022-AVI-645</a>)</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Ex: Crash &amp; Burn" duration="15">
+        <h2 is-upgraded>Gagner en confiance en ses sauvegardes</h2>
+<p class="image-container"><img alt="NewsBlur - Logo" src="img/13781bbbb2005845.jpg"></p>
+<p>Vous vous souvenez à nouveau des conséquences de l&#39;attaque contre fournisseur de données pour DevoxxGPT: <a href="https://blog.newsblur.com/2021/06/28/story-of-a-hacking/" target="_blank">NewsBlur</a>. Pour éviter une mésaventure, vous prenez les devant: Tester de manière fréquente vos procédures de snapshot backup/restore.</p>
+<p><strong>Objectifs de cette étape</strong>:</p>
+<ul>
+<li>Lister ce qui est indispensable pour votre sauvegarde (état mais aussi fichiers de configuration/secrets chiffrés)</li>
+<li>Automatiser la procédure qui réalise vos sauvegardes</li>
+<li>Tester de manière régulière la procédure qui charge vos sauvegardes</li>
+<li>Profitez-en pour tester votre toute dernière base de code en même temps, la branche principale main/master (facultatif)</li>
+</ul>
+<p class="image-container"><img alt="CommitStrip - Backup" src="img/df35191fbd4e9f5e.jpg"></p>
+<p><a href="https://www.commitstrip.com/fr/2016/09/05/do-we-have-a-back-up-in-the-audience/?setLocale=1" target="_blank">Source de la BD, CommitStrip - lien direct</a></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Bonnes pratiques" duration="3">
+        <h2 is-upgraded>Si nous devions donner une petite liste de bonnes pratiques</h2>
+<ul>
+<li>Diminuer surface d&#39;attaque (scratch, distroless, ubi-minimal)</li>
+<li>Principe de moindre privilège (!root, 1 user = 1 appli)</li>
+<li>Défense en profondeur (bastion, traceability, siem)</li>
+<li>Détection de connexion, proposer/activer MFA</li>
+<li>Pas de configuration/permissions par défaut (K8s, <a href="https://www.theregister.com/2016/04/25/mexico_voter_data_breach/" target="_blank">MongoDB</a>)</li>
+<li>Pas de secrets dans les Docker images ou les repositories Git (Vault, .gitignore)</li>
+<li>Pas de données sensibles dans les GUI (RGPD + permettre la captation durant une visio/conférences)</li>
+<li>Ne pas afficher de stacktrace (pas debug | Fail securely)</li>
+<li>Ni de version/nom de framework</li>
+<li>Vérifier les entrées/sorties des clients/noeuds/microservices (injection/XSS, protocoles)</li>
+<li>Faire des backups régulièrement et déconnectées du réseau</li>
+<li>Mettre à jour infra/docker images (CI/CD|<a href="https://www.infoq.com/news/2020/02/wksctl-kubernetes-gitops/" target="_blank">GitOps</a>)</li>
+<li>Surveiller le traffic sortant (comme le DNS qui n&#39;est pas souvent = <a href="https://twitter.com/rsobers/status/1293539543115862016" target="_blank">Exfiltration de données possible</a> / <a href="https://blog.ovhcloud.com/an-introduction-to-dnssec/" target="_blank">DNSSEC</a>)</li>
+<li>Joker: Utiliser une PaaS 🇪🇺 si vous ne souhaitez pas vous embêter avec la sécurité: CleverCloud/OVHcloud/Scaleway</li>
+</ul>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Cloud Native" duration="2">
+        <p>Si nous devions synthétiser une partie des outils, dans le monde Cloud Native, voici le résultat Car la <a href="https://landscape.cncf.io/" target="_blank">CNFC Landscape</a> ne donne pas la même chose si on choisit Industrie = Sécurité ^^</p>
+<p class="image-container"><img alt="Cloud Native" src="img/24eb8dda306f563b.jpg"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Félicitations" duration="2">
+        <p class="image-container"><img alt="DevoxxGPT logo" src="img/c9aba750fcee32ce.jpg"></p>
+<p>Votre CEO ainsi que votre CTO vous félicient pour ces actions préventives et actives pour renforcer les produits de l&#39;entreprise, et surtout votre produit phare: DevoxxGPT. Vous pouvez être fier.e pour ces exploits menés avec brio !</p>
+<p class="image-container"><img alt="CommitStrip - ChatGPT" src="img/a0a34cec873e080b.jpg"></p>
+<p><a href="https://www.commitstrip.com/fr/2022/12/09/a-whole-new-world/?setLocale=1" target="_blank">Source de la BD, CommitStrip - lien direct</a></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Références" duration="4">
+        <h2 is-upgraded>Pour approfondir vos connaissances</h2>
+<ul>
+<li><a href="https://www.ssi.gouv.fr/administration/bonnes-pratiques/" target="_blank">ANSSI</a> (<a href="https://www.ssi.gouv.fr/guide/agilite-et-securite-numeriques-methode-et-outils-a-lusage-des-equipes-projet/" target="_blank">Sécurité Agile</a>, Applications sécurisés en <a href="https://www.ssi.gouv.fr/guide/regles-de-programmation-pour-le-developpement-dapplications-securisees-en-rust/" target="_blank">Rust</a>, Déploiement de conteneurs <a href="https://www.ssi.gouv.fr/agence/publication/recommandations-de-securite-relatives-au-deploiement-de-conteneurs-docker/" target="_blank">Docker</a>)</li>
+<li><a href="https://www.youtube.com/watch?v=4rCrTi5Tx_M" target="_blank">10 leçons sur les 10 plus grosses fuites de données</a>, de Adrien Pessu (JSC 2020)</li>
+<li><a href="https://youtu.be/JC6seEF0_Rc" target="_blank">La Cryptographie en 55&#39; chrono</a>, de m4dz (SnowCamp2020)</li>
+<li><a href="https://youtu.be/dCy6rHLGT6k" target="_blank">Sécurité du Cloud</a>, de Eric Briand (RemoteClazz 2020)</li>
+<li><a href="https://www.franceinter.fr/emissions/affaires-sensibles/affaires-sensibles-22-novembre-2019" target="_blank">La nuit tous les hackers sont gris</a> (Fiction écrite par Vincent Hazard, 2019)</li>
+<li><a href="https://youtu.be/WWzG5ps2v14" target="_blank">Et l&#39;ANSSI dit &#34;Voici comment sécuriser un container&#34;</a> de Yann Schepens (Volcamp 2022)</li>
+<li><a href="https://youtu.be/9D__deRM7vw" target="_blank">TV5 Monde Analyse d&#39;Incident</a>, ANSSI (SSTIC 2017)</li>
+<li><a href="https://programmez.com/magazine/article/la-securite-des-la-conception-secure-design" target="_blank">La Sécurité dès la conception, Programmez!</a> (Hors-série 8 Septembre/Octobre 2022), et le prochain en Septembre 2023</li>
+</ul>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Conclusion" duration="4">
+        <p>Pour Guillaume Poupard, patron de l&#39;ANSSI, oublier la cyber-sécurité, c&#39;est <a href="https://www.lepoint.fr/high-tech-internet/oublier-la-cybersecurite-c-est-rouler-a-200km-h-a-moto-sans-casque-06-10-2016-2074073_47.php" target="_blank">&#34;rouler à 200 km/h à moto sans casque&#34;</a>.</p>
+<p>Nous connaissons bien l&#39;adage &#34;Nul n&#39;est censé ignorer la loi&#34; ? Selon moi, son équivalent en informatique existe &#34;Nul développeur n&#39;est censé ignorer la sécurité&#34;. C&#39;est ainsi que je voudrais mon premier atelier : qu&#39;il soit un ensemble d&#39;outils pour votre chaîne de CI/CD.</p>
+<p>Et comme une <a href="https://davidaparicio.gitlab.io/fr/post/kiwicon/" target="_blank">image vaut mille mots</a>, voilà une de la <a href="https://kiwicon.org/site_media/poster_shit.pdf" target="_blank">Kiwicon 2009</a> pour conclure.</p>
+<p class="image-container"><img alt="Les Hackers n&amp;rsquo;en ont rien à faire de" src="img/39214eae460a23e4.jpg"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Feedback" duration="3">
+        <p>Merci pour votre participation <strong>active</strong> et agréable, sur cette très longue durée. Surtout qu&#39;il est bien tard, vous avez bien mérité le déjeuner !</p>
+<p>Nous, Christopher et David Aparicio, nous profitons pour remercier infiniment les organisateurs et toute l&#39;équipe de DevoxxFR pour leur aide et leur confiance</p>
+<p>Nous vous souhaitons un excellent DevoxxFR 2023 !! ;-)</p>
+<p class="image-container"><img alt="Lien OpenFeedBack" src="img/aefb6fcfa3a81ba9.png"></p>
+<p>S&#39;il vous plaît, laissez-nous votre note et vos commentaires sur <a href="https://openfeedback.io/2M9FzZ6xSI2POKX1TrXM/2023-04-13/iWUCq9jRftwiLuxrqhdl" target="_blank">OpenFeedBack</a></p>
+
+
+      </google-codelab-step>
+    
+  </google-codelab>
+
+  <script src="https://storage.googleapis.com/claat-public/native-shim.js"></script>
+  <script src="https://storage.googleapis.com/claat-public/custom-elements.min.js"></script>
+  <script src="https://storage.googleapis.com/claat-public/prettify.js"></script>
+  <script src="https://storage.googleapis.com/claat-public/codelab-elements.js"></script>
+  <script src="//support.google.com/inapp/api.js"></script>
+
+</body>
+</html>
