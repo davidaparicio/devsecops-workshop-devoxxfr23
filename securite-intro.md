@@ -200,12 +200,16 @@ Duration: 4
 ### Développer : Sécurité comme Code
 D’après O’Reilly, SaC (Security as Code) consiste à intégrer la sécurité dans les flux DevOps, alias CI/CD. Néanmoins, si l’outil n’est pas trop gourmand en ressources, il peut être installé dans l’éditeur. Car nous avons des ordinateurs plus puissants, grâce à l’apparition des puces ARM ou les IDE en ligne, comme AWS Cloud9, Gitpod, ou GitHub Codespaces. Au niveau des containers sécurisés, des implémentations existent avec [gVisor](https://gvisor.dev/), les [Kata Containers](https://katacontainers.io/) et les [Confidential containers](https://youtu.be/G0SwSWKGyuM).
 
-D’une part, l’application de la configuration (HBAC, RBAC, règle pare-feu) peut-être une opération critique en cas d’oubli ([bucket S3 accessible en public sur Internet, [base de données sans mot de passe](https://blog.newsblur.com/2021/06/28/story-of-a-hacking/)). Il est préférable de déclarer son besoin avec des fichiers et de laisser l’orchestrateur les réaliser plutôt qu’agir de manière impérative sur le système. 
+D’une part, l’application de la configuration (HBAC, RBAC, règle pare-feu) peut-être une opération critique en cas d’oubli ([bucket S3 accessible en public sur Internet](), [base de données sans mot de passe](https://blog.newsblur.com/2021/06/28/story-of-a-hacking/)). Il est préférable de déclarer son besoin avec des fichiers et de laisser l’orchestrateur les réaliser plutôt qu’agir de manière impérative sur le système. 
 
 Par exemple, le projet [Cilium](https://cilium.io/) permet d’interagir avec le réseau et d’appliquer des politiques de sécurité. De plus, les maillage de services (services-mesh) comme Istio, Traefik maesh ou Solo.io avec GlooEdge génèrent automatiquement des certificats SSL et ne laissent passer ainsi que les communications sécurisées entre vos containers. D'[autres projets](https://platform9.com/blog/the-ultimate-guide-to-using-calico-flannel-weave-and-cilium/) existent comme: [Flannel](https://github.com/flannel-io/flannel), [Calico](https://github.com/projectcalico/calico) ou [Weave](https://github.com/weaveworks/weave).
 
 D’autre part, les commandes `docker scan`, `trivy image mon_Image_Docker:tag` analysent les vulnérabilités connues de votre Dockerfile. Avant de pousser du code contenant des secrets, un hook peut-être installé avec [GitGuardian](https://gitguardian.com/), [ggshield](https://github.com/GitGuardian/ggshield), [Trivy](https://github.com/aquasecurity/trivy) (`trivy fs —security-checks secret ./`) ou le projet [awslabs/git-secrets](https://github.com/awslabs/git-secrets).
 Comme l’erreur est humaine, il est préférable d’automatiser toutes ces actions et analyses.
+
+Au final, en plus de la modélisation de l'attaquant et des risques, il faut aussi prendre en compte les différents flux, avoir des diagrammes d'architecture, comme celui ci-dessous... justement, c'est notre prochain sujet.
+
+![Exemple d'architecture (cloudcraft.co)](assets/modelisation.png)
 
 <!-- ------------------------ -->
 ## Ex: Diagramme de flux
@@ -561,6 +565,13 @@ Duration: 10
 
 avec des logins spécialement créés pour DevoxxFR 2023
 
+(DISCLAMER: ne pas rentrer d'informations "sensibles" vu que ce sont des comptes partagés ;-D )
+
+* OpenCVE.io, login: devoxx@zici.fr/devoxxFR2023
+* otx.alienvault.com, login: devoxxFR2023/devoxxFR2023
+
+![alienvault logo](assets/alienvault.jpg)
+
 <!-- ------------------------ -->
 ## Cycle de vie
 Duration: 3
@@ -675,3 +686,66 @@ Nous vous souhaitons un excellent DevoxxFR 2023 !! ;-)
 ![Lien OpenFeedBack](assets/feedback.png)
 
 S'il vous plaît, laissez-nous votre note et vos commentaires sur [OpenFeedBack](https://openfeedback.io/2M9FzZ6xSI2POKX1TrXM/2023-04-13/iWUCq9jRftwiLuxrqhdl)
+
+## E1 - Utip 
+Duration: 5
+
+### Utip et Mongopay
+![DevoxxGPT scale](assets/devoxxgpt_curve.jpg)
+
+DevoxxGPT connait une croissance incroyable, comme l'illustre le graphique: de nombreux articles en parlent, des directs sur les plateaux télévisés, et même l'[Italie](https://www.bbc.com/news/technology-65139406) menace de vous bloquer, pour des raisons de vie privée.
+
+
+Mais votre CEO découvre cette [nouvelle](https://www.numerama.com/tech/1325518-utip-ferme-pourquoi-la-plateforme-francaise-de-financement-disparait-elle-si-abruptement.html) avec effroi : "uTip, la plateforme de financement participatif française (Cocorico) concurrente de Tipeee, vient fermer. L’entreprise a été placée en liquidation judiciaire le 23 mars 2023, et son activité s'est arrêtée le 4 avril 2023" ([Source](https://www.numerama.com/tech/1325518-utip-ferme-pourquoi-la-plateforme-francaise-de-financement-disparait-elle-si-abruptement.html)). uTip ferme à cause d'un intermédiaire financier, Mangopay, qui a décidé de mettre fin à leur contrat. Vous avez pour objectif, de le rasurer face à cette triste annonce, ébranlant toute la [French Tech](https://lafrenchtech.com/fr/).
+
+__Objectifs de cette étape__: 
+* Identifier le problème rencontré par uTip, le formaliser
+* Pour un de vos assets de votre projet, trouver ce genre de problème éventuel et une résolution possible
+* Bonus: Pour tous vos prestataires, ou fournisseurs de services (Cloud par exemple), trouvez des alernatives possibles pour éviter de faire banqueroute comme uTip, et ainsi, rassurer votre CEO
+
+![uTip licorne](assets/utip.jpg)
+
+<!-- ------------------------ -->
+## E2 - MitM
+Duration: 5
+
+### Man In The Middle, or not MitM ? (Avons-nous une attaque de type MitM)
+![Star Realms Event](assets/star_realms_event.jpg)
+
+Vos développeur.se.s sont inquiet.e.s. Depuis ce vendredi matin, 24 Mars 2023, elles & ils obtiennent ce message d'erreur lors des déploiements CI/CD ou de simples commits sur GitHub.
+
+```Bash
+myuser@tatooine ~> git pull origin main
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@    WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!     @
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+IT IS POSSIBLE THAT SOMEONE IS DOING SOMETHING NASTY!
+Someone could be eavesdropping on you right now (man-in-the-middle attack)!
+It is also possible that a host key has just been changed.
+The fingerprint for the RSA key sent by the remote host is
+SHA256:uNiVztksCsDhcc0u9e8BujQXVUpKZIDTMczCvj3tD2s.
+Please contact your system administrator.
+Add correct host key in /Users/myuser/.ssh/known_hosts to get rid of this message.
+Offending RSA key in /Users/myuser/.ssh/known_hosts:5
+RSA host key for github.com has changed and you have requested strict checking.
+Host key verification failed.
+fatal: Could not read from remote repository.
+
+Please make sure you have the correct access rights
+and the repository exists.
+```
+
+Votre CEO ainsi que votre CTO s'inquiètent. Car ces messages sont bloquants pour les développements ainsi que les déploiements. En tant que Champion de la sécurité, ielles vous demandent d'investiguer sur la cause de ce message d'erreur. Est-ce que votre startup s'est-elle faite attaquée depuis le live sur XFM, hier soir, au JT du 20h ?
+
+__Objectifs de cette étape__: 
+* Identifier la cause de ce message d'erreur (Avez-vous trouvé un article qui parle de ce souci ?)
+* Etes-vous familié avec le terme ```Man In The Middle``` ? ([Attaque de l'homme du milieu](https://fr.wikipedia.org/wiki/Attaque_de_l%27homme_du_milieu))
+* Faut-il accepter cette nouvelle clé ?
+* Bonus: Préparer un script qui va, pour une fois (unique), permettre la résolution de l'incident
+
+PS: C'est un évènement daté ^^
+
+<!-- https://github.blog/2023-03-23-we-updated-our-rsa-ssh-host-key/ -->
+<!-- ❯ DELETE_LINE=5
+sed -i '' "${DELETE_LINE?}d" ~/.ssh/known_hosts -->
+<!-- ------------------------ -->
