@@ -1,0 +1,50 @@
+{
+	"playbook": {
+		"paths": {
+			"/petstores/{id}": {
+				"delete": {
+					"authorizationTests": [
+						"AdminOnly"
+					],
+					"happyPaths": [
+						{
+							"key": "happy.path.success",
+							"requests": [
+								{
+									"$ref": "#/requests/CreatePetstore"
+								},
+								{
+									"$ref": "#/requests/DeletePetstore"
+								}
+							]
+						}
+					]
+				}
+			}
+		}
+	},
+	"requests": {
+		"DeletePetstore": {
+            "request": {
+                "type": "42c",
+                "requestDetails": {
+                    "host": "{{host}}",
+                    "path": "/petstores/{id}",
+                    "method": "delete",
+                    "pathParameters": {
+                        "id": "{{petstoreId}}"
+                    },
+                    "queryParameters": {},
+                    "headerParameters": {},
+                    "cookieParameters": {},
+                    "requestBody": null
+                }
+            },
+            "responseAnalysisBehavior": {
+                "httpStatusExpected": [
+                    "204"
+                ]
+            }
+        }
+	}
+}

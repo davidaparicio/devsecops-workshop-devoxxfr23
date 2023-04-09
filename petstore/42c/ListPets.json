@@ -1,0 +1,63 @@
+{
+	"playbook": {
+		"paths": {
+			"/petstores/{id}/pets": {
+				"get": {
+					"after": [
+						{
+							"$ref": "#/requests/DeletePet"
+						},
+						{
+							"$ref": "#/requests/DeletePetstore"
+						}
+					],
+					"before": [
+						{
+							"$ref": "#/requests/CreatePetstore"
+						},
+						{
+							"$ref": "#/requests/CreatePet"
+						}
+					],
+					"happyPaths": [
+						{
+							"key": "happy.path.success",
+							"requests": [
+								{
+									"$ref": "#/requests/ListPets"
+								}
+							]
+						}
+					]
+				}
+			}
+		}
+	},
+	"requests": {
+        "ListPets": {
+            "auth": [
+                "UserCookie"
+            ],
+            "request": {
+                "type": "42c",
+                "requestDetails": {
+                    "host": "{{host}}",
+                    "path": "/petstores/{id}/pets",
+                    "method": "get",
+                    "pathParameters": {
+                        "id": "{{petstoreId}}"
+                    },
+                    "queryParameters": {},
+                    "headerParameters": {},
+                    "cookieParameters": {},
+                    "requestBody": null
+                }
+            },
+            "responseAnalysisBehavior": {
+                "httpStatusExpected": [
+                    "200"
+                ]
+            }
+        }
+	}
+}

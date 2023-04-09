@@ -1,0 +1,139 @@
+{
+	"playbook": {
+		"paths": {
+			"/pets/{id}/transfer": {
+				"put": {
+					"after": [
+						{
+							"$ref": "#/requests/DeletePetstore"
+						},
+						{
+							"request": {
+								"requestDetails": {
+									"cookieParameters": {},
+									"headerParameters": {},
+									"host": "{{protocol}}://{{hostname}}",
+									"method": "delete",
+									"path": "/petstores/{id}",
+									"pathParameters": {
+										"id": "{{newPetstoreId}}"
+									},
+									"queryParameters": {},
+									"requestBody": null
+								},
+								"type": "42c"
+							},
+							"responseAnalysisBehavior": {
+								"httpStatusExpected": [
+									"204"
+								]
+							}
+						}
+					],
+					"authorizationTests": [
+						"UserIsolation"
+					],
+					"before": [
+						{
+							"$ref": "#/requests/CreatePetstore"
+						},
+						{
+							"auth": [
+								"AdminCookie"
+							],
+							"request": {
+								"requestDetails": {
+									"cookieParameters": {},
+									"headerParameters": {
+										"Content-Type": "application/json"
+									},
+									"host": "{{protocol}}://{{hostname}}",
+									"method": "post",
+									"path": "/petstores",
+									"pathParameters": {},
+									"queryParameters": {},
+									"requestBody": {
+										"json": {
+											"name": "{{$random}}"
+										},
+										"mode": "json"
+									}
+								},
+								"type": "42c"
+							},
+							"responseAnalysisBehavior": {
+								"httpStatusExpected": [
+									"200"
+								]
+							},
+							"responseProcessing": {
+								"variableAssignments": {
+									"contentType": "application/json",
+									"httpStatus": 200,
+									"variables": {
+										"newPetstoreId": "${json_pointer(json(http.response.body),'/id')}"
+									}
+								}
+							}
+						}
+					],
+					"conformanceRequests": [],
+					"customRequests": [],
+					"happyPaths": [
+						{
+							"key": "happy.path.success",
+							"requests": [
+								{
+									"$ref": "#/requests/CreatePet"
+								},
+								{
+									"$ref": "#/requests/ReadPet"
+								},
+								{
+									"$ref": "#/requests/TransferPet"
+								},
+								{
+									"$ref": "#/requests/DeletePet"
+								}
+							]
+						}
+					]
+				}
+			}
+		}
+	},
+	"requests": {
+        "TransferPet": {
+            "auth": [
+                "UserCookie"
+            ],
+            "request": {
+                "type": "42c",
+                "requestDetails": {
+                    "host": "{{host}}",
+                    "path": "/pets/{id}/transfer",
+                    "method": "put",
+                    "pathParameters": {
+                        "id": "{{petId}}"
+                    },
+                    "queryParameters": {},
+                    "headerParameters": {
+                        "Content-Type": "application/json"
+                    },
+                    "cookieParameters": {},
+                    "requestBody": {
+                        "mode": "json",
+                        "json": {
+                            "petstoreId": "{{newPetstoreId}}"
+                        }
+                    }
+                }
+            },
+            "responseAnalysisBehavior": {
+                "httpStatusExpected": [
+                    "200"
+                ]
+            }
+        }
+	}
+}

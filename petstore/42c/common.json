@@ -1,0 +1,155 @@
+{
+	"authenticationDetails": [
+		{
+			"AdminCookie": {
+				"credentials": {
+					"Admin": {
+						"credential": "{{sessionIdAdmin}}",
+						"description": "Admin Credential",
+						"requests": [
+							{
+								"$ref": "#/requests/UserLoginAdmin",
+								"auth": [],
+								"environment": {
+									"password": "HelloWorld",
+									"user": "admin@42crunch.com"
+								}
+							}
+						]
+					}
+				},
+				"default": "Admin",
+				"in": "cookie",
+				"name": "session",
+				"ttl": "30s",
+				"type": "apiKey"
+			},
+			"UserCookie": {
+				"credentials": {
+					"User": {
+						"credential": "{{sessionId}}",
+						"description": "User Credential",
+						"requests": [
+							{
+								"$ref": "#/requests/UserLogin",
+								"auth": [],
+								"environment": {
+									"password": "HelloWorld",
+									"user": "user@42crunch.com"
+								}
+							}
+						]
+					},
+					"User1": {
+						"credential": "{{sessionId}}",
+						"description": "User Credential",
+						"requests": [
+							{
+								"$ref": "#/requests/UserLogin",
+								"auth": [],
+								"environment": {
+									"password": "HelloWorld",
+									"user": "user1@42crunch.com"
+								}
+							}
+						]
+					}
+				},
+				"default": "User",
+				"in": "cookie",
+				"name": "session",
+				"ttl": "30s",
+				"type": "apiKey"
+			}
+		}
+	],
+    "authorizationTests": {
+        "UserIsolation": {
+            "key": "authentication-swapping-bola",
+            "source": [
+                "UserCookie/User"
+            ],
+            "target": [
+                "UserCookie/User1"
+            ]
+        },
+        "AdminOnly": {
+            "key": "authentication-swapping-bfla",
+            "source": [
+                "AdminCookie/Admin"
+            ],
+            "target": [
+                "UserCookie/User"
+            ]
+        }
+    },
+	"environment": {
+        "host": "env_with_default('SCAN42C_HOST','http://localhost:4010')"
+    },
+    "runtimeConfiguration": {
+        "logLevel": "error",
+        "logDestination": "stdout+platform",
+        "maxLogFileSize": 2147483648,
+        "headerTransactionName": "x-scan-request-id",
+        "headerScenarioTransactionName": "x-scan-scenario-id",
+        "flowrate": 10,
+        "timeout": 30,
+        "followRedirection": true,
+        "happyPathRetry": 1,
+        "happyPathOnly": false,
+        "happyPathConformanceStrict":false,
+        "maxScanTime": 3600,
+        "memoryLimit": 2147483648,
+        "memoryTimeSpan": 10,
+        "indexed": false,
+        "prettify": false,
+        "maxBodySizeScan": 10485760,
+        "maxHttpResponseSizeHappyPathReport": 0,
+        "maxBodySizeHappyPathReport": 8092,
+        "maxHttpResponseSizeTestReport": 0,
+        "maxBodySizeTestReport": 8092,
+        "errorsOnly": true,
+        "maxIssues": 10000,
+        "maxReportSize": 104857600
+    },
+	"requests": {
+        "UserLoginAdmin": {
+            "auth": [],
+            "request": {
+                "type": "42c",
+                "requestDetails": {
+                    "host": "{{protocol}}://{{hostname}}",
+                    "path": "/login",
+                    "method": "post",
+                    "pathParameters": {},
+                    "queryParameters": {},
+                    "headerParameters": {
+                        "Content-Type": "application/json"
+                    },
+                    "cookieParameters": {},
+                    "requestBody": {
+                        "mode": "json",
+                        "json": {
+                            "password": "{{password}}",
+                            "user": "{{user}}"
+                        }
+                    }
+                }
+            },
+            "responseAnalysisBehavior": {
+                "httpStatusExpected": [
+                    "200"
+                ]
+            },
+            "responseProcessing": {
+                "variableAssignments": {
+                    "httpStatus": 200,
+                    "variables": {
+                        "sessionIdAdmin": "${http.response.cookies['session']}"
+                    }
+                }
+            }
+        }
+	},
+	"version": "2.0.0"
+}

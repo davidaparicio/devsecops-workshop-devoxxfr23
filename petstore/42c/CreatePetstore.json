@@ -1,0 +1,67 @@
+{
+	"playbook": {
+		"paths": {
+			"/petstores": {
+				"post": {
+					"authorizationTests": [
+						"AdminOnly"
+					],
+					"happyPaths": [
+						{
+							"key": "happy.path.success",
+							"requests": [
+								{
+									"$ref": "#/requests/CreatePetstore"
+								},
+								{
+									"$ref": "#/requests/DeletePetstore"
+								}
+							]
+						}
+					]
+				}
+			}
+		}
+	},
+	"requests": {
+		"CreatePetstore": {
+			"auth": [
+				"AdminCookie"
+			],
+			"request": {
+				"type": "42c",
+				"requestDetails": {
+					"host": "{{host}}",
+					"path": "/petstores",
+					"method": "post",
+					"pathParameters": {},
+					"queryParameters": {},
+					"headerParameters": {
+						"Content-Type": "application/json"
+					},
+					"cookieParameters": {},
+					"requestBody": {
+						"mode": "json",
+						"json": {
+							"name": "{{$random}}"
+						}
+					}
+				}
+			},
+			"responseAnalysisBehavior": {
+				"httpStatusExpected": [
+					"200"
+				]
+			},
+			"responseProcessing": {
+				"variableAssignments": {
+					"httpStatus": 200,
+					"contentType": "application/json",
+					"variables": {
+						"petstoreId": "${json_pointer(json(http.response.body),'/id')}"
+					}
+				}
+			}
+		}
+	}
+}

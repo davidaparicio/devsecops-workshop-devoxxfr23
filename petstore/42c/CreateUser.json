@@ -1,0 +1,137 @@
+{
+	"playbook": {
+		"paths": {
+			"/users": {
+				"post": {
+					"auth": null,
+					"authorizationTests": [
+						"AdminOnly"
+					],
+					"happyPaths": [
+						{
+							"key": "happy.path.success",
+							"requests": [
+								{
+									"$ref": "#/requests/CreateUser"
+								}
+							]
+						},
+						{
+							"key": "happy.path.failure",
+							"requests": [
+								{
+									"request": {
+										"requestDetails": {
+											"cookieParameters": {},
+											"headerParameters": {
+												"Content-Type": "application/json"
+											},
+											"host": "{{protocol}}://{{hostname}}",
+											"method": "post",
+											"path": "/users",
+											"pathParameters": {},
+											"queryParameters": {},
+											"requestBody": {
+												"json": {
+													"password": "HelloWorld@1",
+													"user": 10
+												},
+												"mode": "json"
+											}
+										},
+										"type": "42c"
+									},
+									"responseAnalysisBehavior": {
+										"httpStatusExpected": [
+											"400"
+										]
+									}
+								}
+							]
+						},
+						{
+							"key": "happy.path.failure",
+							"requests": [
+								{
+									"auth": [
+										"AdminCookie"
+									],
+									"request": {
+										"requestDetails": {
+											"cookieParameters": {},
+											"headerParameters": {
+												"Content-Type": "application/json"
+											},
+											"host": "{{protocol}}://{{hostname}}",
+											"method": "post",
+											"path": "/users",
+											"pathParameters": {},
+											"queryParameters": {},
+											"requestBody": {
+												"json": {
+													"password": "pass123@",
+													"user": "admin@42crunch.com"
+												},
+												"mode": "json"
+											}
+										},
+										"type": "42c"
+									},
+									"responseAnalysisBehavior": {
+										"httpStatusExpected": [
+											"409"
+										]
+									}
+								}
+							]
+						}
+					]
+				}
+			}
+		}
+	},
+	"requests": {
+        "CreateUser": {
+            "auth": [
+                "AdminCookie"
+            ],
+            "request": {
+                "type": "42c",
+                "requestDetails": {
+                    "host": "{{host}}",
+                    "path": "/users",
+                    "method": "post",
+                    "pathParameters": {},
+                    "queryParameters": {},
+                    "headerParameters": {
+                        "Content-Type": "application/json"
+                    },
+                    "cookieParameters": {},
+                    "requestBody": {
+                        "mode": "json",
+                        "json": {
+                            "user": "{{$random}}",
+                            "password": "{{$random}}",
+                            "isAdmin": false
+                        }
+                    }
+                }
+            },
+            "responseAnalysisBehavior": {
+                "httpStatusExpected": [
+                    "200"
+                ]
+            },
+            "responseProcessing": {
+                "variableAssignments": {
+                    "httpStatus": 200,
+                    "contentType": "application/json",
+                    "variables": {
+                        "user": "${json_pointer(json(http.response.body),'/user')}",
+                        "password": "${json_pointer(json(http.response.body),'/password')}"
+                    }
+                }
+            }
+        }
+	}
+}

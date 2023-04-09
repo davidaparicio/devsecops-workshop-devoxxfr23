@@ -1,0 +1,76 @@
+{
+	"playbook": {
+		"paths": {
+			"/pets": {
+				"post": {
+					"after": [
+						{
+							"$ref": "#/requests/DeletePetstore"
+						}
+					],
+					"before": [
+						{
+							"$ref": "#/requests/CreatePetstore"
+						}
+					],
+					"happyPaths": [
+						{
+							"key": "happy.path.success",
+							"requests": [
+								{
+									"$ref": "#/requests/CreatePet"
+								},
+								{
+									"$ref": "#/requests/DeletePet"
+								}
+							]
+						}
+					]
+				}
+			}
+		}
+	},
+	"requests": {
+		"CreatePet": {
+            "auth": [
+                "UserCookie"
+            ],
+            "request": {
+                "type": "42c",
+                "requestDetails": {
+                    "host": "{{host}}",
+                    "path": "/pets",
+                    "method": "post",
+                    "pathParameters": {},
+                    "queryParameters": {},
+                    "headerParameters": {
+                        "Content-Type": "application/json"
+                    },
+                    "cookieParameters": {},
+                    "requestBody": {
+                        "mode": "json",
+                        "json": {
+                            "age": 10,
+                            "name": "Billy",
+                            "petstoreId": "{{petstoreId}}"
+                        }
+                    }
+                }
+            },
+            "responseAnalysisBehavior": {
+                "httpStatusExpected": [
+                    "200"
+                ]
+            },
+            "responseProcessing": {
+                "variableAssignments": {
+                    "httpStatus": 200,
+                    "contentType": "application/json",
+                    "variables": {
+                        "petId": "${json_pointer(json(http.response.body),'/id')}"
+                    }
+                }
+            }
+        }
+	}
+}

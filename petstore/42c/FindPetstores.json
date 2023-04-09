@@ -1,0 +1,46 @@
+{
+	"playbook": {
+		"paths": {
+			"/petstores": {
+				"get": {
+					"happyPaths": [
+						{
+							"key": "happy.path.success",
+							"requests": [
+								{
+									"$ref": "#/requests/FindPetstores",
+									"auth": []
+								}
+							]
+						}
+					]
+				}
+			}
+		}
+	},
+	"requests": {
+		"FindPetstores": {
+            "request": {
+                "type": "42c",
+                "requestDetails": {
+                    "host": "{{host}}",
+                    "path": "/petstores",
+                    "method": "get",
+                    "pathParameters": {},
+                    "queryParameters": {
+                        "limit": 10,
+                        "name": "Petstore"
+                    },
+                    "headerParameters": {},
+                    "cookieParameters": {},
+                    "requestBody": null
+                }
+            },
+            "responseAnalysisBehavior": {
+                "httpStatusExpected": [
+                    "200"
+                ]
+            }
+        }
+	}
+}

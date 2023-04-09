@@ -1,0 +1,57 @@
+{
+	"playbook": {
+		"paths": {
+			"/petstores/{id}": {
+				"get": {
+					"after": [
+						{
+							"$ref": "#/requests/DeletePetstore"
+						}
+					],
+					"auth": null,
+					"before": [
+						{
+							"$ref": "#/requests/CreatePetstore"
+						}
+					],
+					"conformanceRequests": [],
+					"customRequests": [],
+					"happyPaths": [
+						{
+							"key": "happy.path.success",
+							"requests": [
+								{
+									"$ref": "#/requests/ReadPetstore"
+								}
+							]
+						}
+					]
+				}
+			}
+		}
+	},
+	"requests": {
+        "ReadPetstore": {
+            "request": {
+                "type": "42c",
+                "requestDetails": {
+                    "host": "{{host}}",
+                    "path": "/petstores/{id}",
+                    "method": "get",
+                    "pathParameters": {
+                        "id": "{{petstoreId}}"
+                    },
+                    "queryParameters": {},
+                    "headerParameters": {},
+                    "cookieParameters": {},
+                    "requestBody": null
+                }
+            },
+            "responseAnalysisBehavior": {
+                "httpStatusExpected": [
+                    "200"
+                ]
+            }
+        }
+	}
+}

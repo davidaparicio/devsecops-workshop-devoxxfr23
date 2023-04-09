@@ -1,0 +1,54 @@
+{
+	"playbook": {
+		"paths": {
+            "/login/urlencoded": {
+                "post": {
+                    "happyPaths": [
+                        {
+                            "key": "happy.path.success",
+                            "requests": [
+                                {
+                                    "$ref": "#/requests/UserLoginUrlencoded"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            }
+		}
+	},
+	"requests": {
+        "UserLoginUrlencoded": {
+            "request": {
+                "type": "42c",
+                "requestDetails": {
+                    "host": "{{host}}",
+                    "path": "/login/urlencoded",
+                    "method": "post",
+                    "pathParameters": {},
+                    "queryParameters": {},
+                    "headerParameters": {
+                        "Content-Type": "application/x-www-form-urlencoded"
+                    },
+                    "cookieParameters": {},
+                    "requestBody": {
+                        "mode": "urlencoded",
+                        "urlencoded": {
+                            "password": {
+                                "value": "HelloWorld"
+                            },
+                            "user": {
+                                "value": "user1@42crunch.com"
+                            }
+                        }
+                    }
+                }
+            },
+            "responseAnalysisBehavior": {
+                "httpStatusExpected": [
+                    "200"
+                ]
+            }
+        }
+	}
+}

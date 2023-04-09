@@ -1,0 +1,60 @@
+{
+	"playbook": {
+		"paths": {
+			"/pets/{id}": {
+				"delete": {
+					"after": [
+						{
+							"$ref": "#/requests/DeletePetstore"
+						}
+					],
+					"before": [
+						{
+							"$ref": "#/requests/CreatePetstore"
+						}
+					],
+					"happyPaths": [
+						{
+							"key": "happy.path.success",
+							"requests": [
+								{
+									"$ref": "#/requests/CreatePet"
+								},
+								{
+									"$ref": "#/requests/DeletePet"
+								}
+							]
+						}
+					]
+				}
+			}
+		}
+	},
+	"requests": {
+        "DeletePet": {
+            "auth": [
+                "UserCookie"
+            ],
+            "request": {
+                "type": "42c",
+                "requestDetails": {
+                    "host": "{{host}}",
+                    "path": "/pets/{id}",
+                    "method": "delete",
+                    "pathParameters": {
+                        "id": "{{petId}}"
+                    },
+                    "queryParameters": {},
+                    "headerParameters": {},
+                    "cookieParameters": {},
+                    "requestBody": null
+                }
+            },
+            "responseAnalysisBehavior": {
+                "httpStatusExpected": [
+                    "204"
+                ]
+            }
+        }
+	}
+}
