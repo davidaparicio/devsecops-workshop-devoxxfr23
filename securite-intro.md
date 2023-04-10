@@ -173,7 +173,7 @@ De ce fait, est-ce possible et acceptable pour votre projet d’utiliser de l’
 
 Ce sont les questions que nous devons nous poser, selon le risque pris et le type d’attaquant. Cet exemple concerne la brique d’authentification, mais cela s’applique également aux autres éléments qui composent votre système.
 
-Poursuivons avec la suite de l'atelier :)
+Poursuivons avec la suite de l'atelier :D
 
 <!-- ------------------------ -->
 ## Ex: Extensions (IDE)
@@ -181,11 +181,13 @@ Duration: 5
 
 ### Développer : Code sécurisé
 
-Dans la philosophie du “Security Shift-Left”, nous allons nous outiller afin de remonter directement dans l’éditeur ou l’IDE du développeur. Il existe déjà les “linters” pour chaque langage de programmation (ShellCheck, golangci-lint, etc ...), mais également des extensions dédiées à la sécurité et la liste est longue (pourtant pas [exhaustive): SonarLint, Sonatype Nexus IQ, Snyk, Qualys IaC, RedHat Dependency Analytics, GitHub Code Scanning, JFrog XRay... Et la liste complète pour VSCode est [disponible](https://s.42l.fr/vs_sec)
+Dans la philosophie du “Security Shift-Left”, nous allons nous outiller afin de remonter directement dans l’éditeur ou l’IDE du développeur. Il existe déjà les “linters” pour chaque langage de programmation (ShellCheck, golangci-lint, etc ...), mais également des extensions dédiées à la sécurité et la liste est longue (pourtant pas [exhaustive](https://owasp.org/www-community/Vulnerability_Scanning_Tools)): SonarLint, Sonatype Nexus IQ, Snyk, Qualys IaC, RedHat Dependency Analytics, GitHub Code Scanning, JFrog XRay... Et la liste complète pour VSCode est [disponible](https://s.42l.fr/vs_sec)
 
 D’autant plus, que leur nom [change régulièrement](https://devdojo.com/yoda/top-vs-code-extensions-for-application-security-in-2021) au fil des rachats, exemple avec DeepCode.AI (acheté par Snyk) ou Mend Advise (ex-WhiteSource), ou sont spécifique à un langage comme C#/XML avec Microsoft Security IntelliSense, node.JS avec npm audit, Redshift Security pour Java, [gosec](https://golangci-lint.run/usage/linters/#gosec) pour Go.
 
 Pour les utilisateurs de Github Copilot, s'il est installé dans votre IDE, l'[extension](https://marketplace.visualstudio.com/items?itemName=GitHub.copilot) devrait vous faire quelques remontées par rapport à des attaques classiques (injections SQL et cie) d'après leur site...
+
+Enfin, en anglais, quelques [règles élémentaires](https://owasp.org/www-project-secure-coding-practices-quick-reference-guide/) et son [résumé](https://levelup.gitconnected.com/how-to-build-secure-applications-a-guide-to-owasp-best-practices-3d11ba406f41)
 
 __Objectifs de cette étape__: 
 * Installer une ou plusieurs extensions pour votre éditeur ou IDE favori.
@@ -261,7 +263,7 @@ Le podium des SAST est [Checkmarx](https://checkmarx.com/), [SonarQube](https://
 ![Gitlab - SAST](assets/gitlab_sast.jpg)
 Exemple: lorsqu'on crée un nouveau projet sur Gitlab. Ce dernier nous propose dès l'[initiation du projet](https://gitlab.com/projects/new#blank_project), d'activer le GitLab SAST.
 
-Pour compléter, nous vous recommandons de visiter le site de la [Fondation OWASP qui a un tableau (en anglais)](https://owasp.org/www-community/Vulnerability_Scanning_Tools) sur ce sujet
+Pour compléter, nous vous recommandons de visiter le site de la [Fondation OWASP qui a un tableau (en anglais)](https://owasp.org/www-community/Vulnerability_Scanning_Tools) et [cette page](https://owasp.org/www-community/Source_Code_Analysis_Tools) sur ce sujet
 
 Au niveau des systèmes de contrôle de version pour la gestion du code source, [GitLab a son propre SAST intégré](https://docs.gitlab.com/ee/user/application_security/sast/): principalement gratuit (à quelques fonctionnalités près) depuis la version GitLab 13.3.
 
@@ -363,7 +365,7 @@ Duration: 10
 
 ![NewsBlur - Logo](assets/newsblur.jpg)
 
-En effet, vous vous rappelez des conséquences de l'attaque contre fournisseur de données pour DevoxxGPT: [NewsBlur](https://blog.newsblur.com/2021/06/28/story-of-a-hacking/). Pour éviter la même mésaventure, vous prenez les devant. Tester votre déploiement, en vérifiant les Best Practices en Sécurité ()
+En effet, vous vous rappelez des conséquences de l'attaque contre fournisseur de données pour DevoxxGPT: [NewsBlur](https://blog.newsblur.com/2021/06/28/story-of-a-hacking/). Pour éviter la même mésaventure, vous prenez les devant. Tester votre déploiement, en vérifiant les Best Practices en Sécurité.
 
 __Objectifs de cette étape__: 
 * Codez deux petites fonctions de test qui valide (SUCCÈS) si elle n'arrive à se connecter à votre BDD sans identifiants, et ceux par défaut comme `admin:admin`
@@ -387,6 +389,8 @@ Au niveau des API, la version Ultimate de GitLab propose le DAST API (REST, SOAP
 Duration: 15
 
 ### Démonstrations des fonctionnalités de 42Crunch
+Vous pouvez également, à la fin de l'atelier, jouer avec ce repo GitHub [VAmPI](https://github.com/erev0s/VAmPI)
+> Vulnerable REST API with OWASP top 10 vulnerabilities for security testing 
 
 <!-- ------------------------ -->
 ## Pentest
@@ -504,6 +508,123 @@ Enfin pour maintenir une infrastructure immutable (IaC), il existe ArgoCD (avec 
 
 La combinaison [Trivy+Cosign+Kyverno](https://neonmirrors.net/post/2022-07/attesting-image-scans-kyverno/) peut être utilisée pour imposer un déploiement sur Kubernetes d’une image docker sans vulnérabilité, avec un scan récent inférieur à X jours. Nous vous invitons à lire ce [billet de blog](https://neonmirrors.net/post/2022-07/attesting-image-scans-kyverno/)
 
+Pour votre connaissance, en voici son code pour la GitHub Action:
+``` YAML
+name: vulnerability-scan
+on:
+  workflow_dispatch: {}
+  schedule:
+    - cron: '23 1 * * *' # Every day at 01:23
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
+jobs:
+  scan:
+    runs-on: ubuntu-20.04
+    permissions:
+      contents: read
+    outputs:
+      scan-digest: ${{ steps.calculate-scan-hash.outputs.scan_digest }}
+    steps:
+    - name: Scan for vulnerabilities
+      uses: aquasecurity/trivy-action@1db49f532692e649dc5dc43c7c0444dac4790137 # v0.7.0 (Trivy v0.31.2)
+      with: 
+        image-ref: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
+        format: cosign-vuln
+        ignore-unfixed: true
+        output: scan.json
+
+    - name: Calculate scan file hash
+      id: calculate-scan-hash
+      run: |
+        SCAN_DIGEST=$(sha256sum scan.json | awk '{print $1}')
+        echo "::set-output name=scan_digest::$SCAN_DIGEST"
+        echo "Hash of scan.json is: $SCAN_DIGEST"        
+
+    - name: Upload vulnerability scan report
+      uses: actions/upload-artifact@3cea5372237819ed00197afe530f5a7ea3e805c8 # v3.1.0
+      with:
+        name: scan.json
+        path: scan.json
+        if-no-files-found: error
+
+  attest:
+    runs-on: ubuntu-20.04
+    permissions:
+      contents: write
+      actions: read
+      packages: write
+      id-token: write
+    env:
+      SCAN_DIGEST: "${{ needs.scan.outputs.scan-digest }}"
+    needs: scan
+    steps:
+    - name: Download scan
+      uses: actions/download-artifact@fb598a63ae348fa914e94cd0ff38f362e927b741 # v3.0.0
+      with:
+        name: scan.json
+
+    - name: Verify scan
+      run: |
+        set -euo pipefail
+        echo "Hash of scan.json should be: $SCAN_DIGEST"
+        COMPUTED_HASH=$(sha256sum scan.json | awk '{print $1}')
+        echo "The current computed hash for scan.json is: $COMPUTED_HASH"
+        echo "If the two above hashes don't match, scan.json has been tampered with."
+        echo "$SCAN_DIGEST scan.json" | sha256sum --strict --check --status || exit -2        
+
+    - name: Install Cosign
+      uses: sigstore/cosign-installer@09a077b27eb1310dcfb21981bee195b30ce09de0 # v2.5.0
+      with:
+        cosign-release: v1.10.0
+
+    - name: Log in to GHCR
+      uses: docker/login-action@49ed152c8eca782a232dede0303416e8f356c37b # v2.0.0
+      with:
+        registry: ${{ env.REGISTRY }}
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Attest Scan
+      run: cosign attest --replace --predicate scan.json --type vuln ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
+      env:
+        COSIGN_EXPERIMENTAL: "true"
+```
+
+et la règle Kyverno associée (ClusterPolicy)
+``` YAML
+apiVersion: kyverno.io/v1
+kind: ClusterPolicy
+metadata:
+  name: check-vulnerabilities
+spec:
+  validationFailureAction: enforce
+  webhookTimeoutSeconds: 10
+  failurePolicy: Fail
+  rules:
+    - name: not-older-than-one-week
+      match:
+        any:
+        - resources:
+            kinds:
+              - Pod
+      verifyImages:
+      - imageReferences:
+        - "ghcr.io/chipzoller/zulu:*"
+        attestors:
+        - entries:
+          - keyless:
+              subject: "https://github.com/chipzoller/zulu/.github/workflows/*"
+              issuer: "https://token.actions.githubusercontent.com"
+        attestations:
+        - predicateType: cosign.sigstore.dev/attestation/vuln/v1
+          conditions:
+          - all:
+            - key: "{{ time_since('','{{metadata.scanFinishedOn}}','') }}"
+              operator: LessThanOrEquals
+              value: "168h"
+```
+
 <!-- ------------------------ -->
 ## Scan
 Duration: 3
@@ -511,7 +632,7 @@ Duration: 3
 ### Déploiement : Scans de sécurité
 [Shodan.io](https://shodan.io/) est un site assez connu qui crawle Internet à la recherche de ports ouverts, de failles de sécurité connues. [FullHunt.io](https://fullhunt.io/) est aussi une plate-forme pour découvrir tous vos équipements connectés à Internet et votre surface d’attaque. 
 
-Enfin pour les infrastructures Kubernetes, nous pouvons utiliser les scanners de [quay/clair](https://github.com/quay/clair), [Trivy](https://aquasecurity.github.io/trivy/) ou [Falco](https://falco.org).
+Enfin pour les infrastructures Kubernetes, nous pouvons utiliser les scanners de [quay/clair](https://github.com/quay/clair), [Trivy](https://aquasecurity.github.io/trivy/), [Falco](https://falco.org) ou [cnitch](https://github.com/nicholasjackson/cnitch) (pour surveiller si aucun processus se lançant en tant qu'administrateur/root).
 
 <!-- ------------------------ -->
 ## Patch
@@ -637,9 +758,9 @@ Car la [CNFC Landscape](https://landscape.cncf.io/) ne donne pas la même chose 
 ## Félicitations
 Duration: 2
 
-![DevoxxGPT logo](assets/devoxxgpt.jpg)
+![Félicitations de la part de toute l'équipe](assets/devoxx_team.jpg)
 
-Votre CEO ainsi que votre CTO vous félicient pour ces actions préventives et actives pour renforcer les produits de l'entreprise, et surtout votre produit phare: DevoxxGPT. Vous pouvez être fier.e pour ces exploits menés avec brio !
+Votre CEO ainsi que votre CTO vous félicient pour ces actions préventives et actives pour renforcer les produits de l'entreprise, et surtout votre produit phare: **DevoxxGPT**. Vous pouvez être fier.e pour ces exploits menés avec brio !
 
 ![CommitStrip - ChatGPT](assets/chatgpt.jpg)
 
@@ -681,7 +802,7 @@ Merci pour votre participation **active** et agréable, sur cette très longue d
 
 Nous, Christopher et David Aparicio, nous profitons pour remercier infiniment les organisateurs et toute l'équipe de DevoxxFR pour leur aide et leur confiance
 
-Nous vous souhaitons un excellent DevoxxFR 2023 !! ;-)
+Nous vous souhaitons un excellent DevoxxFR 2023 !! ;-D
 
 ![Lien OpenFeedBack](assets/feedback.png)
 
@@ -748,4 +869,28 @@ PS: C'est un évènement daté ^^
 <!-- https://github.blog/2023-03-23-we-updated-our-rsa-ssh-host-key/ -->
 <!-- ❯ DELETE_LINE=5
 sed -i '' "${DELETE_LINE?}d" ~/.ssh/known_hosts -->
+<!-- ------------------------ -->
+## E3 - VM2
+Duration: 5
+
+### À la veille de la plénière de DevoxxFR2023...
+![Devoxx2018](assets/devoxx.jpg)
+
+Bientôt le week-end prolongé.. Mais le vendredi matin 7 Avril 2023, la lecture de ce [tweet](https://twitter.com/MalwareJake/status/1644399193987981313) et de la [nouvelle](https://twitter.com/MalwareJake/status/1644399193987981313) vous glace le sang...
+
+```Bash
+FYSA, there's a trivially exploitable CVSS 10.0 vuln in a VERY popular JS library resulting in arbitrary command execution that has POCs in the wild.
+
+Happy Friday to everyone - enjoy your weekend if you can, I suspect this will be big next week...
+```
+
+Votre CTO ainsi que votre CEO s'inquiètent.. À la veille du [DevoxxFR2023](https://www.devoxx.fr/) et de sa grande plénière, où votre startup fera son show devant 2950 participants durant une session live coding: Est-ce que votre startup est-elle vulnérable à cette faille majeure, pouvant mettre en péril cette démo importante, devant des passionnés de la Tech ainsi que la presse ?
+
+__Objectifs de cette étape__: 
+* Analyser le language et la librairie impactée (trop facile)
+* Observer les indicateurs suivants, produits par Snyk, au sujet de la [lib](https://snyk.io/advisor/npm-package/vm2), de ses [vulnérabilités](https://security.snyk.io/package/npm/vm2) ([1](https://security.snyk.io/vuln/SNYK-JS-VM2-5415299),[2](https://security.snyk.io/vuln/SNYK-JS-VM2-2990237))
+* Identifier si votre projet est vulnérable à cette faille majeure et fournir les preuves à votre CTO/CEO
+* Bonus: votre parc informatique est également vulnérable; analyser ce [tweet du Commandement de la Gendarmerie](https://twitter.com/CyberGEND/status/1644620061879984131) (CVE-2023-28206/CVE-2023-28205), faites le nécessaire auprès votre DSI et fournissez les éléments factuels à votre direction pour que la plénière se passe de la manière la plus sereine possible, et évitez les déboires de lancement de votre concurrent [Bard](https://www.theverge.com/2023/2/8/23590864/google-ai-chatbot-bard-mistake-error-exoplanet-demo).
+
+<!-- docker scan ou Snyk -->
 <!-- ------------------------ -->
