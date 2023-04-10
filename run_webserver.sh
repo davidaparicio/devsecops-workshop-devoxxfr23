@@ -14,7 +14,8 @@ if [ "$1" != "-h" ]; then
     # go install github.com/googlecodelabs/tools/claat@latest
     exit
   else
-    claat export *
+    # claat export *
+    claat export devoxxfr2023.md
   fi
 fi
 

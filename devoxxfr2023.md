@@ -190,6 +190,8 @@ D’autant plus, que leur nom [change régulièrement](https://devdojo.com/yoda/
 
 Pour les utilisateurs de Github Copilot, s'il est installé dans votre IDE, l'[extension](https://marketplace.visualstudio.com/items?itemName=GitHub.copilot) devrait vous faire quelques remontées par rapport à des attaques classiques (injections SQL et cie) d'après leur site...
 
+En plus des linters, il faut aussi consulter différents guidelines de son language pour se perfectionner. Par exemple, même Bash a les siens comme celui de [Google](https://google.github.io/styleguide/shellguide.html) ou le fait d'["accept sensitive data only via files, e.g. with a --password-file argument, or via stdin"](https://clig.dev/#arguments-and-flags).
+
 Enfin, en anglais, quelques [règles élémentaires](https://owasp.org/www-project-secure-coding-practices-quick-reference-guide/) et son [résumé](https://levelup.gitconnected.com/how-to-build-secure-applications-a-guide-to-owasp-best-practices-3d11ba406f41)
 
 __Objectifs de cette étape__: 
@@ -372,7 +374,7 @@ __Objectifs de cette étape__:
 * Définir le language de programmation de scan
 * Valider l'exécution correcte de sa GitHub action en réalisant une PR
 * Modifier le jour et l'heure du cron (facultatif)
-* Activer un deuxième outil, comme gosec pour Go, ou SonarCloud (facultatif)
+* Activer un deuxième outil, comme ```gosec``` pour Go, ou SonarCloud (facultatif)
 
 <!-- ------------------------ -->
 ## Résultat
@@ -415,6 +417,10 @@ En effet, vous vous rappelez des conséquences de l'attaque contre fournisseur d
 __Objectifs de cette étape__: 
 * Codez deux petites fonctions de test qui valide (SUCCÈS) si elle n'arrive à se connecter à votre BDD sans identifiants, et ceux par défaut comme `admin:admin`
 * Intégrez ce test dans votre CI/CD, pour valider la bascule Bleue/Verte ([blue/green](https://traefik.io/glossary/kubernetes-deployment-strategies-blue-green-canary/)) avant la mise à jour progressive/[rolling update](https://kubernetes.io/blog/2018/04/30/zero-downtime-deployment-kubernetes-jenkins/) (facultatif)
+* Bonus: Implémenter d'autres tests avec d'autres mots de passes génériques/leakés sur internet, comme avec le dépôt de code GitHub [ihebski/DefaultCreds-cheat-sheet](https://github.com/ihebski/DefaultCreds-cheat-sheet/blob/main/DefaultCreds-Cheat-Sheet.csv)
+
+![ihebski/DefaultCreds-cheat-sheet](assets/defaultcreds_postgresql.jpg)
+<!-- https://twitter.com/bluetouff/status/1645030083705331712 -->
 
 ![NewsBlur - Hack Timeline](assets/newsblur_hack.png)
 
@@ -693,7 +699,94 @@ Duration: 3
 ### Opération : Patchs de sécurité
 Pour activer les patchs de sécurité pour les environnements “pets”, vous pouvez utiliser vos playbooks [Ansible](https://www.ansible.com/) (avec [AWX](https://github.com/ansible/awx)/[Ansible Tower](https://www.ansible.com/products/controller) ou [HP Squest](https://hewlettpackard.github.io/squest/)), [SaltStack](https://saltproject.io/), [Puppet](https://www.puppet.com/), [Chef](https://www.chef.io/), ou [Rudder](https://www.rudder.io/). 
 
-Pour la partie “cattle” alias Cloud Native, vous pouvez utiliser votre pipeline CI/CD, [ArgoCI](https://argoproj.github.io/), [Flux](https://fluxcd.io/), [Tekton](https://tekton.dev/) avec la nouvelle image Docker construite, avec vos procédures de mise à jour habituelles (rolling update).
+Pour la partie “cattle” alias Cloud Native, vous pouvez utiliser votre pipeline CI/CD, [ArgoCI](https://argoproj.github.io/), [Flux](https://fluxcd.io/), [Tekton](https://tekton.dev/) avec la nouvelle image Docker construite, avec vos procédures de mise à jour habituelles (rolling update). [Une récente vidéo de Flamingo](https://twitter.com/chanwit/status/1645099560744935424) semble même consilier Argo CD UI avec Flux (WeaveGitOps).
+
+Illustrons cela avec Ansible pour le mode "pet", via la commande 
+```ansible-playbook -i inventory.yml playbook.yml -k -K --check```
+
+``` YAML
+---
+- name: Patch and reboot servers
+  hosts: all
+  vars:
+    yum_name: "*"
+    yum_state:  latest
+    yum_enablerepo: "rhel-?-server-rpms,rhel-?-server-satellite-tools-6.?-rpms"
+    yum_disablerepo: "*"
+    yum_exclude: ""
+    dnf_name: "*"
+    dnf_state: latest
+    dnf_enablerepo: "rhel-8-for-x86_64-appstream-rpms,rhel-8-for-x86_64-baseos-rpms,satellite-tools-6.?-for-rhel-8-x86_64-rpms"
+    dnf_disablerepo: "*"
+    dnf_exclude: ""
+  tasks:
+
+    - name: upgrade packages via yum
+      yum:
+        name={{ yum_name }}
+        state={{ yum_state }}
+        disablerepo={{ yum_disablerepo }}
+        enablerepo={{ yum_enablerepo }}
+        exclude={{ yum_exclude }}
+      become: "yes"
+      register: yumcommandout
+      when:
+        - (ansible_facts['distribution_major_version'] == '6') or
+          (ansible_facts['distribution_major_version'] == '7')
+
+    - name: Print errors if yum failed
+      debug:
+        msg: "yum command produced errors"
+      when: yumcommandout is not defined
+
+    - name: upgrade packages via dnf
+      dnf:
+        name={{ dnf_name }}
+        state={{ dnf_state }}
+        disablerepo={{ dnf_disablerepo }}
+        enablerepo={{ dnf_enablerepo }}
+        exclude={{ dnf_exclude }}
+      become: "yes"
+      register: dnfcommandout
+      when:
+        - ansible_facts['distribution_major_version'] == '8'
+
+    - name: Print errors if dnf failed
+      debug:
+        msg: "dnf command produced errors"
+      when: dnfcommandout is not defined
+
+    - name: check to see if we need a reboot
+      command: needs-restarting -r
+      register: result
+      ignore_errors: yes
+
+    - name: display reboot result
+      debug:
+        var: result.rc
+
+    - name: Reboot Server if Necessary
+      command: shutdown -r now "Ansible Updates Triggered"
+      become: true
+      async: 30
+      poll: 0
+      when: result.rc == 1
+
+    # This pause is mandatory, otherwise the existing control connection
+    # gets reused!
+    # (https://gist.github.com/infernix/a968f23c4f4e1d6723e4)
+    - name: Pausing to allow server to shutdown and terminate our SSH connection
+      pause: seconds=30
+      when: result.rc == 1
+
+    - name: Wait for reboot to complete and SSH to become available
+      local_action: wait_for host={{ inventory_hostname }} port=22
+        state=started delay=30 timeout=600
+      retries: 30
+      delay: 10
+      when: result.rc == 1
+```
+[Source du playbook](https://www.unixsysadmin.com/ansible-patch-reboot/)
 
 <!-- ------------------------ -->
 ## Audit
@@ -709,6 +802,8 @@ Si vous ou vos clients en avez besoin, vous pouvez passer des certifications nor
 Pour la robustesse SI/logiciel: CSPN, CC EAL 3+, CC EAL 4+. 
 
 Enfin les qualifications des services SSI: SecNumCloud, PSCE, PRIS, PDIS, PASSI, PSHE.
+
+Je vous recommende de jeter un coup d'oeil sur [Mastodon](https://social.imirhil.fr/@aeris) / [Twitter](https://twitter.com/aeris_v2) / [les outils du site web](https://imirhil.fr/) d'aeris pour découvrir plus sur les problèmes/contraintes liés à ces certifications. 
 
 <!-- ------------------------ -->
 ## Surveillance
@@ -771,6 +866,8 @@ __Objectifs de cette étape__:
 * Automatiser la procédure qui réalise vos sauvegardes
 * Tester de manière régulière la procédure qui charge vos sauvegardes
 * Profitez-en pour tester votre toute dernière base de code en même temps, la branche principale main/master (facultatif)
+* Facultatif: Réaliser des sauvegardes régulières en hors-ligne (offline) afin de réduire le risque
+* Bonus: Tester vos sauvegardes, durant vos tests de Chaos Monkey 
 
 ![CommitStrip - Backup](assets/backup.jpg)
 

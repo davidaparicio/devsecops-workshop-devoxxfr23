@@ -326,7 +326,7 @@ jobs:
 <li>Définir le language de programmation de scan</li>
 <li>Valider l&#39;exécution correcte de sa GitHub action en réalisant une PR</li>
 <li>Modifier le jour et l&#39;heure du cron (facultatif)</li>
-<li>Activer un deuxième outil, comme gosec pour Go, ou SonarCloud (facultatif)</li>
+<li>Activer un deuxième outil, comme <code>gosec</code> pour Go, ou SonarCloud (facultatif)</li>
 </ul>
 
 
@@ -364,7 +364,9 @@ jobs:
 <ul>
 <li>Codez deux petites fonctions de test qui valide (SUCCÈS) si elle n&#39;arrive à se connecter à votre BDD sans identifiants, et ceux par défaut comme <code>admin:admin</code></li>
 <li>Intégrez ce test dans votre CI/CD, pour valider la bascule Bleue/Verte (<a href="https://traefik.io/glossary/kubernetes-deployment-strategies-blue-green-canary/" target="_blank">blue/green</a>) avant la mise à jour progressive/<a href="https://kubernetes.io/blog/2018/04/30/zero-downtime-deployment-kubernetes-jenkins/" target="_blank">rolling update</a> (facultatif)</li>
+<li>Bonus: Implémenter d&#39;autres tests avec d&#39;autres mots de passes génériques/leakés sur internet, comme avec le dépôt de code GitHub <a href="https://github.com/ihebski/DefaultCreds-cheat-sheet/blob/main/DefaultCreds-Cheat-Sheet.csv" target="_blank">ihebski/DefaultCreds-cheat-sheet</a></li>
 </ul>
+<p class="image-container"><img alt="ihebski/DefaultCreds-cheat-sheet" src="img/c6fd21ff629d927.jpg"></p>
 <p class="image-container"><img alt="NewsBlur - Hack Timeline" src="img/a2d89a17382a138d.png"></p>
 <p><a href="https://blog.newsblur.com/2021/06/28/story-of-a-hacking/" target="_blank">Source la timeline, le blog de NewsBlur - lien direct</a></p>
 
@@ -618,6 +620,89 @@ spec:
         <h2 is-upgraded>Opération : Patchs de sécurité</h2>
 <p>Pour activer les patchs de sécurité pour les environnements &#34;pets&#34;, vous pouvez utiliser vos playbooks <a href="https://www.ansible.com/" target="_blank">Ansible</a> (avec <a href="https://github.com/ansible/awx" target="_blank">AWX</a>/<a href="https://www.ansible.com/products/controller" target="_blank">Ansible Tower</a> ou <a href="https://hewlettpackard.github.io/squest/" target="_blank">HP Squest</a>), <a href="https://saltproject.io/" target="_blank">SaltStack</a>, <a href="https://www.puppet.com/" target="_blank">Puppet</a>, <a href="https://www.chef.io/" target="_blank">Chef</a>, ou <a href="https://www.rudder.io/" target="_blank">Rudder</a>.</p>
 <p>Pour la partie &#34;cattle&#34; alias Cloud Native, vous pouvez utiliser votre pipeline CI/CD, <a href="https://argoproj.github.io/" target="_blank">ArgoCI</a>, <a href="https://fluxcd.io/" target="_blank">Flux</a>, <a href="https://tekton.dev/" target="_blank">Tekton</a> avec la nouvelle image Docker construite, avec vos procédures de mise à jour habituelles (rolling update).</p>
+<p>Illustrons cela avec Ansible pour le mode &#34;pet&#34;, via la commande <code>ansible-playbook -i inventory.yml playbook.yml -k -K --check</code></p>
+<pre><code language="language-YAML" class="language-YAML">---
+- name: Patch and reboot servers
+  hosts: all
+  vars:
+    yum_name: &#34;*&#34;
+    yum_state:  latest
+    yum_enablerepo: &#34;rhel-?-server-rpms,rhel-?-server-satellite-tools-6.?-rpms&#34;
+    yum_disablerepo: &#34;*&#34;
+    yum_exclude: &#34;&#34;
+    dnf_name: &#34;*&#34;
+    dnf_state: latest
+    dnf_enablerepo: &#34;rhel-8-for-x86_64-appstream-rpms,rhel-8-for-x86_64-baseos-rpms,satellite-tools-6.?-for-rhel-8-x86_64-rpms&#34;
+    dnf_disablerepo: &#34;*&#34;
+    dnf_exclude: &#34;&#34;
+  tasks:
+
+    - name: upgrade packages via yum
+      yum:
+        name=&#123;&#123; yum_name }}
+        state=&#123;&#123; yum_state }}
+        disablerepo=&#123;&#123; yum_disablerepo }}
+        enablerepo=&#123;&#123; yum_enablerepo }}
+        exclude=&#123;&#123; yum_exclude }}
+      become: &#34;yes&#34;
+      register: yumcommandout
+      when:
+        - (ansible_facts[&#39;distribution_major_version&#39;] == &#39;6&#39;) or
+          (ansible_facts[&#39;distribution_major_version&#39;] == &#39;7&#39;)
+
+    - name: Print errors if yum failed
+      debug:
+        msg: &#34;yum command produced errors&#34;
+      when: yumcommandout is not defined
+
+    - name: upgrade packages via dnf
+      dnf:
+        name=&#123;&#123; dnf_name }}
+        state=&#123;&#123; dnf_state }}
+        disablerepo=&#123;&#123; dnf_disablerepo }}
+        enablerepo=&#123;&#123; dnf_enablerepo }}
+        exclude=&#123;&#123; dnf_exclude }}
+      become: &#34;yes&#34;
+      register: dnfcommandout
+      when:
+        - ansible_facts[&#39;distribution_major_version&#39;] == &#39;8&#39;
+
+    - name: Print errors if dnf failed
+      debug:
+        msg: &#34;dnf command produced errors&#34;
+      when: dnfcommandout is not defined
+
+    - name: check to see if we need a reboot
+      command: needs-restarting -r
+      register: result
+      ignore_errors: yes
+
+    - name: display reboot result
+      debug:
+        var: result.rc
+
+    - name: Reboot Server if Necessary
+      command: shutdown -r now &#34;Ansible Updates Triggered&#34;
+      become: true
+      async: 30
+      poll: 0
+      when: result.rc == 1
+
+    # This pause is mandatory, otherwise the existing control connection
+    # gets reused!
+    # (https://gist.github.com/infernix/a968f23c4f4e1d6723e4)
+    - name: Pausing to allow server to shutdown and terminate our SSH connection
+      pause: seconds=30
+      when: result.rc == 1
+
+    - name: Wait for reboot to complete and SSH to become available
+      local_action: wait_for host=&#123;&#123; inventory_hostname }} port=22
+        state=started delay=30 timeout=600
+      retries: 30
+      delay: 10
+      when: result.rc == 1
+</code></pre>
+<p><a href="https://www.unixsysadmin.com/ansible-patch-reboot/" target="_blank">Source du playbook</a></p>
 
 
       </google-codelab-step>
@@ -685,6 +770,8 @@ spec:
 <li>Automatiser la procédure qui réalise vos sauvegardes</li>
 <li>Tester de manière régulière la procédure qui charge vos sauvegardes</li>
 <li>Profitez-en pour tester votre toute dernière base de code en même temps, la branche principale main/master (facultatif)</li>
+<li>Facultatif: Réaliser des sauvegardes régulières en hors-ligne (offline) afin de réduire le risque</li>
+<li>Bonus: Tester vos sauvegardes, durant vos tests de Chaos Monkey</li>
 </ul>
 <p class="image-container"><img alt="CommitStrip - Backup" src="img/df35191fbd4e9f5e.jpg"></p>
 <p><a href="https://www.commitstrip.com/fr/2016/09/05/do-we-have-a-back-up-in-the-audience/?setLocale=1" target="_blank">Source de la BD, CommitStrip - lien direct</a></p>
