@@ -195,7 +195,7 @@ Enfin, en anglais, quelques [règles élémentaires](https://owasp.org/www-proje
 __Objectifs de cette étape__: 
 * Installer une ou plusieurs extensions pour votre éditeur ou IDE favori.
 * Par exemple, [Snyk Code (lien pour VSCode)](https://marketplace.visualstudio.com/items?itemName=snyk-security.snyk-vulnerability-scanner)
-* Si vous utilisez souvent OpenAPI (Swagger), nous vous recommendons l'installation de l'[extension de 42Crunch (lien pour VSCode)](https://marketplace.visualstudio.com/items?itemName=42Crunch.vscode-openapi)
+* Si vous développez souvent des API ou des spécifications format OpenAPI (Swagger), nous vous recommendons l'installation de l'[extension de 42Crunch](https://marketplace.visualstudio.com/items?itemName=42Crunch.vscode-openapi) (lien pour [VSCode](https://marketplace.visualstudio.com/items?itemName=42Crunch.vscode-openapi), [Eclipse](https://marketplace.eclipse.org/content/openapi-swagger-editor#group-details), [JetBrains](https://plugins.jetbrains.com/plugin/14837-openapi-swagger-editor))
 
 <!-- ------------------------ -->
 ## PR Aware
@@ -682,7 +682,7 @@ spec:
 Duration: 3
 
 ### Déploiement : Scans de sécurité
-[Shodan.io](https://shodan.io/) est un site assez connu qui crawle Internet à la recherche de ports ouverts, de failles de sécurité connues. [FullHunt.io](https://fullhunt.io/) est aussi une plate-forme pour découvrir tous vos équipements connectés à Internet et votre surface d’attaque. Le scanner d'API de [42Crunch](https://42crunch.com/free-tools/) présenté ultérieurement (à l'étape 20). 
+[Shodan.io](https://shodan.io/) est un site assez connu qui crawle Internet à la recherche de ports ouverts, de failles de sécurité connues. [FullHunt.io](https://fullhunt.io/) est aussi une plate-forme pour découvrir tous vos équipements connectés à Internet et votre surface d’attaque. Le scanner d'API de [42Crunch](https://42crunch.com/free-tools/) présenté ultérieurement (à l'étape 21). 
 
 Enfin pour les infrastructures Kubernetes, nous pouvons utiliser les scanners de [quay/clair](https://github.com/quay/clair), [Trivy d'Aqua Security](https://aquasecurity.github.io/trivy/), [Falco](https://falco.org) ou [cnitch](https://github.com/nicholasjackson/cnitch) (pour surveiller si aucun processus se lançant en tant qu'administrateur/root). Concernant cet dernier outil, Liz Rice signale sur son blog Medium qu'il est présent dans l'outil SaaS [Aqua Security](https://medium.com/@lizrice/non-privileged-containers-based-on-the-scratch-image-a80105d6d341)
 
@@ -931,9 +931,11 @@ Duration: 5
 Bientôt le week-end prolongé.. Mais le vendredi matin 7 Avril 2023, la lecture de ce [tweet](https://twitter.com/MalwareJake/status/1644399193987981313) et de la [nouvelle](https://twitter.com/MalwareJake/status/1644399193987981313) vous glace le sang...
 
 ```Bash
-FYSA, there's a trivially exploitable CVSS 10.0 vuln in a VERY popular JS library resulting in arbitrary command execution that has POCs in the wild.
+FYSA, there's a trivially exploitable CVSS 10.0 vuln in a VERY popular JS library
+ resulting in arbitrary command execution that has POCs in the wild.
 
-Happy Friday to everyone - enjoy your weekend if you can, I suspect this will be big next week...
+Happy Friday to everyone - enjoy your weekend if you can, 
+I suspect this will be big next week...
 ```
 
 Votre CTO ainsi que votre CEO s'inquiètent.. À la veille du [DevoxxFR2023](https://www.devoxx.fr/) et de sa grande plénière, où votre startup fera son show devant 2950 participants durant une session live coding: Est-ce que votre startup est-elle vulnérable à cette faille majeure, pouvant mettre en péril cette démo importante, devant des passionnés de la Tech ainsi que la presse ?

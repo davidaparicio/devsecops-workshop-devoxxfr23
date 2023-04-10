@@ -22,7 +22,7 @@
 <body>
   <google-codelab-analytics gaid="UA-49880327-14"></google-codelab-analytics>
   <google-codelab codelab-gaid=""
-                  id="securite-intro"
+                  id="devoxxfr23"
                   title="La sécurité, par où commencer ? Install party 🎉"
                   environment="web"
                   feedback-link="https://github.com/davidaparicio/devsecops-workshop-devoxxfr23/issues">
@@ -166,7 +166,7 @@
 <ul>
 <li>Installer une ou plusieurs extensions pour votre éditeur ou IDE favori.</li>
 <li>Par exemple, <a href="https://marketplace.visualstudio.com/items?itemName=snyk-security.snyk-vulnerability-scanner" target="_blank">Snyk Code (lien pour VSCode)</a></li>
-<li>Si vous utilisez souvent OpenAPI (Swagger), nous vous recommendons l&#39;installation de l&#39;<a href="https://marketplace.visualstudio.com/items?itemName=42Crunch.vscode-openapi" target="_blank">extension de 42Crunch (lien pour VSCode)</a></li>
+<li>Si vous développez souvent des API ou des spécifications format OpenAPI (Swagger), nous vous recommendons l&#39;installation de l&#39;<a href="https://marketplace.visualstudio.com/items?itemName=42Crunch.vscode-openapi" target="_blank">extension de 42Crunch</a> (lien pour <a href="https://marketplace.visualstudio.com/items?itemName=42Crunch.vscode-openapi" target="_blank">VSCode</a>, <a href="https://marketplace.eclipse.org/content/openapi-swagger-editor#group-details" target="_blank">Eclipse</a>, <a href="https://plugins.jetbrains.com/plugin/14837-openapi-swagger-editor" target="_blank">JetBrains</a>)</li>
 </ul>
 
 
@@ -608,7 +608,7 @@ spec:
     
       <google-codelab-step label="Scan" duration="3">
         <h2 is-upgraded>Déploiement : Scans de sécurité</h2>
-<p><a href="https://shodan.io/" target="_blank">Shodan.io</a> est un site assez connu qui crawle Internet à la recherche de ports ouverts, de failles de sécurité connues. <a href="https://fullhunt.io/" target="_blank">FullHunt.io</a> est aussi une plate-forme pour découvrir tous vos équipements connectés à Internet et votre surface d&#39;attaque. Le scanner d&#39;API de <a href="https://42crunch.com/free-tools/" target="_blank">42Crunch</a> présenté ultérieurement (à l&#39;étape 20).</p>
+<p><a href="https://shodan.io/" target="_blank">Shodan.io</a> est un site assez connu qui crawle Internet à la recherche de ports ouverts, de failles de sécurité connues. <a href="https://fullhunt.io/" target="_blank">FullHunt.io</a> est aussi une plate-forme pour découvrir tous vos équipements connectés à Internet et votre surface d&#39;attaque. Le scanner d&#39;API de <a href="https://42crunch.com/free-tools/" target="_blank">42Crunch</a> présenté ultérieurement (à l&#39;étape 21).</p>
 <p>Enfin pour les infrastructures Kubernetes, nous pouvons utiliser les scanners de <a href="https://github.com/quay/clair" target="_blank">quay/clair</a>, <a href="https://aquasecurity.github.io/trivy/" target="_blank">Trivy d&#39;Aqua Security</a>, <a href="https://falco.org" target="_blank">Falco</a> ou <a href="https://github.com/nicholasjackson/cnitch" target="_blank">cnitch</a> (pour surveiller si aucun processus se lançant en tant qu&#39;administrateur/root). Concernant cet dernier outil, Liz Rice signale sur son blog Medium qu&#39;il est présent dans l&#39;outil SaaS <a href="https://medium.com/@lizrice/non-privileged-containers-based-on-the-scratch-image-a80105d6d341" target="_blank">Aqua Security</a></p>
 
 
@@ -821,9 +821,11 @@ and the repository exists.
         <h2 is-upgraded>À la veille de la plénière de DevoxxFR2023...</h2>
 <p class="image-container"><img alt="Devoxx2018" src="img/75af90f33229c953.jpg"></p>
 <p>Bientôt le week-end prolongé.. Mais le vendredi matin 7 Avril 2023, la lecture de ce <a href="https://twitter.com/MalwareJake/status/1644399193987981313" target="_blank">tweet</a> et de la <a href="https://twitter.com/MalwareJake/status/1644399193987981313" target="_blank">nouvelle</a> vous glace le sang...</p>
-<pre><code language="language-Bash" class="language-Bash">FYSA, there&#39;s a trivially exploitable CVSS 10.0 vuln in a VERY popular JS library resulting in arbitrary command execution that has POCs in the wild.
+<pre><code language="language-Bash" class="language-Bash">FYSA, there&#39;s a trivially exploitable CVSS 10.0 vuln in a VERY popular JS library
+ resulting in arbitrary command execution that has POCs in the wild.
 
-Happy Friday to everyone - enjoy your weekend if you can, I suspect this will be big next week...
+Happy Friday to everyone - enjoy your weekend if you can, 
+I suspect this will be big next week...
 </code></pre>
 <p>Votre CTO ainsi que votre CEO s&#39;inquiètent.. À la veille du <a href="https://www.devoxx.fr/" target="_blank">DevoxxFR2023</a> et de sa grande plénière, où votre startup fera son show devant 2950 participants durant une session live coding: Est-ce que votre startup est-elle vulnérable à cette faille majeure, pouvant mettre en péril cette démo importante, devant des passionnés de la Tech ainsi que la presse ?</p>
 <p><strong>Objectifs de cette étape</strong>:</p>
