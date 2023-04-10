@@ -1,0 +1,752 @@
+{
+    "runtimeConfiguration": {
+        "logLevel": "error",
+        "logDestination": "stdout+platform",
+        "maxLogFileSize": 2147483648,
+        "headerNameRequestId": "x-scan-request-id",
+        "headerNameScenarioId": "x-scan-scenario-id",
+        "flowrate": 10,
+        "timeout": 30,
+        "followRedirection": true,
+        "happyPathRetry": 1,
+        "happyPathOnly": false,
+        "maxScanTime": 3600,
+        "memoryLimit": 2147483648,
+        "memoryTimeSpan": 10,
+        "indexed": false,
+        "prettify": false,
+        "maxBodySizeScan": 10485760,
+        "maxHttpResponseSizeHappyPathReport": 0,
+        "maxBodySizeHappyPathReport": 8092,
+        "maxHttpResponseSizeTestReport": 0,
+        "maxBodySizeTestReport": 8092,
+        "errorsOnly": true,
+        "maxIssues": 10000,
+        "maxReportSize": 104857600
+    },
+    "authenticationDetails": [
+        {
+            "ApiKeyAdmin": {
+                "type": "apiKey",
+                "in": "header",
+                "name": "apikey",
+                "default": "ApiKeyAdmin",
+                "credentials": {
+                    "ApiKeyAdmin": {
+                        "description": "ApiKeyAdmin security",
+                        "credential": "{{ApiKeyAdmin}}"
+                    }
+                }
+            },
+            "ApiKeyUser": {
+                "type": "apiKey",
+                "in": "header",
+                "name": "apikey",
+                "default": "ApiKeyUser",
+                "credentials": {
+                    "ApiKeyUser": {
+                        "description": "ApiKeyUser security",
+                        "credential": "{{ApiKeyUser}}"
+                    }
+                }
+            },
+            "CookieAdmin": {
+                "type": "apiKey",
+                "in": "cookie",
+                "name": "session",
+                "default": "CookieAdmin",
+                "credentials": {
+                    "CookieAdmin": {
+                        "description": "CookieAdmin security",
+                        "credential": "{{CookieAdmin}}"
+                    }
+                }
+            },
+            "CookieUser": {
+                "type": "apiKey",
+                "in": "cookie",
+                "name": "session",
+                "default": "CookieUser",
+                "credentials": {
+                    "CookieUser": {
+                        "description": "CookieUser security",
+                        "credential": "{{CookieUser}}"
+                    }
+                }
+            }
+        }
+    ],
+    "playbook": {
+        "paths": {
+            "/apikey": {
+                "post": {
+                    "happyPaths": [
+                        {
+                            "key": "happy.path.success",
+                            "requests": [
+                                {
+                                    "$ref": "#/requests/CreateApikey"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            },
+            "/apikey/{id}": {
+                "delete": {
+                    "happyPaths": [
+                        {
+                            "key": "happy.path.success",
+                            "requests": [
+                                {
+                                    "$ref": "#/requests/DeleteApikey"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            },
+            "/dump": {
+                "get": {
+                    "happyPaths": [
+                        {
+                            "key": "happy.path.success",
+                            "requests": [
+                                {
+                                    "$ref": "#/requests/Dump"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            },
+            "/login": {
+                "post": {
+                    "happyPaths": [
+                        {
+                            "key": "happy.path.success",
+                            "requests": [
+                                {
+                                    "$ref": "#/requests/UserLogin"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            },
+            "/pets": {
+                "post": {
+                    "happyPaths": [
+                        {
+                            "key": "happy.path.success",
+                            "requests": [
+                                {
+                                    "$ref": "#/requests/CreatePet"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            },
+            "/pets/{id}": {
+                "get": {
+                    "happyPaths": [
+                        {
+                            "key": "happy.path.success",
+                            "requests": [
+                                {
+                                    "$ref": "#/requests/ReadPet"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "delete": {
+                    "happyPaths": [
+                        {
+                            "key": "happy.path.success",
+                            "requests": [
+                                {
+                                    "$ref": "#/requests/DeletePet"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            },
+            "/pets/{id}/transfer": {
+                "put": {
+                    "happyPaths": [
+                        {
+                            "key": "happy.path.success",
+                            "requests": [
+                                {
+                                    "$ref": "#/requests/TransferPet"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            },
+            "/petstores": {
+                "get": {
+                    "happyPaths": [
+                        {
+                            "key": "happy.path.success",
+                            "requests": [
+                                {
+                                    "$ref": "#/requests/FindPetstores"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "post": {
+                    "happyPaths": [
+                        {
+                            "key": "happy.path.success",
+                            "requests": [
+                                {
+                                    "$ref": "#/requests/CreatePetstore"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            },
+            "/petstores/{id}": {
+                "get": {
+                    "happyPaths": [
+                        {
+                            "key": "happy.path.success",
+                            "requests": [
+                                {
+                                    "$ref": "#/requests/ReadPetstore"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "delete": {
+                    "happyPaths": [
+                        {
+                            "key": "happy.path.success",
+                            "requests": [
+                                {
+                                    "$ref": "#/requests/DeletePetstore"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            },
+            "/petstores/{id}/pets": {
+                "get": {
+                    "happyPaths": [
+                        {
+                            "key": "happy.path.success",
+                            "requests": [
+                                {
+                                    "$ref": "#/requests/ListPets"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            },
+            "/redirect": {
+                "get": {
+                    "happyPaths": [
+                        {
+                            "key": "happy.path.success",
+                            "requests": [
+                                {
+                                    "$ref": "#/requests/Redirect"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            },
+            "/users": {
+                "post": {
+                    "happyPaths": [
+                        {
+                            "key": "happy.path.success",
+                            "requests": [
+                                {
+                                    "$ref": "#/requests/CreateUser"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            },
+            "/users/{username}": {
+                "delete": {
+                    "happyPaths": [
+                        {
+                            "key": "happy.path.success",
+                            "requests": [
+                                {
+                                    "$ref": "#/requests/DeleteUser"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            },
+            "/version": {
+                "get": {
+                    "happyPaths": [
+                        {
+                            "key": "happy.path.success",
+                            "requests": [
+                                {
+                                    "$ref": "#/requests/Version"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            }
+        }
+    },
+    "environment": {
+        "ApiKeyAdmin": "env('SECURITY_ApiKeyAdmin')",
+        "ApiKeyUser": "env('SECURITY_ApiKeyUser')",
+        "CookieAdmin": "env('SECURITY_CookieAdmin')",
+        "CookieUser": "env('SECURITY_CookieUser')",
+        "host": "http://127.0.0.1:4010"
+    },
+    "requests": {
+        "CreateApikey": {
+            "auth": [
+                "CookieAdmin"
+            ],
+            "request": {
+                "type": "42c",
+                "requestDetails": {
+                    "host": "{{host}}",
+                    "path": "/apikey",
+                    "method": "post",
+                    "pathParameters": {},
+                    "queryParameters": {},
+                    "headerParameters": {},
+                    "cookieParameters": {},
+                    "requestBody": null
+                }
+            },
+            "responseAnalysisBehavior": {
+                "httpStatusExpected": [
+                    "200"
+                ]
+            }
+        },
+        "CreatePet": {
+            "auth": [
+                "CookieAdmin"
+            ],
+            "request": {
+                "type": "42c",
+                "requestDetails": {
+                    "host": "{{host}}",
+                    "path": "/pets",
+                    "method": "post",
+                    "pathParameters": {},
+                    "queryParameters": {},
+                    "headerParameters": {
+                        "Content-Type": "application/json"
+                    },
+                    "cookieParameters": {},
+                    "requestBody": {
+                        "mode": "json",
+                        "json": {
+                            "age": 10,
+                            "name": "Billy",
+                            "petstoreId": "7fd1b0b3-d0fc-4986-abe8-e92742d42644"
+                        }
+                    }
+                }
+            },
+            "responseAnalysisBehavior": {
+                "httpStatusExpected": [
+                    "200"
+                ]
+            }
+        },
+        "CreatePetstore": {
+            "auth": [
+                "CookieAdmin"
+            ],
+            "request": {
+                "type": "42c",
+                "requestDetails": {
+                    "host": "{{host}}",
+                    "path": "/petstores",
+                    "method": "post",
+                    "pathParameters": {},
+                    "queryParameters": {},
+                    "headerParameters": {
+                        "Content-Type": "application/json"
+                    },
+                    "cookieParameters": {},
+                    "requestBody": {
+                        "mode": "json",
+                        "json": {
+                            "name": "Petstore"
+                        }
+                    }
+                }
+            },
+            "responseAnalysisBehavior": {
+                "httpStatusExpected": [
+                    "200"
+                ]
+            }
+        },
+        "CreateUser": {
+            "auth": [
+                "CookieAdmin"
+            ],
+            "request": {
+                "type": "42c",
+                "requestDetails": {
+                    "host": "{{host}}",
+                    "path": "/users",
+                    "method": "post",
+                    "pathParameters": {},
+                    "queryParameters": {},
+                    "headerParameters": {
+                        "Content-Type": "application/json"
+                    },
+                    "cookieParameters": {},
+                    "requestBody": {
+                        "mode": "json",
+                        "json": {
+                            "isAdmin": false,
+                            "password": "vlbzgbaicmrajwwhthctcuaxhxkqfdafplsjfbcxoeffrswxpldnjobcsnvlgtemapezq",
+                            "user": "helloWorld@company.io"
+                        }
+                    }
+                }
+            },
+            "responseAnalysisBehavior": {
+                "httpStatusExpected": [
+                    "200"
+                ]
+            }
+        },
+        "DeleteApikey": {
+            "auth": [
+                "CookieAdmin"
+            ],
+            "request": {
+                "type": "42c",
+                "requestDetails": {
+                    "host": "{{host}}",
+                    "path": "/apikey/{id}",
+                    "method": "delete",
+                    "pathParameters": {
+                        "id": "7fd1b0b3-d0fc-4986-abe8-e92742d42644"
+                    },
+                    "queryParameters": {},
+                    "headerParameters": {},
+                    "cookieParameters": {},
+                    "requestBody": null
+                }
+            },
+            "responseAnalysisBehavior": {
+                "httpStatusExpected": [
+                    "204"
+                ]
+            }
+        },
+        "DeletePet": {
+            "auth": [
+                "CookieAdmin"
+            ],
+            "request": {
+                "type": "42c",
+                "requestDetails": {
+                    "host": "{{host}}",
+                    "path": "/pets/{id}",
+                    "method": "delete",
+                    "pathParameters": {
+                        "id": "7fd1b0b3-d0fc-4986-abe8-e92742d42644"
+                    },
+                    "queryParameters": {},
+                    "headerParameters": {},
+                    "cookieParameters": {},
+                    "requestBody": null
+                }
+            },
+            "responseAnalysisBehavior": {
+                "httpStatusExpected": [
+                    "204"
+                ]
+            }
+        },
+        "DeletePetstore": {
+            "auth": [
+                "CookieAdmin"
+            ],
+            "request": {
+                "type": "42c",
+                "requestDetails": {
+                    "host": "{{host}}",
+                    "path": "/petstores/{id}",
+                    "method": "delete",
+                    "pathParameters": {
+                        "id": "7fd1b0b3-d0fc-4986-abe8-e92742d42644"
+                    },
+                    "queryParameters": {},
+                    "headerParameters": {},
+                    "cookieParameters": {},
+                    "requestBody": null
+                }
+            },
+            "responseAnalysisBehavior": {
+                "httpStatusExpected": [
+                    "204"
+                ]
+            }
+        },
+        "DeleteUser": {
+            "auth": [
+                "CookieAdmin"
+            ],
+            "request": {
+                "type": "42c",
+                "requestDetails": {
+                    "host": "{{host}}",
+                    "path": "/users/{username}",
+                    "method": "delete",
+                    "pathParameters": {
+                        "username": "helloWorld@company.io"
+                    },
+                    "queryParameters": {},
+                    "headerParameters": {},
+                    "cookieParameters": {},
+                    "requestBody": null
+                }
+            },
+            "responseAnalysisBehavior": {
+                "httpStatusExpected": [
+                    "204"
+                ]
+            }
+        },
+        "Dump": {
+            "request": {
+                "type": "42c",
+                "requestDetails": {
+                    "host": "{{host}}",
+                    "path": "/dump",
+                    "method": "get",
+                    "pathParameters": {},
+                    "queryParameters": {},
+                    "headerParameters": {},
+                    "cookieParameters": {},
+                    "requestBody": null
+                }
+            },
+            "responseAnalysisBehavior": {
+                "httpStatusExpected": [
+                    "200"
+                ]
+            }
+        },
+        "FindPetstores": {
+            "request": {
+                "type": "42c",
+                "requestDetails": {
+                    "host": "{{host}}",
+                    "path": "/petstores",
+                    "method": "get",
+                    "pathParameters": {},
+                    "queryParameters": {
+                        "limit": 10,
+                        "name": "Petstore"
+                    },
+                    "headerParameters": {},
+                    "cookieParameters": {},
+                    "requestBody": null
+                }
+            },
+            "responseAnalysisBehavior": {
+                "httpStatusExpected": [
+                    "200"
+                ]
+            }
+        },
+        "ListPets": {
+            "auth": [
+                "CookieAdmin"
+            ],
+            "request": {
+                "type": "42c",
+                "requestDetails": {
+                    "host": "{{host}}",
+                    "path": "/petstores/{id}/pets",
+                    "method": "get",
+                    "pathParameters": {
+                        "id": "7fd1b0b3-d0fc-4986-abe8-e92742d42644"
+                    },
+                    "queryParameters": {},
+                    "headerParameters": {},
+                    "cookieParameters": {},
+                    "requestBody": null
+                }
+            },
+            "responseAnalysisBehavior": {
+                "httpStatusExpected": [
+                    "200"
+                ]
+            }
+        },
+        "ReadPet": {
+            "auth": [
+                "CookieAdmin"
+            ],
+            "request": {
+                "type": "42c",
+                "requestDetails": {
+                    "host": "{{host}}",
+                    "path": "/pets/{id}",
+                    "method": "get",
+                    "pathParameters": {
+                        "id": "7fd1b0b3-d0fc-4986-abe8-e92742d42644"
+                    },
+                    "queryParameters": {},
+                    "headerParameters": {},
+                    "cookieParameters": {},
+                    "requestBody": null
+                }
+            },
+            "responseAnalysisBehavior": {
+                "httpStatusExpected": [
+                    "200"
+                ]
+            }
+        },
+        "ReadPetstore": {
+            "request": {
+                "type": "42c",
+                "requestDetails": {
+                    "host": "{{host}}",
+                    "path": "/petstores/{id}",
+                    "method": "get",
+                    "pathParameters": {
+                        "id": "7fd1b0b3-d0fc-4986-abe8-e92742d42644"
+                    },
+                    "queryParameters": {},
+                    "headerParameters": {},
+                    "cookieParameters": {},
+                    "requestBody": null
+                }
+            },
+            "responseAnalysisBehavior": {
+                "httpStatusExpected": [
+                    "200"
+                ]
+            }
+        },
+        "Redirect": {
+            "request": {
+                "type": "42c",
+                "requestDetails": {
+                    "host": "{{host}}",
+                    "path": "/redirect",
+                    "method": "get",
+                    "pathParameters": {},
+                    "queryParameters": {},
+                    "headerParameters": {},
+                    "cookieParameters": {},
+                    "requestBody": null
+                }
+            },
+            "responseAnalysisBehavior": {}
+        },
+        "TransferPet": {
+            "auth": [
+                "CookieAdmin"
+            ],
+            "request": {
+                "type": "42c",
+                "requestDetails": {
+                    "host": "{{host}}",
+                    "path": "/pets/{id}/transfer",
+                    "method": "put",
+                    "pathParameters": {
+                        "id": "7fd1b0b3-d0fc-4986-abe8-e92742d42644"
+                    },
+                    "queryParameters": {},
+                    "headerParameters": {
+                        "Content-Type": "application/json"
+                    },
+                    "cookieParameters": {},
+                    "requestBody": {
+                        "mode": "json",
+                        "json": {
+                            "petstoreId": "7fd1b0b3-d0fc-4986-abe8-e92742d42644"
+                        }
+                    }
+                }
+            },
+            "responseAnalysisBehavior": {
+                "httpStatusExpected": [
+                    "200"
+                ]
+            }
+        },
+        "UserLogin": {
+            "request": {
+                "type": "42c",
+                "requestDetails": {
+                    "host": "{{host}}",
+                    "path": "/login",
+                    "method": "post",
+                    "pathParameters": {},
+                    "queryParameters": {},
+                    "headerParameters": {
+                        "Content-Type": "application/json"
+                    },
+                    "cookieParameters": {},
+                    "requestBody": {
+                        "mode": "json",
+                        "json": {
+                            "password": "eqyhyzrywjj",
+                            "user": "helloWorld@company.io"
+                        }
+                    }
+                }
+            },
+            "responseAnalysisBehavior": {
+                "httpStatusExpected": [
+                    "200"
+                ]
+            }
+        },
+        "Version": {
+            "request": {
+                "type": "42c",
+                "requestDetails": {
+                    "host": "{{host}}",
+                    "path": "/version",
+                    "method": "get",
+                    "pathParameters": {},
+                    "queryParameters": {},
+                    "headerParameters": {},
+                    "cookieParameters": {},
+                    "requestBody": null
+                }
+            },
+            "responseAnalysisBehavior": {
+                "httpStatusExpected": [
+                    "200"
+                ]
+            }
+        }
+    }
+}

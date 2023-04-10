@@ -14,7 +14,7 @@ import (
 const (
 	CookieHeader     = "session"
 	ApiKeyHeader     = "apikey"
-	CookieExpiration = 30 * time.Second
+	CookieExpiration = 300 * time.Second
 	ApiVersion       = "v1.0.0"
 	ApiCommitId      = "3271bd2a72002b6a730d6da541c5da355390c4ff"
 )
@@ -65,12 +65,21 @@ func NewPetStoreAPI() *PetStoreAPI {
 			},
 		},
 		Sessions: map[string]*SessionData{
+			"65496ebe-6544-4e77-bb66-20b97f6994bb": &SessionData{
+				Username:   "admin@42crunch.com",
+				Expiration: time.Now().Add(CookieExpiration),
+			},
 			"a2a2a2eb-a5da-498b-92e2-aa02de96b370": &SessionData{
 				Username:   "user@42crunch.com",
 				Expiration: time.Now().Add(CookieExpiration),
 			},
+			"5341253c-faf0-44b0-a2e5-75b682083edf": &SessionData{
+				Username:   "user1@42crunch.com",
+				Expiration: time.Now().Add(CookieExpiration),
+			},
 		},
 		APIKeys: map[string]string{
+			"65496ebe-6544-4e77-bb66-20b97f6994bb": "admin@42crunch.com",
 			"7e44c110-af52-455e-9ae9-f2dbb3ce30a7": "user@42crunch.com",
 		},
 		petstores: map[string]*Petstore{
@@ -312,7 +321,7 @@ func (api *PetStoreAPI) CreateUser(ctx echo.Context) error {
 	}
 
 	_, userAuthenticated, authenticated := api.IsAuthenticatedCookie(ctx)
-	if !authenticated {
+	if !Insecure && !authenticated {
 		return PetstoreUnauthorized(ctx)
 	}
 
@@ -323,7 +332,7 @@ func (api *PetStoreAPI) CreateUser(ctx echo.Context) error {
 	password := string(login.Password)
 	admin := login.IsAdmin
 
-	if !userAuthenticated.IsAdmin {
+	if !Insecure && !userAuthenticated.IsAdmin {
 		return PetstoreUnauthorized(ctx)
 	}
 
@@ -625,6 +634,7 @@ func (api *PetStoreAPI) CreatePetstore(ctx echo.Context) error {
 	// _, _, authenticated := api.IsAuthenticated(ctx)
 	_, user, authenticated := api.IsAuthenticated(ctx)
 	if !authenticated {
+		fmt.Println("Not authentication")
 		return PetstoreUnauthorized(ctx)
 	}
 

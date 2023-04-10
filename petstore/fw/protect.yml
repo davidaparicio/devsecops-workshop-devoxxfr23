@@ -1,0 +1,20 @@
+version: '3'
+services:
+  fw-petstore-secured:
+    image: 42crunch/apifirewall:latest
+    volumes:
+      - ./storage/apifirewall/ssl:/opt/guardian/conf/ssl
+      - ./storage/apifirewall/logs:/opt/guardian/logs
+    command: ["/bin/squire", "-platform", "protection.42crunch.com:8001", "-debug"]
+    environment:
+      - PROTECTION_TOKEN=${PROTECTION_TOKEN}
+      - LISTEN_PORT=4241
+      - TARGET_URL=http://petstore:4010
+      - LISTEN_SSL_CERT=full-cert-chain.pem
+      - LISTEN_SSL_KEY=key.pem
+      - SERVER_NAME=petstore-secured:4241
+      - GUARDIAN_NODE_NAME=Local-Firewall
+      - GUARDIAN_INSTANCE_NAME=Local-Firewall
+      - LOG_LEVEL=trace7
+      - LOG_DESTINATION=PLATFORM
+    network_mode: host

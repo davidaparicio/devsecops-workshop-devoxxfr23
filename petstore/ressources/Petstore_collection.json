@@ -1,0 +1,592 @@
+{
+	"info": {
+		"_postman_id": "d336433f-e3f3-453f-aeee-0f0da0746691",
+		"name": "Petstore",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "18985840"
+	},
+	"item": [
+		{
+			"name": "Petstore",
+			"item": [
+				{
+					"name": "List",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{scheme}}://{{hostname}}/petstores",
+							"protocol": "{{scheme}}",
+							"host": [
+								"{{hostname}}"
+							],
+							"path": [
+								"petstores"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let jsonData = pm.response.json();",
+									"let petstoreId = jsonData.id;",
+									"",
+									"postman.setGlobalVariable(\"petstoreId\", petstoreId)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\":\"petstore\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{scheme}}://{{hostname}}/petstores",
+							"protocol": "{{scheme}}",
+							"host": [
+								"{{hostname}}"
+							],
+							"path": [
+								"petstores"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Read",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{scheme}}://{{hostname}}/petstores/{{petstoreId}}",
+							"protocol": "{{scheme}}",
+							"host": [
+								"{{hostname}}"
+							],
+							"path": [
+								"petstores",
+								"{{petstoreId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{scheme}}://{{hostname}}/petstores/{{petstoreId}}",
+							"protocol": "{{scheme}}",
+							"host": [
+								"{{hostname}}"
+							],
+							"path": [
+								"petstores",
+								"{{petstoreId}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Pet",
+			"item": [
+				{
+					"name": "List Pets",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{scheme}}://{{hostname}}/petstores/{{petstoreId}}/pets",
+							"protocol": "{{scheme}}",
+							"host": [
+								"{{hostname}}"
+							],
+							"path": [
+								"petstores",
+								"{{petstoreId}}",
+								"pets"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let jsonData = pm.response.json();",
+									"let petId = jsonData.id;",
+									"",
+									"postman.setGlobalVariable(\"petId\", petId)"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"let petstoreId = environment[\"petstoreId\"]",
+									"postman.setEnvironmentVariable(\"petstoreId\", petstoreId);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"age\":10,\n    \"name\":\"petstore\",\n    \"petstoreId\":\"{{petstoreId}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{scheme}}://{{hostname}}/pets",
+							"protocol": "{{scheme}}",
+							"host": [
+								"{{hostname}}"
+							],
+							"path": [
+								"pets"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Read",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{scheme}}://{{hostname}}/pets/{{petId}}",
+							"protocol": "{{scheme}}",
+							"host": [
+								"{{hostname}}"
+							],
+							"path": [
+								"pets",
+								"{{petId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\":\"petstore\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{scheme}}://{{hostname}}/pets/{{petId}}",
+							"protocol": "{{scheme}}",
+							"host": [
+								"{{hostname}}"
+							],
+							"path": [
+								"pets",
+								"{{petId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Transfer",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let jsonData = pm.response.json();",
+									"let petId = jsonData.id;",
+									"",
+									"postman.setGlobalVariable(\"petId\", petId)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"petstoreId\":\"a29d719c-9801-4ee3-8229-822b46590d14\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{scheme}}://{{hostname}}/pets/{{petId}}/transfer",
+							"protocol": "{{scheme}}",
+							"host": [
+								"{{hostname}}"
+							],
+							"path": [
+								"pets",
+								"{{petId}}",
+								"transfer"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user\":\"admin@42crunch.com\",\n    \"password\":\"HelloWorld\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{scheme}}://{{hostname}}/login",
+							"protocol": "{{scheme}}",
+							"host": [
+								"{{hostname}}"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login URL Encoded",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "user",
+									"value": "user@42crunch.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "HelloWorld",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{scheme}}://{{hostname}}/login/urlencoded",
+							"protocol": "{{scheme}}",
+							"host": [
+								"{{hostname}}"
+							],
+							"path": [
+								"login",
+								"urlencoded"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login Form",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "Hello",
+									"value": "World",
+									"type": "text"
+								},
+								{
+									"key": "Hello",
+									"type": "file",
+									"src": "/home/guardix/Desktop/toto.json"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{scheme}}://{{hostname}}/login",
+							"protocol": "{{scheme}}",
+							"host": [
+								"{{hostname}}"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"isAdmin\":false,\n    \"user\":\"user@42crunch.com\",\n    \"password\":\"HelloWorld\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{scheme}}://{{hostname}}/users",
+							"protocol": "{{scheme}}",
+							"host": [
+								"{{hostname}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create User Copy",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user\":\"user@42crunch.com\",\n    \"password\":\"HelloWorld\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{scheme}}://{{hostname}}/users",
+							"protocol": "{{scheme}}",
+							"host": [
+								"{{hostname}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create ApiKey",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let jsonData = pm.response.json();",
+									"let apikeyId = jsonData.id;",
+									"",
+									"postman.setGlobalVariable(\"apiKeyId\", apikeyId)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{scheme}}://{{hostname}}/apikey",
+							"protocol": "{{scheme}}",
+							"host": [
+								"{{hostname}}"
+							],
+							"path": [
+								"apikey"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Apikey",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user\":\"user@42crunch.com\",\n    \"password\":\"HelloWorld\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{scheme}}://{{hostname}}/apikey/{{apiKeyId}}",
+							"protocol": "{{scheme}}",
+							"host": [
+								"{{hostname}}"
+							],
+							"path": [
+								"apikey",
+								"{{apiKeyId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete User",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user\":\"user@42crunch.com\",\n    \"password\":\"HelloWorld\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{scheme}}://{{hostname}}/users/user@42crunch.com",
+							"protocol": "{{scheme}}",
+							"host": [
+								"{{hostname}}"
+							],
+							"path": [
+								"users",
+								"user@42crunch.com"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Global",
+			"item": [
+				{
+					"name": "Dump",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-Plugin-TransactionId",
+								"value": "HelloWorld",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{scheme}}://{{hostname}}/dump",
+							"protocol": "{{scheme}}",
+							"host": [
+								"{{hostname}}"
+							],
+							"path": [
+								"dump"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Version",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-Plugin-TransactionId",
+								"value": "HelloWorld",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{scheme}}://{{hostname}}/version",
+							"protocol": "{{scheme}}",
+							"host": [
+								"{{hostname}}"
+							],
+							"path": [
+								"version"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
