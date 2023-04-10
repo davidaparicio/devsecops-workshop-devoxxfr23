@@ -1045,3 +1045,48 @@ __Objectifs de cette étape__:
 
 <!-- docker scan ou Snyk -->
 <!-- ------------------------ -->
+## E4 - K8s deprecation
+Duration: 5
+
+### Comment se préparer au pire ?
+![Photo by Growtika on Unsplash](assets/kubernetes.jpg)
+
+En découvrant comment [Chainguard Enforce](https://www.chainguard.dev/chainguard-enforce) permet d'aider les développeurs à réaliser cette migration (fastidieuse), surtout si nous n'avons pas un inventaire d'entreprise (et donc éviter du Shadow IT)
+
+``` YAML
+apiVersion: policy.sigstore.dev/v1beta1
+kind: ClusterImagePolicy
+metadata:
+ name: deprecated-k8s-grc-io-registry-rego
+ annotations:
+   catalog.chainguard.dev/title: Deprecated registry
+   catalog.chainguard.dev/description: Warn of a registry deprecation
+   catalog.chainguard.dev/labels: rego
+   catalog.chainguard.dev/learnMoreLink: https://kubernetes.io/blog/2023/02/06/k8s-gcr-io-freeze-announcement/
+spec:
+ mode: warn
+ images:
+ - glob: "k8s.gcr.io/**"
+ authorities:
+ - name: k8s-deprecated
+   static:
+     action: pass
+ policy:
+   type: rego
+   data: |
+     package sigstore
+     isCompliant[response] {
+       response := {
+         "result" : true,
+         "error" : "",
+         "warning" : "This repo has been deprecated: https://kubernetes.io/blog/2023/02/06/k8s-gcr-io-freeze-announcement/"
+       }
+     }
+```
+
+__Objectifs de cette étape__: 
+* Analyser le [billet de blog de Chainguard](https://www.chainguard.dev/unchained/using-chainguard-enforce-to-prepare-for-the-kubernetes-registry-deprecation) et le tester sur un environnement de test/une sandbox
+* Facultatif: Le tester sur un environnement plus conséquent/important
+
+<!-- docker scan ou Snyk -->
+<!-- ------------------------ -->
