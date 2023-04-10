@@ -4,7 +4,7 @@ categories: devsecops, security
 tags: devoxxfr, GBU-7756
 status: Published 
 authors: David Aparicio
-Feedback Link: https://github.com/davidaparicio/davidaparicio.github.io/issues
+Feedback Link: https://github.com/davidaparicio/devsecops-workshop-devoxxfr23/issues
 
 # La sécurité, par où commencer ? Install party 🎉
 <!-- ------------------------ -->
@@ -64,7 +64,7 @@ Cela est même devenu un sujet de conférence au FOSDEM en 2019 [Comment éviter
 
 Une [étude de 2021](https://cyber.nyu.edu/2021/10/15/ccs-researchers-find-github-copilot-generates-vulnerable-code-40-of-the-time/) de l'université de New York a montré que **40%** du code proposé par [GitHub Copilot](https://github.com/features/copilot/) n'était pas sécurisé, présentant des failles applicatives.
 
-Donc [ChatGPT](https://chat.openai.com/) ne devrait pas tarder à subir ce genre d'études avec un même ordre de grandeur.
+Donc [ChatGPT](https://chat.openai.com/) ne devrait pas tarder à subir ce genre d'études avec un même ordre de grandeur. De même pour l'[OpenAI Codex](https://openai.com/blog/openai-code) ou la toute dernière version d'[OpenAI GPT-4 dans GitHub Copilot X](https://github.com/features/preview/copilot-x).
 
 ### Afin d'éviter ceci
 
@@ -173,6 +173,9 @@ De ce fait, est-ce possible et acceptable pour votre projet d’utiliser de l’
 
 Ce sont les questions que nous devons nous poser, selon le risque pris et le type d’attaquant. Cet exemple concerne la brique d’authentification, mais cela s’applique également aux autres éléments qui composent votre système.
 
+Illustration de ce chapitre, avec l'obligation du MFA (Authentification multifacteur/Multi-factor authentication) chez Heroku (probablement la conséquence de leur politique sécurité, suite à la [faille majeure](https://blog.heroku.com/april-2022-incident-review)/[incident](https://status.heroku.com/incidents/2413) impliquant le réinitialisation de tous les mots de passe clients)
+![Heroku - MFA](assets/heroku_mfa.png)
+
 Poursuivons avec la suite de l'atelier :D
 
 <!-- ------------------------ -->
@@ -194,6 +197,48 @@ __Objectifs de cette étape__:
 * Par exemple, [Snyk Code (lien pour VSCode)](https://marketplace.visualstudio.com/items?itemName=snyk-security.snyk-vulnerability-scanner)
 * Si vous utilisez souvent OpenAPI (Swagger), nous vous recommendons l'installation de l'[extension de 42Crunch (lien pour VSCode)](https://marketplace.visualstudio.com/items?itemName=42Crunch.vscode-openapi)
 
+<!-- ------------------------ -->
+## PR Aware
+Duration: 2
+
+### Illustration avec GitHub Code Scanning
+
+En préparant cet atelier pour la conférence DevoxxFR2023, mon collègue, Christopher Aparicio, a continué à contribuer pour DevoxxGPT. En activant sur tous mes repositories Github, Dependabot & cie, à travers ce [menu](https://github.com/settings/security_analysis), automatiquement, Dependabot me remonte les failles de sécurité de notre code. La prevue en images (ou plutôt en ligne de commande, durant les fameux git pull/push) :
+
+git pull (Dependabot a ouvert automatique 3 PR pour fixer les failles, maintenant à moi de les tester)
+``` Bash
+devsecops-workshop-devoxxfr23 on main [⇡] took 32s
+❯ git pull
+remote: Enumerating objects: 23, done.
+remote: Counting objects: 100% (23/23), done.
+remote: Compressing objects: 100% (18/18), done.
+remote: Total 18 (delta 15), reused 0 (delta 0), pack-reused 0
+Unpacking objects: 100% (18/18), 4.12 KiB | 111.00 KiB/s, done.
+From github.com:davidaparicio/devsecops-workshop-devoxxfr23
+ * [new branch]      dependabot/go_modules/petstore/api/github.com/labstack/echo/v4-4.9.0 -> origin/dependabot/go_modules/petstore/api/github.com/labstack/echo/v4-4.9.0
+ * [new branch]      dependabot/go_modules/petstore/api/golang.org/x/net-0.7.0 -> origin/dependabot/go_modules/petstore/api/golang.org/x/net-0.7.0
+ * [new branch]      dependabot/go_modules/petstore/api/golang.org/x/text-0.3.8 -> origin/dependabot/go_modules/petstore/api/golang.org/x/text-0.3.8
+Already up to date.
+```
+
+git push (GitHub me signale [4 vulnérabilités](https://github.com/davidaparicio/devsecops-workshop-devoxxfr23/security/dependabot), dont 1 critique)
+``` Bash
+devsecops-workshop-devoxxfr23 on main [⇡] took 7s
+❯ git push
+Enumerating objects: 9, done.
+Counting objects: 100% (9/9), done.
+Delta compression using up to 4 threads
+Compressing objects: 100% (6/6), done.
+Writing objects: 100% (6/6), 1023.91 KiB | 15.28 MiB/s, done.
+Total 6 (delta 2), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (2/2), completed with 2 local objects.
+remote:
+remote: GitHub found 4 vulnerabilities on davidaparicio/devsecops-workshop-devoxxfr23's default branch (1 critical, 3 high). To find out more, visit:
+remote:      https://github.com/davidaparicio/devsecops-workshop-devoxxfr23/security/dependabot
+remote:
+To github.com:davidaparicio/devsecops-workshop-devoxxfr23.git
+   3040a1d..698757c  main -> main
+```
 
 <!-- ------------------------ -->
 ## Virage à gauche toute
@@ -202,7 +247,7 @@ Duration: 4
 ### Développer : Sécurité comme Code
 D’après O’Reilly, SaC (Security as Code) consiste à intégrer la sécurité dans les flux DevOps, alias CI/CD. Néanmoins, si l’outil n’est pas trop gourmand en ressources, il peut être installé dans l’éditeur. Car nous avons des ordinateurs plus puissants, grâce à l’apparition des puces ARM ou les IDE en ligne, comme AWS Cloud9, Gitpod, ou GitHub Codespaces. Au niveau des containers sécurisés, des implémentations existent avec [gVisor](https://gvisor.dev/), les [Kata Containers](https://katacontainers.io/) et les [Confidential containers](https://youtu.be/G0SwSWKGyuM).
 
-D’une part, l’application de la configuration (HBAC, RBAC, règle pare-feu) peut-être une opération critique en cas d’oubli ([bucket S3 accessible en public sur Internet](), [base de données sans mot de passe](https://blog.newsblur.com/2021/06/28/story-of-a-hacking/)). Il est préférable de déclarer son besoin avec des fichiers et de laisser l’orchestrateur les réaliser plutôt qu’agir de manière impérative sur le système. 
+D’une part, l’application de la configuration (HBAC, RBAC, règle pare-feu) peut-être une opération critique en cas d’oubli ([bucket S3 accessible en public sur Internet](https://www.websiteplanet.com/blog/beetleeye-leak-report/), [base de données sans mot de passe](https://blog.newsblur.com/2021/06/28/story-of-a-hacking/)). Il est préférable de déclarer son besoin avec des fichiers et de laisser l’orchestrateur les réaliser plutôt qu’agir de manière impérative sur le système. 
 
 Par exemple, le projet [Cilium](https://cilium.io/) permet d’interagir avec le réseau et d’appliquer des politiques de sécurité. De plus, les maillage de services (services-mesh) comme Istio, Traefik maesh ou Solo.io avec GlooEdge génèrent automatiquement des certificats SSL et ne laissent passer ainsi que les communications sécurisées entre vos containers. D'[autres projets](https://platform9.com/blog/the-ultimate-guide-to-using-calico-flannel-weave-and-cilium/) existent comme: [Flannel](https://github.com/flannel-io/flannel), [Calico](https://github.com/projectcalico/calico) ou [Weave](https://github.com/weaveworks/weave).
 
@@ -389,8 +434,15 @@ Au niveau des API, la version Ultimate de GitLab propose le DAST API (REST, SOAP
 Duration: 15
 
 ### Démonstrations des fonctionnalités de 42Crunch
-Vous pouvez également, à la fin de l'atelier, jouer avec ce repo GitHub [VAmPI](https://github.com/erev0s/VAmPI)
+Cette partie sera faite en session live coding, durant l'atelier DevoxxFR2023.
+
 > Vulnerable REST API with OWASP top 10 vulnerabilities for security testing 
+
+Vous pouvez également, à la fin de l'atelier, jouer avec ce repo GitHub [VAmPI](https://github.com/erev0s/VAmPI)
+
+Une remontée des vulnérabilités du container d'API, à travers l'outil/registry [Harbor](https://goharbor.io/).
+
+![Harbor - Interface](assets/harbor.png)
 
 <!-- ------------------------ -->
 ## Pentest
@@ -630,9 +682,9 @@ spec:
 Duration: 3
 
 ### Déploiement : Scans de sécurité
-[Shodan.io](https://shodan.io/) est un site assez connu qui crawle Internet à la recherche de ports ouverts, de failles de sécurité connues. [FullHunt.io](https://fullhunt.io/) est aussi une plate-forme pour découvrir tous vos équipements connectés à Internet et votre surface d’attaque. 
+[Shodan.io](https://shodan.io/) est un site assez connu qui crawle Internet à la recherche de ports ouverts, de failles de sécurité connues. [FullHunt.io](https://fullhunt.io/) est aussi une plate-forme pour découvrir tous vos équipements connectés à Internet et votre surface d’attaque. Le scanner d'API de [42Crunch](https://42crunch.com/free-tools/) présenté ultérieurement (à l'étape 20). 
 
-Enfin pour les infrastructures Kubernetes, nous pouvons utiliser les scanners de [quay/clair](https://github.com/quay/clair), [Trivy](https://aquasecurity.github.io/trivy/), [Falco](https://falco.org) ou [cnitch](https://github.com/nicholasjackson/cnitch) (pour surveiller si aucun processus se lançant en tant qu'administrateur/root).
+Enfin pour les infrastructures Kubernetes, nous pouvons utiliser les scanners de [quay/clair](https://github.com/quay/clair), [Trivy d'Aqua Security](https://aquasecurity.github.io/trivy/), [Falco](https://falco.org) ou [cnitch](https://github.com/nicholasjackson/cnitch) (pour surveiller si aucun processus se lançant en tant qu'administrateur/root). Concernant cet dernier outil, Liz Rice signale sur son blog Medium qu'il est présent dans l'outil SaaS [Aqua Security](https://medium.com/@lizrice/non-privileged-containers-based-on-the-scratch-image-a80105d6d341)
 
 <!-- ------------------------ -->
 ## Patch
