@@ -1,5 +1,5 @@
 summary: La sécurité, par où commencer ? Install party
-id: securite-intro
+id: devoxxfr23
 categories: devsecops, security
 tags: devoxxfr, GBU-7756
 status: Published 
@@ -174,7 +174,7 @@ De ce fait, est-ce possible et acceptable pour votre projet d’utiliser de l’
 Ce sont les questions que nous devons nous poser, selon le risque pris et le type d’attaquant. Cet exemple concerne la brique d’authentification, mais cela s’applique également aux autres éléments qui composent votre système.
 
 Illustration de ce chapitre, avec l'obligation du MFA (Authentification multifacteur/Multi-factor authentication) chez Heroku (probablement la conséquence de leur politique sécurité, suite à la [faille majeure](https://blog.heroku.com/april-2022-incident-review)/[incident](https://status.heroku.com/incidents/2413) impliquant le réinitialisation de tous les mots de passe clients)
-![Heroku - MFA](assets/heroku_mfa.png)
+![Heroku - MFA](assets/heroku_mfa.jpg)
 
 Poursuivons avec la suite de l'atelier :D
 
