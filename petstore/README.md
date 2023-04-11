@@ -1,6 +1,6 @@
 # Workshop Devoxx Petstore API
 
-The Petstore API implement the petstore.json specification with some conformance and security issues. You will be able to find them and to protect the API with 42Crunch tools (Audit/Scan/Firewall).
+The Petstore API implement the petstore.json specification with some conformance and security issues. You will be able to find them and to protect the API with 42Crunch tools (Audit/Scan/Firewall). There are more documentations about the Petstore API in the directory 'ressources'
 
 
 ## Prerequisites
