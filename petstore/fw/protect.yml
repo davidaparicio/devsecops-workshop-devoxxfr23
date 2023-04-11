@@ -15,6 +15,6 @@ services:
       - SERVER_NAME=petstore-secured:4241
       - GUARDIAN_NODE_NAME=Local-Firewall
       - GUARDIAN_INSTANCE_NAME=Local-Firewall
-      - LOG_LEVEL=trace7
+      - LOG_LEVEL=trace5
       - LOG_DESTINATION=PLATFORM
     network_mode: host

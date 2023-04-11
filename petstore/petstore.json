@@ -176,14 +176,15 @@
             "post": {
                 "security": [
                     {
-                        "CookieAdmin":[]
+                        "Cookie":[]
                     },
                     {
-                        "ApiKeyAdmin":[]
+                        "ApiKey":[]
                     }
                 ],
                 "tags": [
-                    "Users"
+                    "Users",
+                    "AdminOnly"
                 ],
                 "summary": "Create an user",
                 "operationId": "CreateUser",
@@ -223,14 +224,15 @@
         "/users/{username}": {
             "delete": {
                 "tags": [
-                    "Users"
+                    "Users",
+                    "AdminOnly"
                 ],
                 "security": [
                     {
-                        "CookieAdmin":[]
+                        "Cookie":[]
                     },
                     {
-                        "ApiKeyAdmin":[]
+                        "ApiKey":[]
                     }
                 ],
                 "summary": "Delete an user",
@@ -259,14 +261,15 @@
         "/apikey": {
             "post": {
                 "tags": [
-                    "Authentication"
+                    "Authentication",
+                    "AdminOnly"
                 ],
                 "security": [
                     {
-                        "CookieAdmin":[]
+                        "Cookie":[]
                     },
                     {
-                        "CookieUser":[]
+                        "ApiKey":[]
                     }
                 ],
                 "summary": "Create an apikey",
@@ -297,14 +300,12 @@
         "/apikey/{id}": {
             "delete": {
                 "tags": [
-                    "Authentication"
+                    "Authentication",
+                    "CookieOnly"
                 ],
                 "security": [
                     {
-                        "CookieAdmin":[]
-                    },
-                    {
-                        "CookieUser":[]
+                        "Cookie":[]
                     }
                 ],
                 "summary": "Delete an apikey",
@@ -341,6 +342,8 @@
                 "tags": [
                     "Petstore"
                 ],
+                "security": [],
+                "x-42c-no-authentication": true,
                 "description": "Returns all petstores from the system that the user has access to",
                 "operationId": "FindPetstores",
                 "parameters": [
@@ -393,10 +396,10 @@
                 ],
                 "security": [
                     {
-                        "CookieAdmin":[]
+                        "Cookie":[]
                     },
                     {
-                        "ApiKeyAdmin":[]
+                        "ApiKey":[]
                     }
                 ],
                 "description": "Creates a new petstore",
@@ -437,7 +440,9 @@
                 "tags": [
                     "Petstore"
                 ],
-                "description": "Returns a petstore based on a single ID, if the user does not have access to the pet",
+                "security": [],
+                "x-42c-no-authentication": true,
+                "description": "Returns a petstore based on its id",
                 "operationId": "ReadPetstore",
                 "parameters": [
                     {
@@ -471,14 +476,15 @@
             },
             "delete": {
                 "tags": [
-                    "Petstore"
+                    "Petstore",
+                    "AdminOnly"
                 ],
                 "security": [
                     {
-                        "CookieAdmin":[]
+                        "Cookie":[]
                     },
                     {
-                        "ApiKeyAdmin":[]
+                        "ApiKey":[]
                     }
                 ],
                 "description": "deletes a single petstore based on the ID supplied",
@@ -514,16 +520,10 @@
                 ],
                 "security": [
                     {
-                        "CookieAdmin":[]
+                        "Cookie":[]
                     },
                     {
-                        "ApiKeyAdmin":[]
-                    },
-                    {
-                        "CookieUser":[]
-                    },
-                    {
-                        "ApiKeyUser":[]
+                        "ApiKey":[]
                     }
                 ],
                 "description": "Return all pets in the petstore",
@@ -566,16 +566,10 @@
                 ],
                 "security": [
                     {
-                        "CookieAdmin":[]
+                        "Cookie":[]
                     },
                     {
-                        "ApiKeyAdmin":[]
-                    },
-                    {
-                        "CookieUser":[]
-                    },
-                    {
-                        "ApiKeyUser":[]
+                        "ApiKey":[]
                     }
                 ],
                 "description": "Creates a new pet in the store. Duplicates names are not allowed",
@@ -618,16 +612,10 @@
                 ],
                 "security": [
                     {
-                        "CookieAdmin":[]
+                        "Cookie":[]
                     },
                     {
-                        "ApiKeyAdmin":[]
-                    },
-                    {
-                        "CookieUser":[]
-                    },
-                    {
-                        "ApiKeyUser":[]
+                        "ApiKey":[]
                     }
                 ],
                 "description": "Returns a user based on a single ID, if the user does not have access to the pet",
@@ -668,16 +656,10 @@
                 ],
                 "security": [
                     {
-                        "CookieAdmin":[]
+                        "Cookie":[]
                     },
                     {
-                        "ApiKeyAdmin":[]
-                    },
-                    {
-                        "CookieUser":[]
-                    },
-                    {
-                        "ApiKeyUser":[]
+                        "ApiKey":[]
                     }
                 ],
                 "description": "deletes a single pet based on the ID supplied",
@@ -713,16 +695,10 @@
                 ],
                 "security": [
                     {
-                        "CookieAdmin":[]
+                        "Cookie":[]
                     },
                     {
-                        "ApiKeyAdmin":[]
-                    },
-                    {
-                        "CookieUser":[]
-                    },
-                    {
-                        "ApiKeyUser":[]
+                        "ApiKey":[]
                     }
                 ],
                 "description": "Transfer a pet from a petstore to another one, the user must be the owner of the pet",
@@ -794,22 +770,12 @@
             }
         },
         "securitySchemes": {
-            "ApiKeyUser": {
+            "ApiKey": {
                 "type": "apiKey",
                 "name": "apikey",
                 "in": "header"
             },
-            "ApiKeyAdmin": {
-                "type": "apiKey",
-                "name": "apikey",
-                "in": "header"
-            },
-            "CookieUser": {
-                "type": "apiKey",
-                "name": "session",
-                "in": "cookie"
-            },
-            "CookieAdmin": {
+            "Cookie": {
                 "type": "apiKey",
                 "name": "session",
                 "in": "cookie"

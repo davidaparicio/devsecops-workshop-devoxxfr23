@@ -30,25 +30,25 @@
         "UserIsolation": {
             "key": "authentication-swapping-bola",
             "source": [
-                "UserCookie/User"
+                "Cookie/User"
             ],
             "target": [
-                "UserCookie/User1"
+                "Cookie/User1"
             ]
         },
         "AdminOnly": {
             "key": "authentication-swapping-bfla",
             "source": [
-                "AdminCookie/Admin"
+                "Cookie/Admin"
             ],
             "target": [
-                "UserCookie/User"
+                "Cookie/User"
             ]
         }
     },
     "authenticationDetails": [
         {
-            "AdminCookie": {
+            "Cookie": {
                 "type": "apiKey",
                 "in": "cookie",
                 "name": "session",
@@ -68,16 +68,7 @@
                             }
                         ],
                         "credential": "{{sessionIdAdmin}}"
-                    }
-                }
-            },
-            "UserCookie": {
-                "type": "apiKey",
-                "in": "cookie",
-                "name": "session",
-                "default": "User",
-                "ttl": "30s",
-                "credentials": {
+                    },
                     "User": {
                         "description": "User Credential",
                         "requests": [
@@ -163,9 +154,9 @@
                             ]
                         }
                     ],
-                    "customTests":[
+                    "customTests": [
                         {
-                            "requests":[
+                            "requests": [
                                 {
                                     "request": {
                                         "type": "42c",
@@ -194,7 +185,7 @@
                                     }
                                 }
                             ],
-                            "key":"authentication-swapping-bola"
+                            "key": "authentication-swapping-bola"
                         }
                     ]
                 }
@@ -211,9 +202,9 @@
                             ]
                         }
                     ],
-                    "customTests":[
+                    "customTests": [
                         {
-                            "requests":[
+                            "requests": [
                                 {
                                     "request": {
                                         "type": "42c",
@@ -242,7 +233,7 @@
                                     }
                                 }
                             ],
-                            "key":"authentication-swapping-bola"
+                            "key": "authentication-swapping-bola"
                         }
                     ]
                 },
@@ -257,9 +248,9 @@
                             ]
                         }
                     ],
-                    "customTests":[
+                    "customTests": [
                         {
-                            "requests":[
+                            "requests": [
                                 {
                                     "request": {
                                         "type": "42c",
@@ -288,7 +279,7 @@
                                     }
                                 }
                             ],
-                            "key":"authentication-swapping-bola"
+                            "key": "authentication-swapping-bola"
                         }
                     ]
                 }
@@ -345,7 +336,7 @@
                             "requests": [
                                 {
                                     "auth": [
-                                        "AdminCookie"
+                                        "Cookie"
                                     ],
                                     "request": {
                                         "type": "42c",
@@ -623,7 +614,7 @@
                         },
                         {
                             "auth": [
-                                "AdminCookie"
+                                "Cookie"
                             ],
                             "request": {
                                 "type": "42c",
@@ -667,7 +658,7 @@
                         },
                         {
                             "auth": [
-                                "AdminCookie"
+                                "Cookie"
                             ],
                             "request": {
                                 "type": "42c",
@@ -715,7 +706,7 @@
         }
     },
     "environment": {
-        "host": "env_with_default('SCAN42C_HOST','http://localhost:4010')"      
+        "host": "env_with_default('SCAN42C_HOST','http://localhost:4010')"
     },
     "requests": {
         "Dump": {
@@ -813,7 +804,7 @@
         },
         "CreateUser": {
             "auth": [
-                "AdminCookie"
+                "Cookie"
             ],
             "request": {
                 "type": "42c",
@@ -900,7 +891,7 @@
         },
         "CreatePetstore": {
             "auth": [
-                "AdminCookie"
+                "Cookie"
             ],
             "request": {
                 "type": "42c",
@@ -961,7 +952,7 @@
         },
         "DeletePetstore": {
             "auth": [
-                "AdminCookie"
+                "Cookie"
             ],
             "request": {
                 "type": "42c",
@@ -986,7 +977,7 @@
         },
         "ListPets": {
             "auth": [
-                "UserCookie"
+                "Cookie/User"
             ],
             "request": {
                 "type": "42c",
@@ -1011,7 +1002,7 @@
         },
         "CreatePet": {
             "auth": [
-                "UserCookie"
+                "Cookie/User"
             ],
             "request": {
                 "type": "42c",
@@ -1052,7 +1043,7 @@
         },
         "ReadPet": {
             "auth": [
-                "UserCookie"
+                "Cookie/User"
             ],
             "request": {
                 "type": "42c",
@@ -1077,7 +1068,7 @@
         },
         "TransferPet": {
             "auth": [
-                "UserCookie"
+                "Cookie/User"
             ],
             "request": {
                 "type": "42c",
@@ -1109,7 +1100,7 @@
         },
         "DeletePet": {
             "auth": [
-                "UserCookie"
+                "Cookie/User"
             ],
             "request": {
                 "type": "42c",

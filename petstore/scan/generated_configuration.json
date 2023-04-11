@@ -26,51 +26,27 @@
     },
     "authenticationDetails": [
         {
-            "ApiKeyAdmin": {
+            "ApiKey": {
                 "type": "apiKey",
                 "in": "header",
                 "name": "apikey",
-                "default": "ApiKeyAdmin",
+                "default": "ApiKey",
                 "credentials": {
-                    "ApiKeyAdmin": {
-                        "description": "ApiKeyAdmin security",
-                        "credential": "{{ApiKeyAdmin}}"
+                    "ApiKey": {
+                        "description": "ApiKey security",
+                        "credential": "{{ApiKey}}"
                     }
                 }
             },
-            "ApiKeyUser": {
-                "type": "apiKey",
-                "in": "header",
-                "name": "apikey",
-                "default": "ApiKeyUser",
-                "credentials": {
-                    "ApiKeyUser": {
-                        "description": "ApiKeyUser security",
-                        "credential": "{{ApiKeyUser}}"
-                    }
-                }
-            },
-            "CookieAdmin": {
+            "Cookie": {
                 "type": "apiKey",
                 "in": "cookie",
                 "name": "session",
-                "default": "CookieAdmin",
+                "default": "Cookie",
                 "credentials": {
-                    "CookieAdmin": {
-                        "description": "CookieAdmin security",
-                        "credential": "{{CookieAdmin}}"
-                    }
-                }
-            },
-            "CookieUser": {
-                "type": "apiKey",
-                "in": "cookie",
-                "name": "session",
-                "default": "CookieUser",
-                "credentials": {
-                    "CookieUser": {
-                        "description": "CookieUser security",
-                        "credential": "{{CookieUser}}"
+                    "Cookie": {
+                        "description": "Cookie security",
+                        "credential": "{{Cookie}}"
                     }
                 }
             }
@@ -313,16 +289,14 @@
         }
     },
     "environment": {
-        "ApiKeyAdmin": "env('SECURITY_ApiKeyAdmin')",
-        "ApiKeyUser": "env('SECURITY_ApiKeyUser')",
-        "CookieAdmin": "env('SECURITY_CookieAdmin')",
-        "CookieUser": "env('SECURITY_CookieUser')",
+        "ApiKey": "env('SECURITY_ApiKey')",
+        "Cookie": "env('SECURITY_Cookie')",
         "host": "http://127.0.0.1:4010"
     },
     "requests": {
         "CreateApikey": {
             "auth": [
-                "CookieAdmin"
+                "Cookie"
             ],
             "request": {
                 "type": "42c",
@@ -345,7 +319,7 @@
         },
         "CreatePet": {
             "auth": [
-                "CookieAdmin"
+                "Cookie"
             ],
             "request": {
                 "type": "42c",
@@ -377,7 +351,7 @@
         },
         "CreatePetstore": {
             "auth": [
-                "CookieAdmin"
+                "Cookie"
             ],
             "request": {
                 "type": "42c",
@@ -407,7 +381,7 @@
         },
         "CreateUser": {
             "auth": [
-                "CookieAdmin"
+                "Cookie"
             ],
             "request": {
                 "type": "42c",
@@ -439,7 +413,7 @@
         },
         "DeleteApikey": {
             "auth": [
-                "CookieAdmin"
+                "Cookie"
             ],
             "request": {
                 "type": "42c",
@@ -464,7 +438,7 @@
         },
         "DeletePet": {
             "auth": [
-                "CookieAdmin"
+                "Cookie"
             ],
             "request": {
                 "type": "42c",
@@ -489,7 +463,7 @@
         },
         "DeletePetstore": {
             "auth": [
-                "CookieAdmin"
+                "Cookie"
             ],
             "request": {
                 "type": "42c",
@@ -514,7 +488,7 @@
         },
         "DeleteUser": {
             "auth": [
-                "CookieAdmin"
+                "Cookie"
             ],
             "request": {
                 "type": "42c",
@@ -582,7 +556,7 @@
         },
         "ListPets": {
             "auth": [
-                "CookieAdmin"
+                "Cookie"
             ],
             "request": {
                 "type": "42c",
@@ -607,7 +581,7 @@
         },
         "ReadPet": {
             "auth": [
-                "CookieAdmin"
+                "Cookie"
             ],
             "request": {
                 "type": "42c",
@@ -670,7 +644,7 @@
         },
         "TransferPet": {
             "auth": [
-                "CookieAdmin"
+                "Cookie"
             ],
             "request": {
                 "type": "42c",

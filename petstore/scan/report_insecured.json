@@ -1,0 +1,3311 @@
+{
+    "runtimeConfiguration": {
+        "logLevel": "error",
+        "logDestination": "stdout+platform",
+        "maxLogFileSize": 2147483648,
+        "headerNameRequestId": "x-scan-request-id",
+        "headerNameScenarioId": "x-scan-scenario-id",
+        "flowrate": 10,
+        "timeout": 30,
+        "tlsInsecureSkipVerify": true,
+        "followRedirection": true,
+        "happyPathRetry": 1,
+        "happyPathOnly": false,
+        "happyPathConformanceStrict": false,
+        "maxScanTime": 3600,
+        "memoryLimit": 2147483648,
+        "memoryTimeSpan": 10,
+        "indexed": false,
+        "prettify": false,
+        "maxBodySizeScan": 10485760,
+        "maxHttpResponseSizeHappyPathReport": 0,
+        "maxBodySizeHappyPathReport": 8092,
+        "maxHttpResponseSizeTestReport": 0,
+        "maxBodySizeTestReport": 8092,
+        "issuesOnly": true,
+        "maxIssues": 10000,
+        "maxReportSize": 104857600
+    },
+    "scanVersion": "2.0.0-rc05",
+    "scanReportVersion": "3.0.0",
+    "commit": "",
+    "scanType": "OnPrem",
+    "summary": {
+        "openapiId": "",
+        "reportName": "On-premises scan 2023-04-11T21:15:57Z",
+        "apiVersion": "v1.0.0",
+        "host": "http://localhost:4010",
+        "executionOrder": [
+            "Dump",
+            "CreatePet",
+            "DeletePet",
+            "ReadPet",
+            "TransferPet",
+            "FindPetstores",
+            "CreatePetstore",
+            "DeletePetstore",
+            "ReadPetstore",
+            "ListPets",
+            "CreateUser",
+            "DeleteUser"
+        ],
+        "startDate": "2023-04-11T23:15:57.941608477+02:00",
+        "endDate": "2023-04-11T23:16:03.404631054+02:00",
+        "state": "done",
+        "exitCode": 0,
+        "errorsOccurred": false,
+        "happyPathsTested": {
+            "total": 56,
+            "estimated": 14,
+            "executed": 14,
+            "conformant": 14,
+            "notConformant": 0,
+            "failed": 0
+        },
+        "operationsTested": {
+            "total": 18,
+            "estimated": 12,
+            "skipped": 6,
+            "executed": 12,
+            "failed": 0
+        },
+        "conformanceTestRequests": {
+            "total": 226,
+            "estimated": 131,
+            "executed": 131,
+            "responses": {
+                "expected": {
+                    "conformant": 130,
+                    "notConformant": 0
+                },
+                "unexpected": {
+                    "conformant": 0,
+                    "notConformant": 0
+                },
+                "incorrect": {
+                    "conformant": 1,
+                    "notConformant": 0
+                },
+                "errors": {
+                    "functional": {
+                        "scanFlow": 0
+                    },
+                    "technical": {
+                        "timeout": 0,
+                        "connection": 0,
+                        "scanTechnical": 0
+                    }
+                }
+            }
+        },
+        "customTestRequests": {
+            "estimated": 1,
+            "executed": 1,
+            "responses": {
+                "expected": {
+                    "conformant": 1,
+                    "notConformant": 0
+                },
+                "unexpected": {
+                    "conformant": 0,
+                    "notConformant": 0
+                },
+                "incorrect": {
+                    "conformant": 0,
+                    "notConformant": 0
+                },
+                "errors": {
+                    "functional": {
+                        "scanFlow": 0
+                    },
+                    "technical": {
+                        "timeout": 0,
+                        "connection": 0,
+                        "scanTechnical": 0
+                    }
+                }
+            }
+        },
+        "authorizationTestRequests": {
+            "estimated": 6,
+            "executed": 5,
+            "responses": {
+                "expected": {
+                    "conformant": 0,
+                    "notConformant": 0
+                },
+                "unexpected": {
+                    "conformant": 0,
+                    "notConformant": 0
+                },
+                "incorrect": {
+                    "conformant": 5,
+                    "notConformant": 0
+                },
+                "errors": {
+                    "functional": {
+                        "scanFlow": 0
+                    },
+                    "technical": {
+                        "timeout": 0,
+                        "connection": 0,
+                        "scanTechnical": 0
+                    }
+                }
+            }
+        },
+        "criticality": 5,
+        "issues": {
+            "total": 6,
+            "totalOwasp": 6,
+            "critical": 5,
+            "high": 1,
+            "medium": 0,
+            "low": 0,
+            "info": 0,
+            "issueTypeCounter": {
+                "authentication-swapping-bfla": 3,
+                "authentication-swapping-bola": 2,
+                "schema-required-scan": 1
+            },
+            "owaspCounter": {
+                "API1:2019": 2,
+                "API5:2019": 3,
+                "API8:2019": 1
+            }
+        },
+        "errors": {}
+    },
+    "paths": {
+        "/dump": {
+            "summary": {
+                "errorsOccurred": false,
+                "happyPathsTested": {
+                    "total": 1,
+                    "estimated": 1,
+                    "executed": 1,
+                    "conformant": 1,
+                    "notConformant": 0,
+                    "failed": 0
+                },
+                "operationsTested": {
+                    "total": 1,
+                    "estimated": 1,
+                    "skipped": 0,
+                    "executed": 1,
+                    "failed": 0
+                },
+                "conformanceTestRequests": {
+                    "total": 7,
+                    "estimated": 0,
+                    "executed": 0,
+                    "responses": {
+                        "expected": {
+                            "conformant": 0,
+                            "notConformant": 0
+                        },
+                        "unexpected": {
+                            "conformant": 0,
+                            "notConformant": 0
+                        },
+                        "incorrect": {
+                            "conformant": 0,
+                            "notConformant": 0
+                        },
+                        "errors": {
+                            "functional": {
+                                "scanFlow": 0
+                            },
+                            "technical": {
+                                "timeout": 0,
+                                "connection": 0,
+                                "scanTechnical": 0
+                            }
+                        }
+                    }
+                },
+                "customTestRequests": {
+                    "estimated": 1,
+                    "executed": 1,
+                    "responses": {
+                        "expected": {
+                            "conformant": 1,
+                            "notConformant": 0
+                        },
+                        "unexpected": {
+                            "conformant": 0,
+                            "notConformant": 0
+                        },
+                        "incorrect": {
+                            "conformant": 0,
+                            "notConformant": 0
+                        },
+                        "errors": {
+                            "functional": {
+                                "scanFlow": 0
+                            },
+                            "technical": {
+                                "timeout": 0,
+                                "connection": 0,
+                                "scanTechnical": 0
+                            }
+                        }
+                    }
+                },
+                "authorizationTestRequests": {
+                    "estimated": 0,
+                    "executed": 0,
+                    "responses": {
+                        "expected": {
+                            "conformant": 0,
+                            "notConformant": 0
+                        },
+                        "unexpected": {
+                            "conformant": 0,
+                            "notConformant": 0
+                        },
+                        "incorrect": {
+                            "conformant": 0,
+                            "notConformant": 0
+                        },
+                        "errors": {
+                            "functional": {
+                                "scanFlow": 0
+                            },
+                            "technical": {
+                                "timeout": 0,
+                                "connection": 0,
+                                "scanTechnical": 0
+                            }
+                        }
+                    }
+                },
+                "criticality": 0,
+                "issues": {
+                    "total": 0,
+                    "totalOwasp": 0,
+                    "critical": 0,
+                    "high": 0,
+                    "medium": 0,
+                    "low": 0,
+                    "info": 0,
+                    "issueTypeCounter": {},
+                    "owaspCounter": {}
+                },
+                "errors": {}
+            },
+            "get": {
+                "checked": true,
+                "executionOrderIndex": 0,
+                "operationId": "Dump",
+                "summary": {
+                    "conformanceTestRequests": {
+                        "total": 0,
+                        "estimated": 0,
+                        "executed": 0,
+                        "responses": {
+                            "expected": {
+                                "conformant": 0,
+                                "notConformant": 0
+                            },
+                            "unexpected": {
+                                "conformant": 0,
+                                "notConformant": 0
+                            },
+                            "incorrect": {
+                                "conformant": 0,
+                                "notConformant": 0
+                            },
+                            "errors": {
+                                "functional": {
+                                    "scanFlow": 0
+                                },
+                                "technical": {
+                                    "timeout": 0,
+                                    "connection": 0,
+                                    "scanTechnical": 0
+                                }
+                            }
+                        }
+                    },
+                    "customTestRequests": {
+                        "estimated": 1,
+                        "executed": 1,
+                        "responses": {
+                            "expected": {
+                                "conformant": 1,
+                                "notConformant": 0
+                            },
+                            "unexpected": {
+                                "conformant": 0,
+                                "notConformant": 0
+                            },
+                            "incorrect": {
+                                "conformant": 0,
+                                "notConformant": 0
+                            },
+                            "errors": {
+                                "functional": {
+                                    "scanFlow": 0
+                                },
+                                "technical": {
+                                    "timeout": 0,
+                                    "connection": 0,
+                                    "scanTechnical": 0
+                                }
+                            }
+                        }
+                    },
+                    "authorizationTestRequests": {
+                        "estimated": 0,
+                        "executed": 0,
+                        "responses": {
+                            "expected": {
+                                "conformant": 0,
+                                "notConformant": 0
+                            },
+                            "unexpected": {
+                                "conformant": 0,
+                                "notConformant": 0
+                            },
+                            "incorrect": {
+                                "conformant": 0,
+                                "notConformant": 0
+                            },
+                            "errors": {
+                                "functional": {
+                                    "scanFlow": 0
+                                },
+                                "technical": {
+                                    "timeout": 0,
+                                    "connection": 0,
+                                    "scanTechnical": 0
+                                }
+                            }
+                        }
+                    },
+                    "criticality": 0,
+                    "issues": {
+                        "total": 0,
+                        "totalOwasp": 0,
+                        "critical": 0,
+                        "high": 0,
+                        "medium": 0,
+                        "low": 0,
+                        "info": 0,
+                        "issueTypeCounter": {},
+                        "owaspCounter": {}
+                    },
+                    "errors": {}
+                },
+                "happyPaths": [
+                    {
+                        "happyPath": {
+                            "key": "happy.path.success",
+                            "httpStatusExpected": [
+                                "200"
+                            ],
+                            "successIndex": 0
+                        },
+                        "outcome": {
+                            "status": "expected",
+                            "conformant": true,
+                            "apiResponseAnalysis": null,
+                            "excessiveDataExposure": false,
+                            "criticality": 0
+                        },
+                        "request": {
+                            "id": "ac604846-af56-4fe0-980c-a7425ff16a21",
+                            "scenarioId": "3eba350f-326f-4414-9444-b4b7a0aaa62a",
+                            "date": "2023-04-11T23:15:57+02:00",
+                            "contentType": "",
+                            "bodyLength": 0,
+                            "url": "http://localhost:4010/dump",
+                            "curl": "curl -X 'GET' 'http://localhost:4010/dump'"
+                        },
+                        "response": {
+                            "time": 0,
+                            "httpStatusCode": 200,
+                            "contentType": "application/json; charset=UTF-8",
+                            "bodyLength": 762,
+                            "http": "SFRUUC8xLjEgMjAwIE9LDQpDb250ZW50LUxlbmd0aDogNzYyDQpDb250ZW50LVR5cGU6IGFwcGxpY2F0aW9uL2pzb247IGNoYXJzZXQ9VVRGLTgNCkRhdGU6IFR1ZSwgMTEgQXByIDIwMjMgMjE6MTU6NTggR01UDQoNCnsiYXBpa2V5cyI6eyJpdGVtcyI6W3siaWQiOiI3ZTQ0YzExMC1hZjUyLTQ1NWUtOWFlOS1mMmRiYjNjZTMwYTcifSx7ImlkIjoiNjU0OTZlYmUtNjU0NC00ZTc3LWJiNjYtMjBiOTdmNjk5NGJiIn1dfSwicGV0cyI6eyJpdGVtcyI6W3siYWdlIjoxMCwibmFtZSI6IkJpbGx5IiwicGV0c3RvcmVJZCI6IjJmOTA5ODc3LWU0ZjEtNDE2MS05ZjczLThkN2I4MWExOTdmNyIsImlkIjoiMmY5MDk4NzctZTRmMS00MTYxLTlmNzMtOGQ3YjgxYTE5N2Y3Iiwib3duZXIiOiJ1c2VyQDQyY3J1bmNoLmNvbSJ9XX0sInBldHN0b3JlcyI6eyJpdGVtcyI6W3sibmFtZSI6InBldHN0b3JlIiwiaWQiOiIyZjkwOTg3Ny1lNGYxLTQxNjEtOWY3My04ZDdiODFhMTk3ZjcifV19LCJzZXNzaW9ucyI6eyJpdGVtcyI6W3siaWQiOiI1MzQxMjUzYy1mYWYwLTQ0YjAtYTJlNS03NWI2ODIwODNlZGYifSx7ImlkIjoiNjU0OTZlYmUtNjU0NC00ZTc3LWJiNjYtMjBiOTdmNjk5NGJiIn0seyJpZCI6ImEyYTJhMmViLWE1ZGEtNDk4Yi05MmUyLWFhMDJkZTk2YjM3MCJ9XX0sInVzZXJzIjp7Iml0ZW1zIjpbeyJpc0FkbWluIjp0cnVlLCJwYXNzd29yZCI6IkhlbGxvV29ybGQiLCJ1c2VyIjoiYWRtaW5ANDJjcnVuY2guY29tIn0seyJpc0FkbWluIjpmYWxzZSwicGFzc3dvcmQiOiJIZWxsb1dvcmxkIiwidXNlciI6InVzZXJANDJjcnVuY2guY29tIn0seyJpc0FkbWluIjpmYWxzZSwicGFzc3dvcmQiOiJIZWxsb1dvcmxkIiwidXNlciI6InVzZXIxQDQyY3J1bmNoLmNvbSJ9XX19Cg=="
+                        }
+                    }
+                ]
+            }
+        },
+        "/pets": {
+            "summary": {
+                "errorsOccurred": false,
+                "happyPathsTested": {
+                    "total": 3,
+                    "estimated": 1,
+                    "executed": 1,
+                    "conformant": 1,
+                    "notConformant": 0,
+                    "failed": 0
+                },
+                "operationsTested": {
+                    "total": 1,
+                    "estimated": 1,
+                    "skipped": 0,
+                    "executed": 1,
+                    "failed": 0
+                },
+                "conformanceTestRequests": {
+                    "total": 36,
+                    "estimated": 29,
+                    "executed": 29,
+                    "responses": {
+                        "expected": {
+                            "conformant": 29,
+                            "notConformant": 0
+                        },
+                        "unexpected": {
+                            "conformant": 0,
+                            "notConformant": 0
+                        },
+                        "incorrect": {
+                            "conformant": 0,
+                            "notConformant": 0
+                        },
+                        "errors": {
+                            "functional": {
+                                "scanFlow": 0
+                            },
+                            "technical": {
+                                "timeout": 0,
+                                "connection": 0,
+                                "scanTechnical": 0
+                            }
+                        }
+                    }
+                },
+                "customTestRequests": {
+                    "estimated": 0,
+                    "executed": 0,
+                    "responses": {
+                        "expected": {
+                            "conformant": 0,
+                            "notConformant": 0
+                        },
+                        "unexpected": {
+                            "conformant": 0,
+                            "notConformant": 0
+                        },
+                        "incorrect": {
+                            "conformant": 0,
+                            "notConformant": 0
+                        },
+                        "errors": {
+                            "functional": {
+                                "scanFlow": 0
+                            },
+                            "technical": {
+                                "timeout": 0,
+                                "connection": 0,
+                                "scanTechnical": 0
+                            }
+                        }
+                    }
+                },
+                "authorizationTestRequests": {
+                    "estimated": 0,
+                    "executed": 0,
+                    "responses": {
+                        "expected": {
+                            "conformant": 0,
+                            "notConformant": 0
+                        },
+                        "unexpected": {
+                            "conformant": 0,
+                            "notConformant": 0
+                        },
+                        "incorrect": {
+                            "conformant": 0,
+                            "notConformant": 0
+                        },
+                        "errors": {
+                            "functional": {
+                                "scanFlow": 0
+                            },
+                            "technical": {
+                                "timeout": 0,
+                                "connection": 0,
+                                "scanTechnical": 0
+                            }
+                        }
+                    }
+                },
+                "criticality": 0,
+                "issues": {
+                    "total": 0,
+                    "totalOwasp": 0,
+                    "critical": 0,
+                    "high": 0,
+                    "medium": 0,
+                    "low": 0,
+                    "info": 0,
+                    "issueTypeCounter": {},
+                    "owaspCounter": {}
+                },
+                "errors": {}
+            },
+            "post": {
+                "checked": true,
+                "executionOrderIndex": 1,
+                "operationId": "CreatePet",
+                "summary": {
+                    "conformanceTestRequests": {
+                        "total": 29,
+                        "estimated": 29,
+                        "executed": 29,
+                        "responses": {
+                            "expected": {
+                                "conformant": 29,
+                                "notConformant": 0
+                            },
+                            "unexpected": {
+                                "conformant": 0,
+                                "notConformant": 0
+                            },
+                            "incorrect": {
+                                "conformant": 0,
+                                "notConformant": 0
+                            },
+                            "errors": {
+                                "functional": {
+                                    "scanFlow": 0
+                                },
+                                "technical": {
+                                    "timeout": 0,
+                                    "connection": 0,
+                                    "scanTechnical": 0
+                                }
+                            }
+                        }
+                    },
+                    "customTestRequests": {
+                        "estimated": 0,
+                        "executed": 0,
+                        "responses": {
+                            "expected": {
+                                "conformant": 0,
+                                "notConformant": 0
+                            },
+                            "unexpected": {
+                                "conformant": 0,
+                                "notConformant": 0
+                            },
+                            "incorrect": {
+                                "conformant": 0,
+                                "notConformant": 0
+                            },
+                            "errors": {
+                                "functional": {
+                                    "scanFlow": 0
+                                },
+                                "technical": {
+                                    "timeout": 0,
+                                    "connection": 0,
+                                    "scanTechnical": 0
+                                }
+                            }
+                        }
+                    },
+                    "authorizationTestRequests": {
+                        "estimated": 0,
+                        "executed": 0,
+                        "responses": {
+                            "expected": {
+                                "conformant": 0,
+                                "notConformant": 0
+                            },
+                            "unexpected": {
+                                "conformant": 0,
+                                "notConformant": 0
+                            },
+                            "incorrect": {
+                                "conformant": 0,
+                                "notConformant": 0
+                            },
+                            "errors": {
+                                "functional": {
+                                    "scanFlow": 0
+                                },
+                                "technical": {
+                                    "timeout": 0,
+                                    "connection": 0,
+                                    "scanTechnical": 0
+                                }
+                            }
+                        }
+                    },
+                    "criticality": 0,
+                    "issues": {
+                        "total": 0,
+                        "totalOwasp": 0,
+                        "critical": 0,
+                        "high": 0,
+                        "medium": 0,
+                        "low": 0,
+                        "info": 0,
+                        "issueTypeCounter": {},
+                        "owaspCounter": {}
+                    },
+                    "errors": {}
+                },
+                "happyPaths": [
+                    {
+                        "happyPath": {
+                            "key": "happy.path.success",
+                            "httpStatusExpected": [
+                                "200"
+                            ],
+                            "successIndex": 0
+                        },
+                        "outcome": {
+                            "status": "expected",
+                            "conformant": true,
+                            "apiResponseAnalysis": null,
+                            "excessiveDataExposure": false,
+                            "criticality": 0
+                        },
+                        "request": {
+                            "id": "1ad43cfb-cd6d-4d47-9907-e4434b936a51",
+                            "scenarioId": "29d4eab3-2b70-4904-966e-721876d4ab8b",
+                            "date": "2023-04-11T23:15:58+02:00",
+                            "contentType": "application/json",
+                            "bodyLength": 77,
+                            "url": "http://localhost:4010/pets",
+                            "auth": [
+                                "Cookie/User"
+                            ],
+                            "curl": "curl -X 'POST' -d '{\"age\":10,\"name\":\"Billy\",\"petstoreId\":\"26baa3b1-fd6b-493b-a9ae-7dadc03fae0d\"}' -H 'Content-Length: 77' -H 'Content-Type: application/json' -H 'Cookie: session={{Cookie/User}}' 'http://localhost:4010/pets'"
+                        },
+                        "response": {
+                            "time": 0,
+                            "httpStatusCode": 200,
+                            "contentType": "application/json; charset=UTF-8",
+                            "bodyLength": 150,
+                            "http": "SFRUUC8xLjEgMjAwIE9LDQpDb250ZW50LUxlbmd0aDogMTUwDQpDb250ZW50LVR5cGU6IGFwcGxpY2F0aW9uL2pzb247IGNoYXJzZXQ9VVRGLTgNCkRhdGU6IFR1ZSwgMTEgQXByIDIwMjMgMjE6MTU6NTggR01UDQoNCnsiYWdlIjoxMCwibmFtZSI6IkJpbGx5IiwicGV0c3RvcmVJZCI6IjI2YmFhM2IxLWZkNmItNDkzYi1hOWFlLTdkYWRjMDNmYWUwZCIsImlkIjoiZjA0OTNjOWItMjRjZC00Y2MyLThhYjYtYTQ4YjM3NDRhOGJkIiwib3duZXIiOiJ1c2VyQDQyY3J1bmNoLmNvbSJ9Cg=="
+                        }
+                    }
+                ]
+            }
+        },
+        "/pets/{id}": {
+            "summary": {
+                "errorsOccurred": false,
+                "happyPathsTested": {
+                    "total": 6,
+                    "estimated": 2,
+                    "executed": 2,
+                    "conformant": 2,
+                    "notConformant": 0,
+                    "failed": 0
+                },
+                "operationsTested": {
+                    "total": 2,
+                    "estimated": 2,
+                    "skipped": 0,
+                    "executed": 2,
+                    "failed": 0
+                },
+                "conformanceTestRequests": {
+                    "total": 16,
+                    "estimated": 10,
+                    "executed": 10,
+                    "responses": {
+                        "expected": {
+                            "conformant": 10,
+                            "notConformant": 0
+                        },
+                        "unexpected": {
+                            "conformant": 0,
+                            "notConformant": 0
+                        },
+                        "incorrect": {
+                            "conformant": 0,
+                            "notConformant": 0
+                        },
+                        "errors": {
+                            "functional": {
+                                "scanFlow": 0
+                            },
+                            "technical": {
+                                "timeout": 0,
+                                "connection": 0,
+                                "scanTechnical": 0
+                            }
+                        }
+                    }
+                },
+                "customTestRequests": {
+                    "estimated": 0,
+                    "executed": 0,
+                    "responses": {
+                        "expected": {
+                            "conformant": 0,
+                            "notConformant": 0
+                        },
+                        "unexpected": {
+                            "conformant": 0,
+                            "notConformant": 0
+                        },
+                        "incorrect": {
+                            "conformant": 0,
+                            "notConformant": 0
+                        },
+                        "errors": {
+                            "functional": {
+                                "scanFlow": 0
+                            },
+                            "technical": {
+                                "timeout": 0,
+                                "connection": 0,
+                                "scanTechnical": 0
+                            }
+                        }
+                    }
+                },
+                "authorizationTestRequests": {
+                    "estimated": 1,
+                    "executed": 1,
+                    "responses": {
+                        "expected": {
+                            "conformant": 0,
+                            "notConformant": 0
+                        },
+                        "unexpected": {
+                            "conformant": 0,
+                            "notConformant": 0
+                        },
+                        "incorrect": {
+                            "conformant": 1,
+                            "notConformant": 0
+                        },
+                        "errors": {
+                            "functional": {
+                                "scanFlow": 0
+                            },
+                            "technical": {
+                                "timeout": 0,
+                                "connection": 0,
+                                "scanTechnical": 0
+                            }
+                        }
+                    }
+                },
+                "criticality": 5,
+                "issues": {
+                    "total": 1,
+                    "totalOwasp": 1,
+                    "critical": 1,
+                    "high": 0,
+                    "medium": 0,
+                    "low": 0,
+                    "info": 0,
+                    "issueTypeCounter": {
+                        "authentication-swapping-bola": 1
+                    },
+                    "owaspCounter": {
+                        "API1:2019": 1
+                    }
+                },
+                "errors": {}
+            },
+            "get": {
+                "checked": true,
+                "executionOrderIndex": 3,
+                "operationId": "ReadPet",
+                "summary": {
+                    "conformanceTestRequests": {
+                        "total": 5,
+                        "estimated": 5,
+                        "executed": 5,
+                        "responses": {
+                            "expected": {
+                                "conformant": 5,
+                                "notConformant": 0
+                            },
+                            "unexpected": {
+                                "conformant": 0,
+                                "notConformant": 0
+                            },
+                            "incorrect": {
+                                "conformant": 0,
+                                "notConformant": 0
+                            },
+                            "errors": {
+                                "functional": {
+                                    "scanFlow": 0
+                                },
+                                "technical": {
+                                    "timeout": 0,
+                                    "connection": 0,
+                                    "scanTechnical": 0
+                                }
+                            }
+                        }
+                    },
+                    "customTestRequests": {
+                        "estimated": 0,
+                        "executed": 0,
+                        "responses": {
+                            "expected": {
+                                "conformant": 0,
+                                "notConformant": 0
+                            },
+                            "unexpected": {
+                                "conformant": 0,
+                                "notConformant": 0
+                            },
+                            "incorrect": {
+                                "conformant": 0,
+                                "notConformant": 0
+                            },
+                            "errors": {
+                                "functional": {
+                                    "scanFlow": 0
+                                },
+                                "technical": {
+                                    "timeout": 0,
+                                    "connection": 0,
+                                    "scanTechnical": 0
+                                }
+                            }
+                        }
+                    },
+                    "authorizationTestRequests": {
+                        "estimated": 1,
+                        "executed": 1,
+                        "responses": {
+                            "expected": {
+                                "conformant": 0,
+                                "notConformant": 0
+                            },
+                            "unexpected": {
+                                "conformant": 0,
+                                "notConformant": 0
+                            },
+                            "incorrect": {
+                                "conformant": 1,
+                                "notConformant": 0
+                            },
+                            "errors": {
+                                "functional": {
+                                    "scanFlow": 0
+                                },
+                                "technical": {
+                                    "timeout": 0,
+                                    "connection": 0,
+                                    "scanTechnical": 0
+                                }
+                            }
+                        }
+                    },
+                    "criticality": 5,
+                    "issues": {
+                        "total": 1,
+                        "totalOwasp": 1,
+                        "critical": 1,
+                        "high": 0,
+                        "medium": 0,
+                        "low": 0,
+                        "info": 0,
+                        "issueTypeCounter": {
+                            "authentication-swapping-bola": 1
+                        },
+                        "owaspCounter": {
+                            "API1:2019": 1
+                        }
+                    },
+                    "errors": {}
+                },
+                "happyPaths": [
+                    {
+                        "happyPath": {
+                            "key": "happy.path.success",
+                            "httpStatusExpected": [
+                                "200"
+                            ],
+                            "successIndex": 0
+                        },
+                        "outcome": {
+                            "status": "expected",
+                            "conformant": true,
+                            "apiResponseAnalysis": null,
+                            "excessiveDataExposure": false,
+                            "criticality": 0
+                        },
+                        "request": {
+                            "id": "992df7a4-fe4d-42a5-b682-90f9f302d7a0",
+                            "scenarioId": "191b2c2d-845c-4272-98f7-23f8a1db950d",
+                            "date": "2023-04-11T23:15:59+02:00",
+                            "contentType": "",
+                            "bodyLength": 0,
+                            "url": "http://localhost:4010/pets/fecf243a-ad30-4e55-a437-e35d536e664d",
+                            "auth": [
+                                "Cookie/User"
+                            ],
+                            "curl": "curl -X 'GET' -H 'Cookie: session={{Cookie/User}}' 'http://localhost:4010/pets/fecf243a-ad30-4e55-a437-e35d536e664d'"
+                        },
+                        "response": {
+                            "time": 0,
+                            "httpStatusCode": 200,
+                            "contentType": "application/json; charset=UTF-8",
+                            "bodyLength": 150,
+                            "http": "SFRUUC8xLjEgMjAwIE9LDQpDb250ZW50LUxlbmd0aDogMTUwDQpDb250ZW50LVR5cGU6IGFwcGxpY2F0aW9uL2pzb247IGNoYXJzZXQ9VVRGLTgNCkRhdGU6IFR1ZSwgMTEgQXByIDIwMjMgMjE6MTU6NTkgR01UDQoNCnsiYWdlIjoxMCwibmFtZSI6IkJpbGx5IiwicGV0c3RvcmVJZCI6ImEyODIyZDVhLWMyOTQtNGNjZC04YWNiLTU3ZDg0NDM0MDJjOCIsImlkIjoiZmVjZjI0M2EtYWQzMC00ZTU1LWE0MzctZTM1ZDUzNmU2NjRkIiwib3duZXIiOiJ1c2VyQDQyY3J1bmNoLmNvbSJ9Cg=="
+                        }
+                    }
+                ],
+                "authorizationRequestIssues": [
+                    {
+                        "test": {
+                            "key": "authentication-swapping-bola",
+                            "description": "Authorization test '[UserIsolation]'",
+                            "httpStatusExpected": [
+                                "401",
+                                "403",
+                                "404"
+                            ],
+                            "expectationSource": "default",
+                            "owaspMapping": "API1:2019",
+                            "jsonPointer": "",
+                            "stackTrace": ""
+                        },
+                        "outcome": {
+                            "failureIndex": "happyPath:0",
+                            "status": "incorrect",
+                            "conformant": true,
+                            "apiResponseAnalysis": null,
+                            "excessiveDataExposure": false,
+                            "criticality": 5
+                        },
+                        "request": {
+                            "id": "01a340d4-8b8d-4001-a29f-3e1fc1767166",
+                            "scenarioId": "d4912a99-f2e5-47d3-a59e-35545039df7e",
+                            "date": "2023-04-11T23:15:59+02:00",
+                            "contentType": "",
+                            "bodyLength": 0,
+                            "url": "http://localhost:4010/pets/fecf243a-ad30-4e55-a437-e35d536e664d",
+                            "auth": [
+                                "Cookie/User1"
+                            ],
+                            "curl": "curl -X 'GET' -H 'Cookie: session={{Cookie/User1}}' 'http://localhost:4010/pets/fecf243a-ad30-4e55-a437-e35d536e664d'"
+                        },
+                        "response": {
+                            "time": 0,
+                            "httpStatusCode": 200,
+                            "contentType": "application/json; charset=UTF-8",
+                            "bodyLength": 150,
+                            "http": "SFRUUC8xLjEgMjAwIE9LDQpDb250ZW50LUxlbmd0aDogMTUwDQpDb250ZW50LVR5cGU6IGFwcGxpY2F0aW9uL2pzb247IGNoYXJzZXQ9VVRGLTgNCkRhdGU6IFR1ZSwgMTEgQXByIDIwMjMgMjE6MTU6NTkgR01UDQoNCnsiYWdlIjoxMCwibmFtZSI6IkJpbGx5IiwicGV0c3RvcmVJZCI6ImEyODIyZDVhLWMyOTQtNGNjZC04YWNiLTU3ZDg0NDM0MDJjOCIsImlkIjoiZmVjZjI0M2EtYWQzMC00ZTU1LWE0MzctZTM1ZDUzNmU2NjRkIiwib3duZXIiOiJ1c2VyQDQyY3J1bmNoLmNvbSJ9Cg=="
+                        }
+                    }
+                ]
+            },
+            "delete": {
+                "checked": true,
+                "executionOrderIndex": 2,
+                "operationId": "DeletePet",
+                "summary": {
+                    "conformanceTestRequests": {
+                        "total": 5,
+                        "estimated": 5,
+                        "executed": 5,
+                        "responses": {
+                            "expected": {
+                                "conformant": 5,
+                                "notConformant": 0
+                            },
+                            "unexpected": {
+                                "conformant": 0,
+                                "notConformant": 0
+                            },
+                            "incorrect": {
+                                "conformant": 0,
+                                "notConformant": 0
+                            },
+                            "errors": {
+                                "functional": {
+                                    "scanFlow": 0
+                                },
+                                "technical": {
+                                    "timeout": 0,
+                                    "connection": 0,
+                                    "scanTechnical": 0
+                                }
+                            }
+                        }
+                    },
+                    "customTestRequests": {
+                        "estimated": 0,
+                        "executed": 0,
+                        "responses": {
+                            "expected": {
+                                "conformant": 0,
+                                "notConformant": 0
+                            },
+                            "unexpected": {
+                                "conformant": 0,
+                                "notConformant": 0
+                            },
+                            "incorrect": {
+                                "conformant": 0,
+                                "notConformant": 0
+                            },
+                            "errors": {
+                                "functional": {
+                                    "scanFlow": 0
+                                },
+                                "technical": {
+                                    "timeout": 0,
+                                    "connection": 0,
+                                    "scanTechnical": 0
+                                }
+                            }
+                        }
+                    },
+                    "authorizationTestRequests": {
+                        "estimated": 0,
+                        "executed": 0,
+                        "responses": {
+                            "expected": {
+                                "conformant": 0,
+                                "notConformant": 0
+                            },
+                            "unexpected": {
+                                "conformant": 0,
+                                "notConformant": 0
+                            },
+                            "incorrect": {
+                                "conformant": 0,
+                                "notConformant": 0
+                            },
+                            "errors": {
+                                "functional": {
+                                    "scanFlow": 0
+                                },
+                                "technical": {
+                                    "timeout": 0,
+                                    "connection": 0,
+                                    "scanTechnical": 0
+                                }
+                            }
+                        }
+                    },
+                    "criticality": 0,
+                    "issues": {
+                        "total": 0,
+                        "totalOwasp": 0,
+                        "critical": 0,
+                        "high": 0,
+                        "medium": 0,
+                        "low": 0,
+                        "info": 0,
+                        "issueTypeCounter": {},
+                        "owaspCounter": {}
+                    },
+                    "errors": {}
+                },
+                "happyPaths": [
+                    {
+                        "happyPath": {
+                            "key": "happy.path.success",
+                            "httpStatusExpected": [
+                                "204"
+                            ],
+                            "successIndex": 1
+                        },
+                        "outcome": {
+                            "status": "expected",
+                            "conformant": true,
+                            "apiResponseAnalysis": null,
+                            "excessiveDataExposure": false,
+                            "criticality": 0
+                        },
+                        "request": {
+                            "id": "49d519d5-a556-47e4-9273-7a537683c254",
+                            "scenarioId": "c62cb2b2-af52-4224-b1ee-0eba2925fc42",
+                            "date": "2023-04-11T23:15:58+02:00",
+                            "contentType": "",
+                            "bodyLength": 0,
+                            "url": "http://localhost:4010/pets/5781ccc4-37da-45ad-b36f-7e3974a43572",
+                            "auth": [
+                                "Cookie/User"
+                            ],
+                            "curl": "curl -X 'DELETE' -H 'Cookie: session={{Cookie/User}}' 'http://localhost:4010/pets/5781ccc4-37da-45ad-b36f-7e3974a43572'"
+                        },
+                        "response": {
+                            "time": 0,
+                            "httpStatusCode": 204,
+                            "contentType": "",
+                            "bodyLength": 0,
+                            "http": "SFRUUC8xLjEgMjA0IE5vIENvbnRlbnQNCkRhdGU6IFR1ZSwgMTEgQXByIDIwMjMgMjE6MTU6NTggR01UDQoNCg=="
+                        }
+                    }
+                ]
+            }
+        },
+        "/pets/{id}/transfer": {
+            "summary": {
+                "errorsOccurred": false,
+                "happyPathsTested": {
+                    "total": 3,
+                    "estimated": 1,
+                    "executed": 1,
+                    "conformant": 1,
+                    "notConformant": 0,
+                    "failed": 0
+                },
+                "operationsTested": {
+                    "total": 1,
+                    "estimated": 1,
+                    "skipped": 0,
+                    "executed": 1,
+                    "failed": 0
+                },
+                "conformanceTestRequests": {
+                    "total": 26,
+                    "estimated": 19,
+                    "executed": 19,
+                    "responses": {
+                        "expected": {
+                            "conformant": 19,
+                            "notConformant": 0
+                        },
+                        "unexpected": {
+                            "conformant": 0,
+                            "notConformant": 0
+                        },
+                        "incorrect": {
+                            "conformant": 0,
+                            "notConformant": 0
+                        },
+                        "errors": {
+                            "functional": {
+                                "scanFlow": 0
+                            },
+                            "technical": {
+                                "timeout": 0,
+                                "connection": 0,
+                                "scanTechnical": 0
+                            }
+                        }
+                    }
+                },
+                "customTestRequests": {
+                    "estimated": 0,
+                    "executed": 0,
+                    "responses": {
+                        "expected": {
+                            "conformant": 0,
+                            "notConformant": 0
+                        },
+                        "unexpected": {
+                            "conformant": 0,
+                            "notConformant": 0
+                        },
+                        "incorrect": {
+                            "conformant": 0,
+                            "notConformant": 0
+                        },
+                        "errors": {
+                            "functional": {
+                                "scanFlow": 0
+                            },
+                            "technical": {
+                                "timeout": 0,
+                                "connection": 0,
+                                "scanTechnical": 0
+                            }
+                        }
+                    }
+                },
+                "authorizationTestRequests": {
+                    "estimated": 1,
+                    "executed": 1,
+                    "responses": {
+                        "expected": {
+                            "conformant": 0,
+                            "notConformant": 0
+                        },
+                        "unexpected": {
+                            "conformant": 0,
+                            "notConformant": 0
+                        },
+                        "incorrect": {
+                            "conformant": 1,
+                            "notConformant": 0
+                        },
+                        "errors": {
+                            "functional": {
+                                "scanFlow": 0
+                            },
+                            "technical": {
+                                "timeout": 0,
+                                "connection": 0,
+                                "scanTechnical": 0
+                            }
+                        }
+                    }
+                },
+                "criticality": 5,
+                "issues": {
+                    "total": 1,
+                    "totalOwasp": 1,
+                    "critical": 1,
+                    "high": 0,
+                    "medium": 0,
+                    "low": 0,
+                    "info": 0,
+                    "issueTypeCounter": {
+                        "authentication-swapping-bola": 1
+                    },
+                    "owaspCounter": {
+                        "API1:2019": 1
+                    }
+                },
+                "errors": {}
+            },
+            "put": {
+                "checked": true,
+                "executionOrderIndex": 4,
+                "operationId": "TransferPet",
+                "summary": {
+                    "conformanceTestRequests": {
+                        "total": 19,
+                        "estimated": 19,
+                        "executed": 19,
+                        "responses": {
+                            "expected": {
+                                "conformant": 19,
+                                "notConformant": 0
+                            },
+                            "unexpected": {
+                                "conformant": 0,
+                                "notConformant": 0
+                            },
+                            "incorrect": {
+                                "conformant": 0,
+                                "notConformant": 0
+                            },
+                            "errors": {
+                                "functional": {
+                                    "scanFlow": 0
+                                },
+                                "technical": {
+                                    "timeout": 0,
+                                    "connection": 0,
+                                    "scanTechnical": 0
+                                }
+                            }
+                        }
+                    },
+                    "customTestRequests": {
+                        "estimated": 0,
+                        "executed": 0,
+                        "responses": {
+                            "expected": {
+                                "conformant": 0,
+                                "notConformant": 0
+                            },
+                            "unexpected": {
+                                "conformant": 0,
+                                "notConformant": 0
+                            },
+                            "incorrect": {
+                                "conformant": 0,
+                                "notConformant": 0
+                            },
+                            "errors": {
+                                "functional": {
+                                    "scanFlow": 0
+                                },
+                                "technical": {
+                                    "timeout": 0,
+                                    "connection": 0,
+                                    "scanTechnical": 0
+                                }
+                            }
+                        }
+                    },
+                    "authorizationTestRequests": {
+                        "estimated": 1,
+                        "executed": 1,
+                        "responses": {
+                            "expected": {
+                                "conformant": 0,
+                                "notConformant": 0
+                            },
+                            "unexpected": {
+                                "conformant": 0,
+                                "notConformant": 0
+                            },
+                            "incorrect": {
+                                "conformant": 1,
+                                "notConformant": 0
+                            },
+                            "errors": {
+                                "functional": {
+                                    "scanFlow": 0
+                                },
+                                "technical": {
+                                    "timeout": 0,
+                                    "connection": 0,
+                                    "scanTechnical": 0
+                                }
+                            }
+                        }
+                    },
+                    "criticality": 5,
+                    "issues": {
+                        "total": 1,
+                        "totalOwasp": 1,
+                        "critical": 1,
+                        "high": 0,
+                        "medium": 0,
+                        "low": 0,
+                        "info": 0,
+                        "issueTypeCounter": {
+                            "authentication-swapping-bola": 1
+                        },
+                        "owaspCounter": {
+                            "API1:2019": 1
+                        }
+                    },
+                    "errors": {}
+                },
+                "happyPaths": [
+                    {
+                        "happyPath": {
+                            "key": "happy.path.success",
+                            "httpStatusExpected": [
+                                "200"
+                            ],
+                            "successIndex": 2
+                        },
+                        "outcome": {
+                            "status": "expected",
+                            "conformant": true,
+                            "apiResponseAnalysis": null,
+                            "excessiveDataExposure": false,
+                            "criticality": 0
+                        },
+                        "request": {
+                            "id": "93d7b10a-dfd4-49d3-9636-473a607bb405",
+                            "scenarioId": "7888995d-aba0-4d1d-995d-d0b997311990",
+                            "date": "2023-04-11T23:15:59+02:00",
+                            "contentType": "application/json",
+                            "bodyLength": 53,
+                            "url": "http://localhost:4010/pets/925f0f58-09e0-4443-ae99-24ad74c6a8bb/transfer",
+                            "auth": [
+                                "Cookie/User"
+                            ],
+                            "curl": "curl -X 'PUT' -d '{\"petstoreId\":\"b000c67f-52d0-412d-b52d-f5457cbdbf39\"}' -H 'Content-Length: 53' -H 'Content-Type: application/json' -H 'Cookie: session={{Cookie/User}}' 'http://localhost:4010/pets/925f0f58-09e0-4443-ae99-24ad74c6a8bb/transfer'"
+                        },
+                        "response": {
+                            "time": 0,
+                            "httpStatusCode": 200,
+                            "contentType": "application/json; charset=UTF-8",
+                            "bodyLength": 150,
+                            "http": "SFRUUC8xLjEgMjAwIE9LDQpDb250ZW50LUxlbmd0aDogMTUwDQpDb250ZW50LVR5cGU6IGFwcGxpY2F0aW9uL2pzb247IGNoYXJzZXQ9VVRGLTgNCkRhdGU6IFR1ZSwgMTEgQXByIDIwMjMgMjE6MTU6NTkgR01UDQoNCnsiYWdlIjoxMCwibmFtZSI6IkJpbGx5IiwicGV0c3RvcmVJZCI6ImIwMDBjNjdmLTUyZDAtNDEyZC1iNTJkLWY1NDU3Y2JkYmYzOSIsImlkIjoiOTI1ZjBmNTgtMDllMC00NDQzLWFlOTktMjRhZDc0YzZhOGJiIiwib3duZXIiOiJ1c2VyQDQyY3J1bmNoLmNvbSJ9Cg=="
+                        }
+                    }
+                ],
+                "authorizationRequestIssues": [
+                    {
+                        "test": {
+                            "key": "authentication-swapping-bola",
+                            "description": "Authorization test '[UserIsolation]'",
+                            "httpStatusExpected": [
+                                "401",
+                                "403",
+                                "404"
+                            ],
+                            "expectationSource": "default",
+                            "owaspMapping": "API1:2019",
+                            "jsonPointer": "",
+                            "stackTrace": ""
+                        },
+                        "outcome": {
+                            "failureIndex": "happyPath:2",
+                            "status": "incorrect",
+                            "conformant": true,
+                            "apiResponseAnalysis": null,
+                            "excessiveDataExposure": false,
+                            "criticality": 5
+                        },
+                        "request": {
+                            "id": "ef3c135b-866d-450d-9944-ccc39dfdcaa8",
+                            "scenarioId": "47703737-e661-4ecf-902f-19db5c958e7b",
+                            "date": "2023-04-11T23:16:01+02:00",
+                            "contentType": "application/json",
+                            "bodyLength": 53,
+                            "url": "http://localhost:4010/pets/8a0de85a-7de6-4297-a57e-0ff1909fe95d/transfer",
+                            "auth": [
+                                "Cookie/User1"
+                            ],
+                            "curl": "curl -X 'PUT' -d '{\"petstoreId\":\"b000c67f-52d0-412d-b52d-f5457cbdbf39\"}' -H 'Content-Length: 53' -H 'Content-Type: application/json' -H 'Cookie: session={{Cookie/User1}}' 'http://localhost:4010/pets/8a0de85a-7de6-4297-a57e-0ff1909fe95d/transfer'"
+                        },
+                        "response": {
+                            "time": 0,
+                            "httpStatusCode": 200,
+                            "contentType": "application/json; charset=UTF-8",
+                            "bodyLength": 150,
+                            "http": "SFRUUC8xLjEgMjAwIE9LDQpDb250ZW50LUxlbmd0aDogMTUwDQpDb250ZW50LVR5cGU6IGFwcGxpY2F0aW9uL2pzb247IGNoYXJzZXQ9VVRGLTgNCkRhdGU6IFR1ZSwgMTEgQXByIDIwMjMgMjE6MTY6MDEgR01UDQoNCnsiYWdlIjoxMCwibmFtZSI6IkJpbGx5IiwicGV0c3RvcmVJZCI6ImIwMDBjNjdmLTUyZDAtNDEyZC1iNTJkLWY1NDU3Y2JkYmYzOSIsImlkIjoiOGEwZGU4NWEtN2RlNi00Mjk3LWE1N2UtMGZmMTkwOWZlOTVkIiwib3duZXIiOiJ1c2VyQDQyY3J1bmNoLmNvbSJ9Cg=="
+                        }
+                    }
+                ]
+            }
+        },
+        "/petstores": {
+            "summary": {
+                "errorsOccurred": false,
+                "happyPathsTested": {
+                    "total": 6,
+                    "estimated": 2,
+                    "executed": 2,
+                    "conformant": 2,
+                    "notConformant": 0,
+                    "failed": 0
+                },
+                "operationsTested": {
+                    "total": 2,
+                    "estimated": 2,
+                    "skipped": 0,
+                    "executed": 2,
+                    "failed": 0
+                },
+                "conformanceTestRequests": {
+                    "total": 30,
+                    "estimated": 24,
+                    "executed": 24,
+                    "responses": {
+                        "expected": {
+                            "conformant": 24,
+                            "notConformant": 0
+                        },
+                        "unexpected": {
+                            "conformant": 0,
+                            "notConformant": 0
+                        },
+                        "incorrect": {
+                            "conformant": 0,
+                            "notConformant": 0
+                        },
+                        "errors": {
+                            "functional": {
+                                "scanFlow": 0
+                            },
+                            "technical": {
+                                "timeout": 0,
+                                "connection": 0,
+                                "scanTechnical": 0
+                            }
+                        }
+                    }
+                },
+                "customTestRequests": {
+                    "estimated": 0,
+                    "executed": 0,
+                    "responses": {
+                        "expected": {
+                            "conformant": 0,
+                            "notConformant": 0
+                        },
+                        "unexpected": {
+                            "conformant": 0,
+                            "notConformant": 0
+                        },
+                        "incorrect": {
+                            "conformant": 0,
+                            "notConformant": 0
+                        },
+                        "errors": {
+                            "functional": {
+                                "scanFlow": 0
+                            },
+                            "technical": {
+                                "timeout": 0,
+                                "connection": 0,
+                                "scanTechnical": 0
+                            }
+                        }
+                    }
+                },
+                "authorizationTestRequests": {
+                    "estimated": 1,
+                    "executed": 1,
+                    "responses": {
+                        "expected": {
+                            "conformant": 0,
+                            "notConformant": 0
+                        },
+                        "unexpected": {
+                            "conformant": 0,
+                            "notConformant": 0
+                        },
+                        "incorrect": {
+                            "conformant": 1,
+                            "notConformant": 0
+                        },
+                        "errors": {
+                            "functional": {
+                                "scanFlow": 0
+                            },
+                            "technical": {
+                                "timeout": 0,
+                                "connection": 0,
+                                "scanTechnical": 0
+                            }
+                        }
+                    }
+                },
+                "criticality": 5,
+                "issues": {
+                    "total": 1,
+                    "totalOwasp": 1,
+                    "critical": 1,
+                    "high": 0,
+                    "medium": 0,
+                    "low": 0,
+                    "info": 0,
+                    "issueTypeCounter": {
+                        "authentication-swapping-bfla": 1
+                    },
+                    "owaspCounter": {
+                        "API5:2019": 1
+                    }
+                },
+                "errors": {}
+            },
+            "get": {
+                "checked": true,
+                "executionOrderIndex": 5,
+                "operationId": "FindPetstores",
+                "summary": {
+                    "conformanceTestRequests": {
+                        "total": 10,
+                        "estimated": 10,
+                        "executed": 10,
+                        "responses": {
+                            "expected": {
+                                "conformant": 10,
+                                "notConformant": 0
+                            },
+                            "unexpected": {
+                                "conformant": 0,
+                                "notConformant": 0
+                            },
+                            "incorrect": {
+                                "conformant": 0,
+                                "notConformant": 0
+                            },
+                            "errors": {
+                                "functional": {
+                                    "scanFlow": 0
+                                },
+                                "technical": {
+                                    "timeout": 0,
+                                    "connection": 0,
+                                    "scanTechnical": 0
+                                }
+                            }
+                        }
+                    },
+                    "customTestRequests": {
+                        "estimated": 0,
+                        "executed": 0,
+                        "responses": {
+                            "expected": {
+                                "conformant": 0,
+                                "notConformant": 0
+                            },
+                            "unexpected": {
+                                "conformant": 0,
+                                "notConformant": 0
+                            },
+                            "incorrect": {
+                                "conformant": 0,
+                                "notConformant": 0
+                            },
+                            "errors": {
+                                "functional": {
+                                    "scanFlow": 0
+                                },
+                                "technical": {
+                                    "timeout": 0,
+                                    "connection": 0,
+                                    "scanTechnical": 0
+                                }
+                            }
+                        }
+                    },
+                    "authorizationTestRequests": {
+                        "estimated": 0,
+                        "executed": 0,
+                        "responses": {
+                            "expected": {
+                                "conformant": 0,
+                                "notConformant": 0
+                            },
+                            "unexpected": {
+                                "conformant": 0,
+                                "notConformant": 0
+                            },
+                            "incorrect": {
+                                "conformant": 0,
+                                "notConformant": 0
+                            },
+                            "errors": {
+                                "functional": {
+                                    "scanFlow": 0
+                                },
+                                "technical": {
+                                    "timeout": 0,
+                                    "connection": 0,
+                                    "scanTechnical": 0
+                                }
+                            }
+                        }
+                    },
+                    "criticality": 0,
+                    "issues": {
+                        "total": 0,
+                        "totalOwasp": 0,
+                        "critical": 0,
+                        "high": 0,
+                        "medium": 0,
+                        "low": 0,
+                        "info": 0,
+                        "issueTypeCounter": {},
+                        "owaspCounter": {}
+                    },
+                    "errors": {}
+                },
+                "happyPaths": [
+                    {
+                        "happyPath": {
+                            "key": "happy.path.success",
+                            "httpStatusExpected": [
+                                "200"
+                            ],
+                            "successIndex": 0
+                        },
+                        "outcome": {
+                            "status": "expected",
+                            "conformant": true,
+                            "apiResponseAnalysis": null,
+                            "excessiveDataExposure": false,
+                            "criticality": 0
+                        },
+                        "request": {
+                            "id": "e2a0abbd-166d-4634-a310-1da1bf123a03",
+                            "scenarioId": "09ddf608-295d-45a8-aab0-3d345873d603",
+                            "date": "2023-04-11T23:16:01+02:00",
+                            "contentType": "",
+                            "bodyLength": 0,
+                            "url": "http://localhost:4010/petstores?limit=10&name=Petstore",
+                            "curl": "curl -X 'GET' 'http://localhost:4010/petstores?limit=10&name=Petstore'"
+                        },
+                        "response": {
+                            "time": 0,
+                            "httpStatusCode": 200,
+                            "contentType": "application/json; charset=UTF-8",
+                            "bodyLength": 13,
+                            "http": "SFRUUC8xLjEgMjAwIE9LDQpDb250ZW50LUxlbmd0aDogMTMNCkNvbnRlbnQtVHlwZTogYXBwbGljYXRpb24vanNvbjsgY2hhcnNldD1VVEYtOA0KRGF0ZTogVHVlLCAxMSBBcHIgMjAyMyAyMToxNjowMSBHTVQNCg0KeyJpdGVtcyI6W119Cg=="
+                        }
+                    }
+                ]
+            },
+            "post": {
+                "checked": true,
+                "executionOrderIndex": 6,
+                "operationId": "CreatePetstore",
+                "summary": {
+                    "conformanceTestRequests": {
+                        "total": 14,
+                        "estimated": 14,
+                        "executed": 14,
+                        "responses": {
+                            "expected": {
+                                "conformant": 14,
+                                "notConformant": 0
+                            },
+                            "unexpected": {
+                                "conformant": 0,
+                                "notConformant": 0
+                            },
+                            "incorrect": {
+                                "conformant": 0,
+                                "notConformant": 0
+                            },
+                            "errors": {
+                                "functional": {
+                                    "scanFlow": 0
+                                },
+                                "technical": {
+                                    "timeout": 0,
+                                    "connection": 0,
+                                    "scanTechnical": 0
+                                }
+                            }
+                        }
+                    },
+                    "customTestRequests": {
+                        "estimated": 0,
+                        "executed": 0,
+                        "responses": {
+                            "expected": {
+                                "conformant": 0,
+                                "notConformant": 0
+                            },
+                            "unexpected": {
+                                "conformant": 0,
+                                "notConformant": 0
+                            },
+                            "incorrect": {
+                                "conformant": 0,
+                                "notConformant": 0
+                            },
+                            "errors": {
+                                "functional": {
+                                    "scanFlow": 0
+                                },
+                                "technical": {
+                                    "timeout": 0,
+                                    "connection": 0,
+                                    "scanTechnical": 0
+                                }
+                            }
+                        }
+                    },
+                    "authorizationTestRequests": {
+                        "estimated": 1,
+                        "executed": 1,
+                        "responses": {
+                            "expected": {
+                                "conformant": 0,
+                                "notConformant": 0
+                            },
+                            "unexpected": {
+                                "conformant": 0,
+                                "notConformant": 0
+                            },
+                            "incorrect": {
+                                "conformant": 1,
+                                "notConformant": 0
+                            },
+                            "errors": {
+                                "functional": {
+                                    "scanFlow": 0
+                                },
+                                "technical": {
+                                    "timeout": 0,
+                                    "connection": 0,
+                                    "scanTechnical": 0
+                                }
+                            }
+                        }
+                    },
+                    "criticality": 5,
+                    "issues": {
+                        "total": 1,
+                        "totalOwasp": 1,
+                        "critical": 1,
+                        "high": 0,
+                        "medium": 0,
+                        "low": 0,
+                        "info": 0,
+                        "issueTypeCounter": {
+                            "authentication-swapping-bfla": 1
+                        },
+                        "owaspCounter": {
+                            "API5:2019": 1
+                        }
+                    },
+                    "errors": {}
+                },
+                "happyPaths": [
+                    {
+                        "happyPath": {
+                            "key": "happy.path.success",
+                            "httpStatusExpected": [
+                                "200"
+                            ],
+                            "successIndex": 0
+                        },
+                        "outcome": {
+                            "status": "expected",
+                            "conformant": true,
+                            "apiResponseAnalysis": null,
+                            "excessiveDataExposure": false,
+                            "criticality": 0
+                        },
+                        "request": {
+                            "id": "acf9e127-949b-4b73-a2e2-c0c9ed74c1b7",
+                            "scenarioId": "bef38d85-4ff9-41b4-a781-4e01a9e334f2",
+                            "date": "2023-04-11T23:16:01+02:00",
+                            "contentType": "application/json",
+                            "bodyLength": 20,
+                            "url": "http://localhost:4010/petstores",
+                            "auth": [
+                                "Cookie/Admin"
+                            ],
+                            "curl": "curl -X 'POST' -d '{\"name\":\"IrULHAVEb\"}' -H 'Content-Length: 20' -H 'Content-Type: application/json' -H 'Cookie: session={{Cookie/Admin}}' 'http://localhost:4010/petstores'"
+                        },
+                        "response": {
+                            "time": 13,
+                            "httpStatusCode": 200,
+                            "contentType": "application/json; charset=UTF-8",
+                            "bodyLength": 65,
+                            "http": "SFRUUC8xLjEgMjAwIE9LDQpDb250ZW50LUxlbmd0aDogNjUNCkNvbnRlbnQtVHlwZTogYXBwbGljYXRpb24vanNvbjsgY2hhcnNldD1VVEYtOA0KRGF0ZTogVHVlLCAxMSBBcHIgMjAyMyAyMToxNjowMSBHTVQNCg0KeyJuYW1lIjoiSXJVTEhBVkViIiwiaWQiOiJiODU2NWM0OC1jNTIxLTRlNWMtOGNhMS0zNTgyMzgzYjE5MzMifQo="
+                        }
+                    }
+                ],
+                "authorizationRequestIssues": [
+                    {
+                        "test": {
+                            "key": "authentication-swapping-bfla",
+                            "description": "Authorization test '[AdminOnly]'",
+                            "httpStatusExpected": [
+                                "401",
+                                "403",
+                                "404"
+                            ],
+                            "expectationSource": "default",
+                            "owaspMapping": "API5:2019",
+                            "jsonPointer": "",
+                            "stackTrace": ""
+                        },
+                        "outcome": {
+                            "failureIndex": "happyPath:0",
+                            "status": "incorrect",
+                            "conformant": true,
+                            "apiResponseAnalysis": null,
+                            "excessiveDataExposure": false,
+                            "criticality": 5
+                        },
+                        "request": {
+                            "id": "2b6b8c60-9fe0-4afc-a48d-3cad438fb77c",
+                            "scenarioId": "ff2724f7-2869-405e-b7ba-be59bd6efc2f",
+                            "date": "2023-04-11T23:16:01+02:00",
+                            "contentType": "application/json",
+                            "bodyLength": 17,
+                            "url": "http://localhost:4010/petstores",
+                            "auth": [
+                                "Cookie/User"
+                            ],
+                            "curl": "curl -X 'POST' -d '{\"name\":\"VXvswQ\"}' -H 'Content-Length: 17' -H 'Content-Type: application/json' -H 'Cookie: session={{Cookie/User}}' 'http://localhost:4010/petstores'"
+                        },
+                        "response": {
+                            "time": 13,
+                            "httpStatusCode": 200,
+                            "contentType": "application/json; charset=UTF-8",
+                            "bodyLength": 62,
+                            "http": "SFRUUC8xLjEgMjAwIE9LDQpDb250ZW50LUxlbmd0aDogNjINCkNvbnRlbnQtVHlwZTogYXBwbGljYXRpb24vanNvbjsgY2hhcnNldD1VVEYtOA0KRGF0ZTogVHVlLCAxMSBBcHIgMjAyMyAyMToxNjowMSBHTVQNCg0KeyJuYW1lIjoiVlh2c3dRIiwiaWQiOiJhYTdiNTJmYi00YWNiLTQxZDEtYmE5Ny00OTU3MzIwZjJhOWMifQo="
+                        }
+                    }
+                ]
+            }
+        },
+        "/petstores/{id}": {
+            "summary": {
+                "errorsOccurred": false,
+                "happyPathsTested": {
+                    "total": 6,
+                    "estimated": 2,
+                    "executed": 2,
+                    "conformant": 2,
+                    "notConformant": 0,
+                    "failed": 0
+                },
+                "operationsTested": {
+                    "total": 2,
+                    "estimated": 2,
+                    "skipped": 0,
+                    "executed": 2,
+                    "failed": 0
+                },
+                "conformanceTestRequests": {
+                    "total": 16,
+                    "estimated": 10,
+                    "executed": 10,
+                    "responses": {
+                        "expected": {
+                            "conformant": 10,
+                            "notConformant": 0
+                        },
+                        "unexpected": {
+                            "conformant": 0,
+                            "notConformant": 0
+                        },
+                        "incorrect": {
+                            "conformant": 0,
+                            "notConformant": 0
+                        },
+                        "errors": {
+                            "functional": {
+                                "scanFlow": 0
+                            },
+                            "technical": {
+                                "timeout": 0,
+                                "connection": 0,
+                                "scanTechnical": 0
+                            }
+                        }
+                    }
+                },
+                "customTestRequests": {
+                    "estimated": 0,
+                    "executed": 0,
+                    "responses": {
+                        "expected": {
+                            "conformant": 0,
+                            "notConformant": 0
+                        },
+                        "unexpected": {
+                            "conformant": 0,
+                            "notConformant": 0
+                        },
+                        "incorrect": {
+                            "conformant": 0,
+                            "notConformant": 0
+                        },
+                        "errors": {
+                            "functional": {
+                                "scanFlow": 0
+                            },
+                            "technical": {
+                                "timeout": 0,
+                                "connection": 0,
+                                "scanTechnical": 0
+                            }
+                        }
+                    }
+                },
+                "authorizationTestRequests": {
+                    "estimated": 1,
+                    "executed": 1,
+                    "responses": {
+                        "expected": {
+                            "conformant": 0,
+                            "notConformant": 0
+                        },
+                        "unexpected": {
+                            "conformant": 0,
+                            "notConformant": 0
+                        },
+                        "incorrect": {
+                            "conformant": 1,
+                            "notConformant": 0
+                        },
+                        "errors": {
+                            "functional": {
+                                "scanFlow": 0
+                            },
+                            "technical": {
+                                "timeout": 0,
+                                "connection": 0,
+                                "scanTechnical": 0
+                            }
+                        }
+                    }
+                },
+                "criticality": 5,
+                "issues": {
+                    "total": 1,
+                    "totalOwasp": 1,
+                    "critical": 1,
+                    "high": 0,
+                    "medium": 0,
+                    "low": 0,
+                    "info": 0,
+                    "issueTypeCounter": {
+                        "authentication-swapping-bfla": 1
+                    },
+                    "owaspCounter": {
+                        "API5:2019": 1
+                    }
+                },
+                "errors": {}
+            },
+            "get": {
+                "checked": true,
+                "executionOrderIndex": 8,
+                "operationId": "ReadPetstore",
+                "summary": {
+                    "conformanceTestRequests": {
+                        "total": 5,
+                        "estimated": 5,
+                        "executed": 5,
+                        "responses": {
+                            "expected": {
+                                "conformant": 5,
+                                "notConformant": 0
+                            },
+                            "unexpected": {
+                                "conformant": 0,
+                                "notConformant": 0
+                            },
+                            "incorrect": {
+                                "conformant": 0,
+                                "notConformant": 0
+                            },
+                            "errors": {
+                                "functional": {
+                                    "scanFlow": 0
+                                },
+                                "technical": {
+                                    "timeout": 0,
+                                    "connection": 0,
+                                    "scanTechnical": 0
+                                }
+                            }
+                        }
+                    },
+                    "customTestRequests": {
+                        "estimated": 0,
+                        "executed": 0,
+                        "responses": {
+                            "expected": {
+                                "conformant": 0,
+                                "notConformant": 0
+                            },
+                            "unexpected": {
+                                "conformant": 0,
+                                "notConformant": 0
+                            },
+                            "incorrect": {
+                                "conformant": 0,
+                                "notConformant": 0
+                            },
+                            "errors": {
+                                "functional": {
+                                    "scanFlow": 0
+                                },
+                                "technical": {
+                                    "timeout": 0,
+                                    "connection": 0,
+                                    "scanTechnical": 0
+                                }
+                            }
+                        }
+                    },
+                    "authorizationTestRequests": {
+                        "estimated": 0,
+                        "executed": 0,
+                        "responses": {
+                            "expected": {
+                                "conformant": 0,
+                                "notConformant": 0
+                            },
+                            "unexpected": {
+                                "conformant": 0,
+                                "notConformant": 0
+                            },
+                            "incorrect": {
+                                "conformant": 0,
+                                "notConformant": 0
+                            },
+                            "errors": {
+                                "functional": {
+                                    "scanFlow": 0
+                                },
+                                "technical": {
+                                    "timeout": 0,
+                                    "connection": 0,
+                                    "scanTechnical": 0
+                                }
+                            }
+                        }
+                    },
+                    "criticality": 0,
+                    "issues": {
+                        "total": 0,
+                        "totalOwasp": 0,
+                        "critical": 0,
+                        "high": 0,
+                        "medium": 0,
+                        "low": 0,
+                        "info": 0,
+                        "issueTypeCounter": {},
+                        "owaspCounter": {}
+                    },
+                    "errors": {}
+                },
+                "happyPaths": [
+                    {
+                        "happyPath": {
+                            "key": "happy.path.success",
+                            "httpStatusExpected": [
+                                "200"
+                            ],
+                            "successIndex": 0
+                        },
+                        "outcome": {
+                            "status": "expected",
+                            "conformant": true,
+                            "apiResponseAnalysis": null,
+                            "excessiveDataExposure": false,
+                            "criticality": 0
+                        },
+                        "request": {
+                            "id": "650ba72c-d6ec-4ff4-a916-dba6a44a0723",
+                            "scenarioId": "4c8c38c1-5f13-47b9-82d2-1aeba8d5bd6b",
+                            "date": "2023-04-11T23:16:01+02:00",
+                            "contentType": "",
+                            "bodyLength": 0,
+                            "url": "http://localhost:4010/petstores/aef016c3-fd6b-4ced-b7a0-6ae93374da49",
+                            "curl": "curl -X 'GET' 'http://localhost:4010/petstores/aef016c3-fd6b-4ced-b7a0-6ae93374da49'"
+                        },
+                        "response": {
+                            "time": 0,
+                            "httpStatusCode": 200,
+                            "contentType": "application/json; charset=UTF-8",
+                            "bodyLength": 64,
+                            "http": "SFRUUC8xLjEgMjAwIE9LDQpDb250ZW50LUxlbmd0aDogNjQNCkNvbnRlbnQtVHlwZTogYXBwbGljYXRpb24vanNvbjsgY2hhcnNldD1VVEYtOA0KRGF0ZTogVHVlLCAxMSBBcHIgMjAyMyAyMToxNjowMiBHTVQNCg0KeyJuYW1lIjoiQVdWeEVTQVQiLCJpZCI6ImFlZjAxNmMzLWZkNmItNGNlZC1iN2EwLTZhZTkzMzc0ZGE0OSJ9Cg=="
+                        }
+                    }
+                ]
+            },
+            "delete": {
+                "checked": true,
+                "executionOrderIndex": 7,
+                "operationId": "DeletePetstore",
+                "summary": {
+                    "conformanceTestRequests": {
+                        "total": 5,
+                        "estimated": 5,
+                        "executed": 5,
+                        "responses": {
+                            "expected": {
+                                "conformant": 5,
+                                "notConformant": 0
+                            },
+                            "unexpected": {
+                                "conformant": 0,
+                                "notConformant": 0
+                            },
+                            "incorrect": {
+                                "conformant": 0,
+                                "notConformant": 0
+                            },
+                            "errors": {
+                                "functional": {
+                                    "scanFlow": 0
+                                },
+                                "technical": {
+                                    "timeout": 0,
+                                    "connection": 0,
+                                    "scanTechnical": 0
+                                }
+                            }
+                        }
+                    },
+                    "customTestRequests": {
+                        "estimated": 0,
+                        "executed": 0,
+                        "responses": {
+                            "expected": {
+                                "conformant": 0,
+                                "notConformant": 0
+                            },
+                            "unexpected": {
+                                "conformant": 0,
+                                "notConformant": 0
+                            },
+                            "incorrect": {
+                                "conformant": 0,
+                                "notConformant": 0
+                            },
+                            "errors": {
+                                "functional": {
+                                    "scanFlow": 0
+                                },
+                                "technical": {
+                                    "timeout": 0,
+                                    "connection": 0,
+                                    "scanTechnical": 0
+                                }
+                            }
+                        }
+                    },
+                    "authorizationTestRequests": {
+                        "estimated": 1,
+                        "executed": 1,
+                        "responses": {
+                            "expected": {
+                                "conformant": 0,
+                                "notConformant": 0
+                            },
+                            "unexpected": {
+                                "conformant": 0,
+                                "notConformant": 0
+                            },
+                            "incorrect": {
+                                "conformant": 1,
+                                "notConformant": 0
+                            },
+                            "errors": {
+                                "functional": {
+                                    "scanFlow": 0
+                                },
+                                "technical": {
+                                    "timeout": 0,
+                                    "connection": 0,
+                                    "scanTechnical": 0
+                                }
+                            }
+                        }
+                    },
+                    "criticality": 5,
+                    "issues": {
+                        "total": 1,
+                        "totalOwasp": 1,
+                        "critical": 1,
+                        "high": 0,
+                        "medium": 0,
+                        "low": 0,
+                        "info": 0,
+                        "issueTypeCounter": {
+                            "authentication-swapping-bfla": 1
+                        },
+                        "owaspCounter": {
+                            "API5:2019": 1
+                        }
+                    },
+                    "errors": {}
+                },
+                "happyPaths": [
+                    {
+                        "happyPath": {
+                            "key": "happy.path.success",
+                            "httpStatusExpected": [
+                                "204"
+                            ],
+                            "successIndex": 1
+                        },
+                        "outcome": {
+                            "status": "expected",
+                            "conformant": true,
+                            "apiResponseAnalysis": null,
+                            "excessiveDataExposure": false,
+                            "criticality": 0
+                        },
+                        "request": {
+                            "id": "b36d56a5-0e47-4a37-83b2-678fda1441e6",
+                            "scenarioId": "c7b89d27-e015-4496-b2b9-d517c1a9013b",
+                            "date": "2023-04-11T23:16:01+02:00",
+                            "contentType": "",
+                            "bodyLength": 0,
+                            "url": "http://localhost:4010/petstores/a805d290-710d-45c6-8bad-4790cced69cf",
+                            "auth": [
+                                "Cookie/Admin"
+                            ],
+                            "curl": "curl -X 'DELETE' -H 'Cookie: session={{Cookie/Admin}}' 'http://localhost:4010/petstores/a805d290-710d-45c6-8bad-4790cced69cf'"
+                        },
+                        "response": {
+                            "time": 0,
+                            "httpStatusCode": 204,
+                            "contentType": "",
+                            "bodyLength": 0,
+                            "http": "SFRUUC8xLjEgMjA0IE5vIENvbnRlbnQNCkRhdGU6IFR1ZSwgMTEgQXByIDIwMjMgMjE6MTY6MDEgR01UDQoNCg=="
+                        }
+                    }
+                ],
+                "authorizationRequestIssues": [
+                    {
+                        "test": {
+                            "key": "authentication-swapping-bfla",
+                            "description": "Authorization test '[AdminOnly]'",
+                            "httpStatusExpected": [
+                                "401",
+                                "403",
+                                "404"
+                            ],
+                            "expectationSource": "default",
+                            "owaspMapping": "API5:2019",
+                            "jsonPointer": "",
+                            "stackTrace": ""
+                        },
+                        "outcome": {
+                            "failureIndex": "happyPath:1",
+                            "status": "incorrect",
+                            "conformant": true,
+                            "apiResponseAnalysis": null,
+                            "excessiveDataExposure": false,
+                            "criticality": 5
+                        },
+                        "request": {
+                            "id": "6e02f286-4ad1-4b17-b545-cdbd100047ad",
+                            "scenarioId": "745c1326-b0a8-4b31-89d9-cf156c64f66c",
+                            "date": "2023-04-11T23:16:01+02:00",
+                            "contentType": "",
+                            "bodyLength": 0,
+                            "url": "http://localhost:4010/petstores/57416ac0-7e44-4997-b723-a272510da386",
+                            "auth": [
+                                "Cookie/User"
+                            ],
+                            "curl": "curl -X 'DELETE' -H 'Cookie: session={{Cookie/User}}' 'http://localhost:4010/petstores/57416ac0-7e44-4997-b723-a272510da386'"
+                        },
+                        "response": {
+                            "time": 0,
+                            "httpStatusCode": 204,
+                            "contentType": "",
+                            "bodyLength": 0,
+                            "http": "SFRUUC8xLjEgMjA0IE5vIENvbnRlbnQNCkRhdGU6IFR1ZSwgMTEgQXByIDIwMjMgMjE6MTY6MDEgR01UDQoNCg=="
+                        }
+                    }
+                ]
+            }
+        },
+        "/petstores/{id}/pets": {
+            "summary": {
+                "errorsOccurred": false,
+                "happyPathsTested": {
+                    "total": 3,
+                    "estimated": 1,
+                    "executed": 1,
+                    "conformant": 1,
+                    "notConformant": 0,
+                    "failed": 0
+                },
+                "operationsTested": {
+                    "total": 1,
+                    "estimated": 1,
+                    "skipped": 0,
+                    "executed": 1,
+                    "failed": 0
+                },
+                "conformanceTestRequests": {
+                    "total": 12,
+                    "estimated": 5,
+                    "executed": 5,
+                    "responses": {
+                        "expected": {
+                            "conformant": 5,
+                            "notConformant": 0
+                        },
+                        "unexpected": {
+                            "conformant": 0,
+                            "notConformant": 0
+                        },
+                        "incorrect": {
+                            "conformant": 0,
+                            "notConformant": 0
+                        },
+                        "errors": {
+                            "functional": {
+                                "scanFlow": 0
+                            },
+                            "technical": {
+                                "timeout": 0,
+                                "connection": 0,
+                                "scanTechnical": 0
+                            }
+                        }
+                    }
+                },
+                "customTestRequests": {
+                    "estimated": 0,
+                    "executed": 0,
+                    "responses": {
+                        "expected": {
+                            "conformant": 0,
+                            "notConformant": 0
+                        },
+                        "unexpected": {
+                            "conformant": 0,
+                            "notConformant": 0
+                        },
+                        "incorrect": {
+                            "conformant": 0,
+                            "notConformant": 0
+                        },
+                        "errors": {
+                            "functional": {
+                                "scanFlow": 0
+                            },
+                            "technical": {
+                                "timeout": 0,
+                                "connection": 0,
+                                "scanTechnical": 0
+                            }
+                        }
+                    }
+                },
+                "authorizationTestRequests": {
+                    "estimated": 0,
+                    "executed": 0,
+                    "responses": {
+                        "expected": {
+                            "conformant": 0,
+                            "notConformant": 0
+                        },
+                        "unexpected": {
+                            "conformant": 0,
+                            "notConformant": 0
+                        },
+                        "incorrect": {
+                            "conformant": 0,
+                            "notConformant": 0
+                        },
+                        "errors": {
+                            "functional": {
+                                "scanFlow": 0
+                            },
+                            "technical": {
+                                "timeout": 0,
+                                "connection": 0,
+                                "scanTechnical": 0
+                            }
+                        }
+                    }
+                },
+                "criticality": 0,
+                "issues": {
+                    "total": 0,
+                    "totalOwasp": 0,
+                    "critical": 0,
+                    "high": 0,
+                    "medium": 0,
+                    "low": 0,
+                    "info": 0,
+                    "issueTypeCounter": {},
+                    "owaspCounter": {}
+                },
+                "errors": {}
+            },
+            "get": {
+                "checked": true,
+                "executionOrderIndex": 9,
+                "operationId": "ListPets",
+                "summary": {
+                    "conformanceTestRequests": {
+                        "total": 5,
+                        "estimated": 5,
+                        "executed": 5,
+                        "responses": {
+                            "expected": {
+                                "conformant": 5,
+                                "notConformant": 0
+                            },
+                            "unexpected": {
+                                "conformant": 0,
+                                "notConformant": 0
+                            },
+                            "incorrect": {
+                                "conformant": 0,
+                                "notConformant": 0
+                            },
+                            "errors": {
+                                "functional": {
+                                    "scanFlow": 0
+                                },
+                                "technical": {
+                                    "timeout": 0,
+                                    "connection": 0,
+                                    "scanTechnical": 0
+                                }
+                            }
+                        }
+                    },
+                    "customTestRequests": {
+                        "estimated": 0,
+                        "executed": 0,
+                        "responses": {
+                            "expected": {
+                                "conformant": 0,
+                                "notConformant": 0
+                            },
+                            "unexpected": {
+                                "conformant": 0,
+                                "notConformant": 0
+                            },
+                            "incorrect": {
+                                "conformant": 0,
+                                "notConformant": 0
+                            },
+                            "errors": {
+                                "functional": {
+                                    "scanFlow": 0
+                                },
+                                "technical": {
+                                    "timeout": 0,
+                                    "connection": 0,
+                                    "scanTechnical": 0
+                                }
+                            }
+                        }
+                    },
+                    "authorizationTestRequests": {
+                        "estimated": 0,
+                        "executed": 0,
+                        "responses": {
+                            "expected": {
+                                "conformant": 0,
+                                "notConformant": 0
+                            },
+                            "unexpected": {
+                                "conformant": 0,
+                                "notConformant": 0
+                            },
+                            "incorrect": {
+                                "conformant": 0,
+                                "notConformant": 0
+                            },
+                            "errors": {
+                                "functional": {
+                                    "scanFlow": 0
+                                },
+                                "technical": {
+                                    "timeout": 0,
+                                    "connection": 0,
+                                    "scanTechnical": 0
+                                }
+                            }
+                        }
+                    },
+                    "criticality": 0,
+                    "issues": {
+                        "total": 0,
+                        "totalOwasp": 0,
+                        "critical": 0,
+                        "high": 0,
+                        "medium": 0,
+                        "low": 0,
+                        "info": 0,
+                        "issueTypeCounter": {},
+                        "owaspCounter": {}
+                    },
+                    "errors": {}
+                },
+                "happyPaths": [
+                    {
+                        "happyPath": {
+                            "key": "happy.path.success",
+                            "httpStatusExpected": [
+                                "200"
+                            ],
+                            "successIndex": 0
+                        },
+                        "outcome": {
+                            "status": "expected",
+                            "conformant": true,
+                            "apiResponseAnalysis": null,
+                            "excessiveDataExposure": false,
+                            "criticality": 0
+                        },
+                        "request": {
+                            "id": "bacc9031-1eb9-46f7-a3c9-ae887c3d57e1",
+                            "scenarioId": "fbd3710a-d7fe-4121-9d61-58315cffc7bb",
+                            "date": "2023-04-11T23:16:02+02:00",
+                            "contentType": "",
+                            "bodyLength": 0,
+                            "url": "http://localhost:4010/petstores/87bb0bc6-719c-4d2d-89a1-7f239425d7a2/pets",
+                            "auth": [
+                                "Cookie/User"
+                            ],
+                            "curl": "curl -X 'GET' -H 'Cookie: session={{Cookie/User}}' 'http://localhost:4010/petstores/87bb0bc6-719c-4d2d-89a1-7f239425d7a2/pets'"
+                        },
+                        "response": {
+                            "time": 0,
+                            "httpStatusCode": 200,
+                            "contentType": "application/json; charset=UTF-8",
+                            "bodyLength": 162,
+                            "http": "SFRUUC8xLjEgMjAwIE9LDQpDb250ZW50LUxlbmd0aDogMTYyDQpDb250ZW50LVR5cGU6IGFwcGxpY2F0aW9uL2pzb247IGNoYXJzZXQ9VVRGLTgNCkRhdGU6IFR1ZSwgMTEgQXByIDIwMjMgMjE6MTY6MDIgR01UDQoNCnsiaXRlbXMiOlt7ImFnZSI6MTAsIm5hbWUiOiJCaWxseSIsInBldHN0b3JlSWQiOiI4N2JiMGJjNi03MTljLTRkMmQtODlhMS03ZjIzOTQyNWQ3YTIiLCJpZCI6IjE0Y2I4MTRiLTE4YjUtNDc1ZC1hODYzLTk5ZGMzOGVmZTcxNyIsIm93bmVyIjoidXNlckA0MmNydW5jaC5jb20ifV19Cg=="
+                        }
+                    }
+                ]
+            }
+        },
+        "/users": {
+            "summary": {
+                "errorsOccurred": false,
+                "happyPathsTested": {
+                    "total": 4,
+                    "estimated": 3,
+                    "executed": 3,
+                    "conformant": 3,
+                    "notConformant": 0,
+                    "failed": 0
+                },
+                "operationsTested": {
+                    "total": 1,
+                    "estimated": 1,
+                    "skipped": 0,
+                    "executed": 1,
+                    "failed": 0
+                },
+                "conformanceTestRequests": {
+                    "total": 36,
+                    "estimated": 29,
+                    "executed": 29,
+                    "responses": {
+                        "expected": {
+                            "conformant": 28,
+                            "notConformant": 0
+                        },
+                        "unexpected": {
+                            "conformant": 0,
+                            "notConformant": 0
+                        },
+                        "incorrect": {
+                            "conformant": 1,
+                            "notConformant": 0
+                        },
+                        "errors": {
+                            "functional": {
+                                "scanFlow": 0
+                            },
+                            "technical": {
+                                "timeout": 0,
+                                "connection": 0,
+                                "scanTechnical": 0
+                            }
+                        }
+                    }
+                },
+                "customTestRequests": {
+                    "estimated": 0,
+                    "executed": 0,
+                    "responses": {
+                        "expected": {
+                            "conformant": 0,
+                            "notConformant": 0
+                        },
+                        "unexpected": {
+                            "conformant": 0,
+                            "notConformant": 0
+                        },
+                        "incorrect": {
+                            "conformant": 0,
+                            "notConformant": 0
+                        },
+                        "errors": {
+                            "functional": {
+                                "scanFlow": 0
+                            },
+                            "technical": {
+                                "timeout": 0,
+                                "connection": 0,
+                                "scanTechnical": 0
+                            }
+                        }
+                    }
+                },
+                "authorizationTestRequests": {
+                    "estimated": 1,
+                    "executed": 1,
+                    "responses": {
+                        "expected": {
+                            "conformant": 0,
+                            "notConformant": 0
+                        },
+                        "unexpected": {
+                            "conformant": 0,
+                            "notConformant": 0
+                        },
+                        "incorrect": {
+                            "conformant": 1,
+                            "notConformant": 0
+                        },
+                        "errors": {
+                            "functional": {
+                                "scanFlow": 0
+                            },
+                            "technical": {
+                                "timeout": 0,
+                                "connection": 0,
+                                "scanTechnical": 0
+                            }
+                        }
+                    }
+                },
+                "criticality": 5,
+                "issues": {
+                    "total": 2,
+                    "totalOwasp": 2,
+                    "critical": 1,
+                    "high": 1,
+                    "medium": 0,
+                    "low": 0,
+                    "info": 0,
+                    "issueTypeCounter": {
+                        "authentication-swapping-bfla": 1,
+                        "schema-required-scan": 1
+                    },
+                    "owaspCounter": {
+                        "API5:2019": 1,
+                        "API8:2019": 1
+                    }
+                },
+                "errors": {}
+            },
+            "post": {
+                "checked": true,
+                "executionOrderIndex": 10,
+                "operationId": "CreateUser",
+                "summary": {
+                    "conformanceTestRequests": {
+                        "total": 29,
+                        "estimated": 29,
+                        "executed": 29,
+                        "responses": {
+                            "expected": {
+                                "conformant": 28,
+                                "notConformant": 0
+                            },
+                            "unexpected": {
+                                "conformant": 0,
+                                "notConformant": 0
+                            },
+                            "incorrect": {
+                                "conformant": 1,
+                                "notConformant": 0
+                            },
+                            "errors": {
+                                "functional": {
+                                    "scanFlow": 0
+                                },
+                                "technical": {
+                                    "timeout": 0,
+                                    "connection": 0,
+                                    "scanTechnical": 0
+                                }
+                            }
+                        }
+                    },
+                    "customTestRequests": {
+                        "estimated": 0,
+                        "executed": 0,
+                        "responses": {
+                            "expected": {
+                                "conformant": 0,
+                                "notConformant": 0
+                            },
+                            "unexpected": {
+                                "conformant": 0,
+                                "notConformant": 0
+                            },
+                            "incorrect": {
+                                "conformant": 0,
+                                "notConformant": 0
+                            },
+                            "errors": {
+                                "functional": {
+                                    "scanFlow": 0
+                                },
+                                "technical": {
+                                    "timeout": 0,
+                                    "connection": 0,
+                                    "scanTechnical": 0
+                                }
+                            }
+                        }
+                    },
+                    "authorizationTestRequests": {
+                        "estimated": 1,
+                        "executed": 1,
+                        "responses": {
+                            "expected": {
+                                "conformant": 0,
+                                "notConformant": 0
+                            },
+                            "unexpected": {
+                                "conformant": 0,
+                                "notConformant": 0
+                            },
+                            "incorrect": {
+                                "conformant": 1,
+                                "notConformant": 0
+                            },
+                            "errors": {
+                                "functional": {
+                                    "scanFlow": 0
+                                },
+                                "technical": {
+                                    "timeout": 0,
+                                    "connection": 0,
+                                    "scanTechnical": 0
+                                }
+                            }
+                        }
+                    },
+                    "criticality": 5,
+                    "issues": {
+                        "total": 2,
+                        "totalOwasp": 2,
+                        "critical": 1,
+                        "high": 1,
+                        "medium": 0,
+                        "low": 0,
+                        "info": 0,
+                        "issueTypeCounter": {
+                            "authentication-swapping-bfla": 1,
+                            "schema-required-scan": 1
+                        },
+                        "owaspCounter": {
+                            "API5:2019": 1,
+                            "API8:2019": 1
+                        }
+                    },
+                    "errors": {}
+                },
+                "happyPaths": [
+                    {
+                        "happyPath": {
+                            "key": "happy.path.success",
+                            "httpStatusExpected": [
+                                "200"
+                            ],
+                            "successIndex": 0
+                        },
+                        "outcome": {
+                            "status": "expected",
+                            "conformant": true,
+                            "apiResponseAnalysis": null,
+                            "excessiveDataExposure": false,
+                            "criticality": 0
+                        },
+                        "request": {
+                            "id": "1ba47f6b-4a8a-498d-80c8-6d17659239c9",
+                            "scenarioId": "0d1c227d-cf06-4a99-8653-0b25e87109cb",
+                            "date": "2023-04-11T23:16:02+02:00",
+                            "contentType": "application/json",
+                            "bodyLength": 101,
+                            "url": "http://localhost:4010/users",
+                            "auth": [
+                                "Cookie/Admin"
+                            ],
+                            "curl": "curl -X 'POST' -d '{\"isAdmin\":false,\"password\":\"dg\",\"user\":\"usPeTSub34gE4AL@9Uq-_-W.b-m-C-3w-.O-149Z.T-MBM.36MdLuA7tGs\"}' -H 'Content-Length: 101' -H 'Content-Type: application/json' -H 'Cookie: session={{Cookie/Admin}}' 'http://localhost:4010/users'"
+                        },
+                        "response": {
+                            "time": 0,
+                            "httpStatusCode": 200,
+                            "contentType": "application/json; charset=UTF-8",
+                            "bodyLength": 102,
+                            "http": "SFRUUC8xLjEgMjAwIE9LDQpDb250ZW50LUxlbmd0aDogMTAyDQpDb250ZW50LVR5cGU6IGFwcGxpY2F0aW9uL2pzb247IGNoYXJzZXQ9VVRGLTgNCkRhdGU6IFR1ZSwgMTEgQXByIDIwMjMgMjE6MTY6MDIgR01UDQoNCnsiaXNBZG1pbiI6ZmFsc2UsInBhc3N3b3JkIjoiZGciLCJ1c2VyIjoidXNQZVRTdWIzNGdFNEFMQDlVcS1fLVcuYi1tLUMtM3ctLk8tMTQ5Wi5ULU1CTS4zNk1kTHVBN3RHcyJ9Cg=="
+                        }
+                    },
+                    {
+                        "happyPath": {
+                            "key": "happy.path.failure",
+                            "httpStatusExpected": [
+                                "400"
+                            ],
+                            "successIndex": 0
+                        },
+                        "outcome": {
+                            "status": "expected",
+                            "conformant": true,
+                            "apiResponseAnalysis": null,
+                            "excessiveDataExposure": false,
+                            "criticality": 0
+                        },
+                        "request": {
+                            "id": "dc4ff512-9e6c-4520-9b8f-9047ef454aee",
+                            "scenarioId": "719edd5c-5f8c-48b0-9870-ff2e4b954e20",
+                            "date": "2023-04-11T23:16:02+02:00",
+                            "contentType": "application/json",
+                            "bodyLength": 37,
+                            "url": "http://localhost:4010/users",
+                            "curl": "curl -X 'POST' -d '{\"password\":\"HelloWorld@1\",\"user\":10}' -H 'Content-Length: 37' -H 'Content-Type: application/json' 'http://localhost:4010/users'"
+                        },
+                        "response": {
+                            "time": 0,
+                            "httpStatusCode": 400,
+                            "contentType": "application/json; charset=UTF-8",
+                            "bodyLength": 133,
+                            "http": "SFRUUC8xLjEgNDAwIEJhZCBSZXF1ZXN0DQpDb250ZW50LUxlbmd0aDogMTMzDQpDb250ZW50LVR5cGU6IGFwcGxpY2F0aW9uL2pzb247IGNoYXJzZXQ9VVRGLTgNCkRhdGU6IFR1ZSwgMTEgQXByIDIwMjMgMjE6MTY6MDIgR01UDQoNCnsibWVzc2FnZSI6InJlcXVlc3QgYm9keSBoYXMgYW4gZXJyb3I6IGRvZXNuJ3QgbWF0Y2ggdGhlIHNjaGVtYTogRXJyb3IgYXQgXCIvdXNlclwiOiBGaWVsZCBtdXN0IGJlIHNldCB0byBzdHJpbmcgb3Igbm90IGJlIHByZXNlbnQifQo="
+                        }
+                    },
+                    {
+                        "happyPath": {
+                            "key": "happy.path.failure",
+                            "httpStatusExpected": [
+                                "409"
+                            ],
+                            "successIndex": 0
+                        },
+                        "outcome": {
+                            "status": "expected",
+                            "conformant": true,
+                            "apiResponseAnalysis": null,
+                            "excessiveDataExposure": false,
+                            "criticality": 0
+                        },
+                        "request": {
+                            "id": "e0ca56c2-24db-4c65-b681-f731b5fab42c",
+                            "scenarioId": "6e082be4-93f5-4b20-9b38-dbad783c4e0f",
+                            "date": "2023-04-11T23:16:02+02:00",
+                            "contentType": "application/json",
+                            "bodyLength": 51,
+                            "url": "http://localhost:4010/users",
+                            "auth": [
+                                "Cookie/Admin"
+                            ],
+                            "curl": "curl -X 'POST' -d '{\"password\":\"pass123@\",\"user\":\"admin@42crunch.com\"}' -H 'Content-Length: 51' -H 'Content-Type: application/json' -H 'Cookie: session={{Cookie/Admin}}' 'http://localhost:4010/users'"
+                        },
+                        "response": {
+                            "time": 0,
+                            "httpStatusCode": 409,
+                            "contentType": "application/json; charset=UTF-8",
+                            "bodyLength": 43,
+                            "http": "SFRUUC8xLjEgNDA5IENvbmZsaWN0DQpDb250ZW50LUxlbmd0aDogNDMNCkNvbnRlbnQtVHlwZTogYXBwbGljYXRpb24vanNvbjsgY2hhcnNldD1VVEYtOA0KRGF0ZTogVHVlLCAxMSBBcHIgMjAyMyAyMToxNjowMiBHTVQNCg0KeyJjb2RlIjo0MDksIm1lc3NhZ2UiOiJ1c2VybmFtZSBjb25mbGljdCJ9Cg=="
+                        }
+                    }
+                ],
+                "conformanceRequestIssues": [
+                    {
+                        "test": {
+                            "key": "schema-required-scan",
+                            "description": "The required property ‘[isAdmin]’ is missing in the generated object",
+                            "httpStatusExpected": [
+                                "400"
+                            ],
+                            "expectationSource": "default",
+                            "owaspMapping": "API8:2019",
+                            "jsonPointer": "/components/schemas/User",
+                            "stackTrace": "/components/schemas/User"
+                        },
+                        "outcome": {
+                            "failureIndex": "happyPath:0",
+                            "status": "incorrect",
+                            "conformant": true,
+                            "apiResponseAnalysis": null,
+                            "excessiveDataExposure": false,
+                            "criticality": 4
+                        },
+                        "request": {
+                            "id": "88d76aa9-4f42-4f90-883a-ae46285bd7fd",
+                            "scenarioId": "36fab1bb-b848-479a-a448-05512467591f",
+                            "date": "2023-04-11T23:16:02+02:00",
+                            "contentType": "application/json",
+                            "bodyLength": 87,
+                            "url": "http://localhost:4010/users",
+                            "auth": [
+                                "Cookie/Admin"
+                            ],
+                            "curl": "curl -X 'POST' -d '{\"password\":\"wwserelsbyshmrvxshjpuyvmdzndkfermjuazmvjcaqgtbwbewk\",\"user\":\"s@7.0W-.e0W\"}' -H 'Content-Length: 87' -H 'Content-Type: application/json' -H 'Cookie: session={{Cookie/Admin}}' 'http://localhost:4010/users'"
+                        },
+                        "response": {
+                            "time": 0,
+                            "httpStatusCode": 200,
+                            "contentType": "application/json; charset=UTF-8",
+                            "bodyLength": 104,
+                            "http": "SFRUUC8xLjEgMjAwIE9LDQpDb250ZW50LUxlbmd0aDogMTA0DQpDb250ZW50LVR5cGU6IGFwcGxpY2F0aW9uL2pzb247IGNoYXJzZXQ9VVRGLTgNCkRhdGU6IFR1ZSwgMTEgQXByIDIwMjMgMjE6MTY6MDIgR01UDQoNCnsiaXNBZG1pbiI6ZmFsc2UsInBhc3N3b3JkIjoid3dzZXJlbHNieXNobXJ2eHNoanB1eXZtZHpuZGtmZXJtanVhem12amNhcWd0YndiZXdrIiwidXNlciI6InNANy4wVy0uZTBXIn0K"
+                        }
+                    }
+                ],
+                "authorizationRequestIssues": [
+                    {
+                        "test": {
+                            "key": "authentication-swapping-bfla",
+                            "description": "Authorization test '[AdminOnly]'",
+                            "httpStatusExpected": [
+                                "401",
+                                "403",
+                                "404"
+                            ],
+                            "expectationSource": "default",
+                            "owaspMapping": "API5:2019",
+                            "jsonPointer": "",
+                            "stackTrace": ""
+                        },
+                        "outcome": {
+                            "failureIndex": "happyPath:0",
+                            "status": "incorrect",
+                            "conformant": true,
+                            "apiResponseAnalysis": null,
+                            "excessiveDataExposure": false,
+                            "criticality": 5
+                        },
+                        "request": {
+                            "id": "36462f3c-c8b8-494e-aec2-d33b8681f917",
+                            "scenarioId": "295a1ffc-d1d7-44ae-aaaf-cd062cd2703d",
+                            "date": "2023-04-11T23:16:03+02:00",
+                            "contentType": "application/json",
+                            "bodyLength": 113,
+                            "url": "http://localhost:4010/users",
+                            "auth": [
+                                "Cookie/User"
+                            ],
+                            "curl": "curl -X 'POST' -d '{\"isAdmin\":false,\"password\":\"pdeanxkearzpnuoibifwonippmu\",\"user\":\"8o4LGjlPR@m-.V.4-g-Vdim-a.E-d2-n-.hovJRy5d2mY\"}' -H 'Content-Length: 113' -H 'Content-Type: application/json' -H 'Cookie: session={{Cookie/User}}' 'http://localhost:4010/users'"
+                        },
+                        "response": {
+                            "time": 0,
+                            "httpStatusCode": 200,
+                            "contentType": "application/json; charset=UTF-8",
+                            "bodyLength": 114,
+                            "http": "SFRUUC8xLjEgMjAwIE9LDQpDb250ZW50LUxlbmd0aDogMTE0DQpDb250ZW50LVR5cGU6IGFwcGxpY2F0aW9uL2pzb247IGNoYXJzZXQ9VVRGLTgNCkRhdGU6IFR1ZSwgMTEgQXByIDIwMjMgMjE6MTY6MDMgR01UDQoNCnsiaXNBZG1pbiI6ZmFsc2UsInBhc3N3b3JkIjoicGRlYW54a2VhcnpwbnVvaWJpZndvbmlwcG11IiwidXNlciI6IjhvNExHamxQUkBtLS5WLjQtZy1WZGltLWEuRS1kMi1uLS5ob3ZKUnk1ZDJtWSJ9Cg=="
+                        }
+                    }
+                ]
+            }
+        },
+        "/users/{username}": {
+            "summary": {
+                "errorsOccurred": false,
+                "happyPathsTested": {
+                    "total": 4,
+                    "estimated": 1,
+                    "executed": 1,
+                    "conformant": 1,
+                    "notConformant": 0,
+                    "failed": 0
+                },
+                "operationsTested": {
+                    "total": 1,
+                    "estimated": 1,
+                    "skipped": 0,
+                    "executed": 1,
+                    "failed": 0
+                },
+                "conformanceTestRequests": {
+                    "total": 12,
+                    "estimated": 5,
+                    "executed": 5,
+                    "responses": {
+                        "expected": {
+                            "conformant": 5,
+                            "notConformant": 0
+                        },
+                        "unexpected": {
+                            "conformant": 0,
+                            "notConformant": 0
+                        },
+                        "incorrect": {
+                            "conformant": 0,
+                            "notConformant": 0
+                        },
+                        "errors": {
+                            "functional": {
+                                "scanFlow": 0
+                            },
+                            "technical": {
+                                "timeout": 0,
+                                "connection": 0,
+                                "scanTechnical": 0
+                            }
+                        }
+                    }
+                },
+                "customTestRequests": {
+                    "estimated": 0,
+                    "executed": 0,
+                    "responses": {
+                        "expected": {
+                            "conformant": 0,
+                            "notConformant": 0
+                        },
+                        "unexpected": {
+                            "conformant": 0,
+                            "notConformant": 0
+                        },
+                        "incorrect": {
+                            "conformant": 0,
+                            "notConformant": 0
+                        },
+                        "errors": {
+                            "functional": {
+                                "scanFlow": 0
+                            },
+                            "technical": {
+                                "timeout": 0,
+                                "connection": 0,
+                                "scanTechnical": 0
+                            }
+                        }
+                    }
+                },
+                "authorizationTestRequests": {
+                    "estimated": 1,
+                    "executed": 0,
+                    "responses": {
+                        "expected": {
+                            "conformant": 0,
+                            "notConformant": 0
+                        },
+                        "unexpected": {
+                            "conformant": 0,
+                            "notConformant": 0
+                        },
+                        "incorrect": {
+                            "conformant": 0,
+                            "notConformant": 0
+                        },
+                        "errors": {
+                            "functional": {
+                                "scanFlow": 0
+                            },
+                            "technical": {
+                                "timeout": 0,
+                                "connection": 0,
+                                "scanTechnical": 0
+                            }
+                        }
+                    }
+                },
+                "criticality": 0,
+                "issues": {
+                    "total": 0,
+                    "totalOwasp": 0,
+                    "critical": 0,
+                    "high": 0,
+                    "medium": 0,
+                    "low": 0,
+                    "info": 0,
+                    "issueTypeCounter": {},
+                    "owaspCounter": {}
+                },
+                "errors": {}
+            },
+            "delete": {
+                "checked": true,
+                "executionOrderIndex": 11,
+                "operationId": "DeleteUser",
+                "summary": {
+                    "conformanceTestRequests": {
+                        "total": 5,
+                        "estimated": 5,
+                        "executed": 5,
+                        "responses": {
+                            "expected": {
+                                "conformant": 5,
+                                "notConformant": 0
+                            },
+                            "unexpected": {
+                                "conformant": 0,
+                                "notConformant": 0
+                            },
+                            "incorrect": {
+                                "conformant": 0,
+                                "notConformant": 0
+                            },
+                            "errors": {
+                                "functional": {
+                                    "scanFlow": 0
+                                },
+                                "technical": {
+                                    "timeout": 0,
+                                    "connection": 0,
+                                    "scanTechnical": 0
+                                }
+                            }
+                        }
+                    },
+                    "customTestRequests": {
+                        "estimated": 0,
+                        "executed": 0,
+                        "responses": {
+                            "expected": {
+                                "conformant": 0,
+                                "notConformant": 0
+                            },
+                            "unexpected": {
+                                "conformant": 0,
+                                "notConformant": 0
+                            },
+                            "incorrect": {
+                                "conformant": 0,
+                                "notConformant": 0
+                            },
+                            "errors": {
+                                "functional": {
+                                    "scanFlow": 0
+                                },
+                                "technical": {
+                                    "timeout": 0,
+                                    "connection": 0,
+                                    "scanTechnical": 0
+                                }
+                            }
+                        }
+                    },
+                    "authorizationTestRequests": {
+                        "estimated": 1,
+                        "executed": 0,
+                        "responses": {
+                            "expected": {
+                                "conformant": 0,
+                                "notConformant": 0
+                            },
+                            "unexpected": {
+                                "conformant": 0,
+                                "notConformant": 0
+                            },
+                            "incorrect": {
+                                "conformant": 0,
+                                "notConformant": 0
+                            },
+                            "errors": {
+                                "functional": {
+                                    "scanFlow": 0
+                                },
+                                "technical": {
+                                    "timeout": 0,
+                                    "connection": 0,
+                                    "scanTechnical": 0
+                                }
+                            }
+                        }
+                    },
+                    "criticality": 0,
+                    "issues": {
+                        "total": 0,
+                        "totalOwasp": 0,
+                        "critical": 0,
+                        "high": 0,
+                        "medium": 0,
+                        "low": 0,
+                        "info": 0,
+                        "issueTypeCounter": {},
+                        "owaspCounter": {}
+                    },
+                    "errors": {}
+                },
+                "happyPaths": [
+                    {
+                        "happyPath": {
+                            "key": "happy.path.success",
+                            "httpStatusExpected": [
+                                "204"
+                            ],
+                            "successIndex": 2
+                        },
+                        "outcome": {
+                            "status": "expected",
+                            "conformant": true,
+                            "apiResponseAnalysis": null,
+                            "excessiveDataExposure": false,
+                            "criticality": 0
+                        },
+                        "request": {
+                            "id": "d9a352e0-3f33-428f-b82a-e15200d3849c",
+                            "scenarioId": "454ac8e7-7d5c-48f5-82c6-d4e707f69564",
+                            "date": "2023-04-11T23:16:03+02:00",
+                            "contentType": "",
+                            "bodyLength": 0,
+                            "url": "http://localhost:4010/users/RN__.touiHysgf@6-v-.D-.r-LF-6.p-_-3u-IE-.fQXPXAUUUrMV0",
+                            "auth": [
+                                "inline:0/default"
+                            ],
+                            "curl": "curl -X 'DELETE' -H 'Cookie: session={{inline:0/default}}' 'http://localhost:4010/users/RN__.touiHysgf@6-v-.D-.r-LF-6.p-_-3u-IE-.fQXPXAUUUrMV0'"
+                        },
+                        "response": {
+                            "time": 0,
+                            "httpStatusCode": 204,
+                            "contentType": "",
+                            "bodyLength": 0,
+                            "http": "SFRUUC8xLjEgMjA0IE5vIENvbnRlbnQNCkRhdGU6IFR1ZSwgMTEgQXByIDIwMjMgMjE6MTY6MDMgR01UDQoNCg=="
+                        }
+                    }
+                ]
+            }
+        }
+    }
+}
