@@ -161,6 +161,7 @@
 <p>Dans la philosophie du &#34;Security Shift-Left&#34;, nous allons nous outiller afin de remonter directement dans l&#39;éditeur ou l&#39;IDE du développeur. Il existe déjà les &#34;linters&#34; pour chaque langage de programmation (ShellCheck, golangci-lint, etc ...), mais également des extensions dédiées à la sécurité et la liste est longue (pourtant pas <a href="https://owasp.org/www-community/Vulnerability_Scanning_Tools" target="_blank">exhaustive</a>): SonarLint, Sonatype Nexus IQ, Snyk, Qualys IaC, RedHat Dependency Analytics, GitHub Code Scanning, JFrog XRay... Et la liste complète pour VSCode est <a href="https://s.42l.fr/vs_sec" target="_blank">disponible</a></p>
 <p>D&#39;autant plus, que leur nom <a href="https://devdojo.com/yoda/top-vs-code-extensions-for-application-security-in-2021" target="_blank">change régulièrement</a> au fil des rachats, exemple avec DeepCode.AI (acheté par Snyk) ou Mend Advise (ex-WhiteSource), ou sont spécifique à un langage comme C#/XML avec Microsoft Security IntelliSense, node.JS avec npm audit, Redshift Security pour Java, <a href="https://golangci-lint.run/usage/linters/#gosec" target="_blank">gosec</a> pour Go.</p>
 <p>Pour les utilisateurs de Github Copilot, s&#39;il est installé dans votre IDE, l&#39;<a href="https://marketplace.visualstudio.com/items?itemName=GitHub.copilot" target="_blank">extension</a> devrait vous faire quelques remontées par rapport à des attaques classiques (injections SQL et cie) d&#39;après leur site...</p>
+<p>En plus des linters, il faut aussi consulter différents guidelines de son language pour se perfectionner. Par exemple, même Bash a les siens comme celui de <a href="https://google.github.io/styleguide/shellguide.html" target="_blank">Google</a> ou le fait d&#39;<a href="https://clig.dev/#arguments-and-flags" target="_blank">&#34;accept sensitive data only via files, e.g. with a –password-file argument, or via stdin&#34;</a>.</p>
 <p>Enfin, en anglais, quelques <a href="https://owasp.org/www-project-secure-coding-practices-quick-reference-guide/" target="_blank">règles élémentaires</a> et son <a href="https://levelup.gitconnected.com/how-to-build-secure-applications-a-guide-to-owasp-best-practices-3d11ba406f41" target="_blank">résumé</a></p>
 <p><strong>Objectifs de cette étape</strong>:</p>
 <ul>
@@ -326,7 +327,7 @@ jobs:
 <li>Définir le language de programmation de scan</li>
 <li>Valider l&#39;exécution correcte de sa GitHub action en réalisant une PR</li>
 <li>Modifier le jour et l&#39;heure du cron (facultatif)</li>
-<li>Activer un deuxième outil, comme gosec pour Go, ou SonarCloud (facultatif)</li>
+<li>Activer un deuxième outil, comme <code>gosec</code> pour Go, ou SonarCloud (facultatif)</li>
 </ul>
 
 
@@ -364,7 +365,9 @@ jobs:
 <ul>
 <li>Codez deux petites fonctions de test qui valide (SUCCÈS) si elle n&#39;arrive à se connecter à votre BDD sans identifiants, et ceux par défaut comme <code>admin:admin</code></li>
 <li>Intégrez ce test dans votre CI/CD, pour valider la bascule Bleue/Verte (<a href="https://traefik.io/glossary/kubernetes-deployment-strategies-blue-green-canary/" target="_blank">blue/green</a>) avant la mise à jour progressive/<a href="https://kubernetes.io/blog/2018/04/30/zero-downtime-deployment-kubernetes-jenkins/" target="_blank">rolling update</a> (facultatif)</li>
+<li>Bonus: Implémenter d&#39;autres tests avec d&#39;autres mots de passes génériques/leakés sur internet, comme avec le dépôt de code GitHub <a href="https://github.com/ihebski/DefaultCreds-cheat-sheet/blob/main/DefaultCreds-Cheat-Sheet.csv" target="_blank">ihebski/DefaultCreds-cheat-sheet</a></li>
 </ul>
+<p class="image-container"><img alt="ihebski/DefaultCreds-cheat-sheet" src="img/c6fd21ff629d927.jpg"></p>
 <p class="image-container"><img alt="NewsBlur - Hack Timeline" src="img/a2d89a17382a138d.png"></p>
 <p><a href="https://blog.newsblur.com/2021/06/28/story-of-a-hacking/" target="_blank">Source la timeline, le blog de NewsBlur - lien direct</a></p>
 
@@ -617,7 +620,90 @@ spec:
       <google-codelab-step label="Patch" duration="3">
         <h2 is-upgraded>Opération : Patchs de sécurité</h2>
 <p>Pour activer les patchs de sécurité pour les environnements &#34;pets&#34;, vous pouvez utiliser vos playbooks <a href="https://www.ansible.com/" target="_blank">Ansible</a> (avec <a href="https://github.com/ansible/awx" target="_blank">AWX</a>/<a href="https://www.ansible.com/products/controller" target="_blank">Ansible Tower</a> ou <a href="https://hewlettpackard.github.io/squest/" target="_blank">HP Squest</a>), <a href="https://saltproject.io/" target="_blank">SaltStack</a>, <a href="https://www.puppet.com/" target="_blank">Puppet</a>, <a href="https://www.chef.io/" target="_blank">Chef</a>, ou <a href="https://www.rudder.io/" target="_blank">Rudder</a>.</p>
-<p>Pour la partie &#34;cattle&#34; alias Cloud Native, vous pouvez utiliser votre pipeline CI/CD, <a href="https://argoproj.github.io/" target="_blank">ArgoCI</a>, <a href="https://fluxcd.io/" target="_blank">Flux</a>, <a href="https://tekton.dev/" target="_blank">Tekton</a> avec la nouvelle image Docker construite, avec vos procédures de mise à jour habituelles (rolling update).</p>
+<p>Pour la partie &#34;cattle&#34; alias Cloud Native, vous pouvez utiliser votre pipeline CI/CD, <a href="https://argoproj.github.io/" target="_blank">ArgoCI</a>, <a href="https://fluxcd.io/" target="_blank">Flux</a>, <a href="https://tekton.dev/" target="_blank">Tekton</a> avec la nouvelle image Docker construite, avec vos procédures de mise à jour habituelles (rolling update). <a href="https://twitter.com/chanwit/status/1645099560744935424" target="_blank">Une récente vidéo de Flamingo</a> semble même consilier Argo CD UI avec Flux (WeaveGitOps).</p>
+<p>Illustrons cela avec Ansible pour le mode &#34;pet&#34;, via la commande <code>ansible-playbook -i inventory.yml playbook.yml -k -K --check</code></p>
+<pre><code language="language-YAML" class="language-YAML">---
+- name: Patch and reboot servers
+  hosts: all
+  vars:
+    yum_name: &#34;*&#34;
+    yum_state:  latest
+    yum_enablerepo: &#34;rhel-?-server-rpms,rhel-?-server-satellite-tools-6.?-rpms&#34;
+    yum_disablerepo: &#34;*&#34;
+    yum_exclude: &#34;&#34;
+    dnf_name: &#34;*&#34;
+    dnf_state: latest
+    dnf_enablerepo: &#34;rhel-8-for-x86_64-appstream-rpms,rhel-8-for-x86_64-baseos-rpms,satellite-tools-6.?-for-rhel-8-x86_64-rpms&#34;
+    dnf_disablerepo: &#34;*&#34;
+    dnf_exclude: &#34;&#34;
+  tasks:
+
+    - name: upgrade packages via yum
+      yum:
+        name=&#123;&#123; yum_name }}
+        state=&#123;&#123; yum_state }}
+        disablerepo=&#123;&#123; yum_disablerepo }}
+        enablerepo=&#123;&#123; yum_enablerepo }}
+        exclude=&#123;&#123; yum_exclude }}
+      become: &#34;yes&#34;
+      register: yumcommandout
+      when:
+        - (ansible_facts[&#39;distribution_major_version&#39;] == &#39;6&#39;) or
+          (ansible_facts[&#39;distribution_major_version&#39;] == &#39;7&#39;)
+
+    - name: Print errors if yum failed
+      debug:
+        msg: &#34;yum command produced errors&#34;
+      when: yumcommandout is not defined
+
+    - name: upgrade packages via dnf
+      dnf:
+        name=&#123;&#123; dnf_name }}
+        state=&#123;&#123; dnf_state }}
+        disablerepo=&#123;&#123; dnf_disablerepo }}
+        enablerepo=&#123;&#123; dnf_enablerepo }}
+        exclude=&#123;&#123; dnf_exclude }}
+      become: &#34;yes&#34;
+      register: dnfcommandout
+      when:
+        - ansible_facts[&#39;distribution_major_version&#39;] == &#39;8&#39;
+
+    - name: Print errors if dnf failed
+      debug:
+        msg: &#34;dnf command produced errors&#34;
+      when: dnfcommandout is not defined
+
+    - name: check to see if we need a reboot
+      command: needs-restarting -r
+      register: result
+      ignore_errors: yes
+
+    - name: display reboot result
+      debug:
+        var: result.rc
+
+    - name: Reboot Server if Necessary
+      command: shutdown -r now &#34;Ansible Updates Triggered&#34;
+      become: true
+      async: 30
+      poll: 0
+      when: result.rc == 1
+
+    # This pause is mandatory, otherwise the existing control connection
+    # gets reused!
+    # (https://gist.github.com/infernix/a968f23c4f4e1d6723e4)
+    - name: Pausing to allow server to shutdown and terminate our SSH connection
+      pause: seconds=30
+      when: result.rc == 1
+
+    - name: Wait for reboot to complete and SSH to become available
+      local_action: wait_for host=&#123;&#123; inventory_hostname }} port=22
+        state=started delay=30 timeout=600
+      retries: 30
+      delay: 10
+      when: result.rc == 1
+</code></pre>
+<p><a href="https://www.unixsysadmin.com/ansible-patch-reboot/" target="_blank">Source du playbook</a></p>
 
 
       </google-codelab-step>
@@ -629,6 +715,7 @@ spec:
 <p>Si vous ou vos clients en avez besoin, vous pouvez passer des certifications normatives pour vos produits: ISO/CEI 27001 - 27017 - 27018, PCI, HITRUST, CSA STAR, HDS.</p>
 <p>Pour la robustesse SI/logiciel: CSPN, CC EAL 3+, CC EAL 4+.</p>
 <p>Enfin les qualifications des services SSI: SecNumCloud, PSCE, PRIS, PDIS, PASSI, PSHE.</p>
+<p>Je vous recommende de jeter un coup d&#39;oeil sur <a href="https://social.imirhil.fr/@aeris" target="_blank">Mastodon</a> / <a href="https://twitter.com/aeris_v2" target="_blank">Twitter</a> / <a href="https://imirhil.fr/" target="_blank">les outils du site web</a> d&#39;aeris pour découvrir plus sur les problèmes/contraintes liés à ces certifications.</p>
 
 
       </google-codelab-step>
@@ -685,6 +772,8 @@ spec:
 <li>Automatiser la procédure qui réalise vos sauvegardes</li>
 <li>Tester de manière régulière la procédure qui charge vos sauvegardes</li>
 <li>Profitez-en pour tester votre toute dernière base de code en même temps, la branche principale main/master (facultatif)</li>
+<li>Facultatif: Réaliser des sauvegardes régulières en hors-ligne (offline) afin de réduire le risque</li>
+<li>Bonus: Tester vos sauvegardes, durant vos tests de Chaos Monkey</li>
 </ul>
 <p class="image-container"><img alt="CommitStrip - Backup" src="img/df35191fbd4e9f5e.jpg"></p>
 <p><a href="https://www.commitstrip.com/fr/2016/09/05/do-we-have-a-back-up-in-the-audience/?setLocale=1" target="_blank">Source de la BD, CommitStrip - lien direct</a></p>
@@ -834,6 +923,48 @@ I suspect this will be big next week...
 <li>Observer les indicateurs suivants, produits par Snyk, au sujet de la <a href="https://snyk.io/advisor/npm-package/vm2" target="_blank">lib</a>, de ses <a href="https://security.snyk.io/package/npm/vm2" target="_blank">vulnérabilités</a> (<a href="https://security.snyk.io/vuln/SNYK-JS-VM2-5415299" target="_blank">1</a>,<a href="https://security.snyk.io/vuln/SNYK-JS-VM2-2990237" target="_blank">2</a>)</li>
 <li>Identifier si votre projet est vulnérable à cette faille majeure et fournir les preuves à votre CTO/CEO</li>
 <li>Bonus: votre parc informatique est également vulnérable; analyser ce <a href="https://twitter.com/CyberGEND/status/1644620061879984131" target="_blank">tweet du Commandement de la Gendarmerie</a> (CVE-2023-28206/CVE-2023-28205), faites le nécessaire auprès votre DSI et fournissez les éléments factuels à votre direction pour que la plénière se passe de la manière la plus sereine possible, et évitez les déboires de lancement de votre concurrent <a href="https://www.theverge.com/2023/2/8/23590864/google-ai-chatbot-bard-mistake-error-exoplanet-demo" target="_blank">Bard</a>.</li>
+</ul>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="E4 - K8s deprecation" duration="5">
+        <h2 is-upgraded>Comment se préparer au pire ?</h2>
+<p class="image-container"><img alt="Photo by Growtika on Unsplash" src="img/b01bcc3b732e5b2c.jpg"></p>
+<p>En découvrant comment <a href="https://www.chainguard.dev/chainguard-enforce" target="_blank">Chainguard Enforce</a> permet d&#39;aider les développeurs à réaliser cette migration (fastidieuse), surtout si nous n&#39;avons pas un inventaire d&#39;entreprise (et donc éviter du Shadow IT)</p>
+<pre><code language="language-YAML" class="language-YAML">apiVersion: policy.sigstore.dev/v1beta1
+kind: ClusterImagePolicy
+metadata:
+ name: deprecated-k8s-grc-io-registry-rego
+ annotations:
+   catalog.chainguard.dev/title: Deprecated registry
+   catalog.chainguard.dev/description: Warn of a registry deprecation
+   catalog.chainguard.dev/labels: rego
+   catalog.chainguard.dev/learnMoreLink: https://kubernetes.io/blog/2023/02/06/k8s-gcr-io-freeze-announcement/
+spec:
+ mode: warn
+ images:
+ - glob: &#34;k8s.gcr.io/**&#34;
+ authorities:
+ - name: k8s-deprecated
+   static:
+     action: pass
+ policy:
+   type: rego
+   data: |
+     package sigstore
+     isCompliant[response] {
+       response := {
+         &#34;result&#34; : true,
+         &#34;error&#34; : &#34;&#34;,
+         &#34;warning&#34; : &#34;This repo has been deprecated: https://kubernetes.io/blog/2023/02/06/k8s-gcr-io-freeze-announcement/&#34;
+       }
+     }
+</code></pre>
+<p><strong>Objectifs de cette étape</strong>:</p>
+<ul>
+<li>Analyser le <a href="https://www.chainguard.dev/unchained/using-chainguard-enforce-to-prepare-for-the-kubernetes-registry-deprecation" target="_blank">billet de blog de Chainguard</a> et le tester sur un environnement de test/une sandbox</li>
+<li>Facultatif: Le tester sur un environnement plus conséquent/important</li>
 </ul>
 
 
