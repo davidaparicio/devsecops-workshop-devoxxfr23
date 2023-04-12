@@ -1,6 +1,6 @@
 # Workshop Devoxx Petstore API
 
-The Petstore API implement the petstore.json specification with some conformance and security issues. You will be able to find them and to protect the API with 42Crunch tools (Audit/Scan/Firewall). There are more documentations about the Petstore API in the directory 'ressources'
+The Petstore API implements the petstore.json specification with some conformance and security issues. You will be able to find them and to protect the API with 42Crunch tools (Audit/Scan/Firewall). There are more documentations about the Petstore API in the directory 'ressources'
 
 
 ## Prerequisites
@@ -15,7 +15,7 @@ The Petstore API implement the petstore.json specification with some conformance
 
 ## Building and running the API
 
-To build and run the API execute the following commands : 
+To build and run the API execute the following commands: 
 
 ```
 cd ./api
@@ -23,7 +23,7 @@ go build
 ./api
 ```
 
-When running the last command you should see the following : 
+When running the last command you should see the following: 
 
 ```
    ____    __
@@ -36,6 +36,13 @@ ____________________________________O/_______
                                     O\
 ⇨ http server started on [::]:4010
 
+```
+
+Update the hosts file to have the following lines: 
+
+```
+127.0.0.1    petstore-secured
+127.0.0.1    petstore
 ```
 
 The API is up and is listening on the port 4010. To test that everything is fine you can execute the command and get the response below: 
