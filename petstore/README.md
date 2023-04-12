@@ -11,7 +11,8 @@ The Petstore API implements the petstore.json specification with some conformanc
     - IntelliJ : (https://www.jetbrains.com/help/idea/installation-guide.html)
 - Docker (https://docs.docker.com/engine/install/)
 - Docker-Compose 
-- Postman (Recommended to test the API)
+- Postman [Recommended to test the API]
+- Oapi-codegen (https://github.com/deepmap/oapi-codegen) [Required to run 'make build' in ./api else run 'make build-go']
 
 ## Building and running the API
 
