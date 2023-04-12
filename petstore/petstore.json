@@ -21,7 +21,6 @@
         },
         {
             "url": "https://petstore-secured:4241"
-
         }
     ],
     "paths": {
@@ -176,10 +175,10 @@
             "post": {
                 "security": [
                     {
-                        "Cookie":[]
+                        "Cookie": []
                     },
                     {
-                        "ApiKey":[]
+                        "ApiKey": []
                     }
                 ],
                 "tags": [
@@ -229,17 +228,17 @@
                 ],
                 "security": [
                     {
-                        "Cookie":[]
+                        "Cookie": []
                     },
                     {
-                        "ApiKey":[]
+                        "ApiKey": []
                     }
                 ],
                 "summary": "Delete an user",
                 "operationId": "DeleteUser",
                 "parameters": [
                     {
-                       "$ref":"#/components/parameters/PathUsername"
+                        "$ref": "#/components/parameters/PathUsername"
                     }
                 ],
                 "responses": {
@@ -266,10 +265,10 @@
                 ],
                 "security": [
                     {
-                        "Cookie":[]
+                        "Cookie": []
                     },
                     {
-                        "ApiKey":[]
+                        "ApiKey": []
                     }
                 ],
                 "summary": "Create an apikey",
@@ -305,7 +304,7 @@
                 ],
                 "security": [
                     {
-                        "Cookie":[]
+                        "Cookie": []
                     }
                 ],
                 "summary": "Delete an apikey",
@@ -396,10 +395,10 @@
                 ],
                 "security": [
                     {
-                        "Cookie":[]
+                        "Cookie": []
                     },
                     {
-                        "ApiKey":[]
+                        "ApiKey": []
                     }
                 ],
                 "description": "Creates a new petstore",
@@ -481,10 +480,10 @@
                 ],
                 "security": [
                     {
-                        "Cookie":[]
+                        "Cookie": []
                     },
                     {
-                        "ApiKey":[]
+                        "ApiKey": []
                     }
                 ],
                 "description": "deletes a single petstore based on the ID supplied",
@@ -520,10 +519,10 @@
                 ],
                 "security": [
                     {
-                        "Cookie":[]
+                        "Cookie": []
                     },
                     {
-                        "ApiKey":[]
+                        "ApiKey": []
                     }
                 ],
                 "description": "Return all pets in the petstore",
@@ -566,10 +565,10 @@
                 ],
                 "security": [
                     {
-                        "Cookie":[]
+                        "Cookie": []
                     },
                     {
-                        "ApiKey":[]
+                        "ApiKey": []
                     }
                 ],
                 "description": "Creates a new pet in the store. Duplicates names are not allowed",
@@ -612,10 +611,10 @@
                 ],
                 "security": [
                     {
-                        "Cookie":[]
+                        "Cookie": []
                     },
                     {
-                        "ApiKey":[]
+                        "ApiKey": []
                     }
                 ],
                 "description": "Returns a user based on a single ID, if the user does not have access to the pet",
@@ -656,10 +655,10 @@
                 ],
                 "security": [
                     {
-                        "Cookie":[]
+                        "Cookie": []
                     },
                     {
-                        "ApiKey":[]
+                        "ApiKey": []
                     }
                 ],
                 "description": "deletes a single pet based on the ID supplied",
@@ -695,17 +694,17 @@
                 ],
                 "security": [
                     {
-                        "Cookie":[]
+                        "Cookie": []
                     },
                     {
-                        "ApiKey":[]
+                        "ApiKey": []
                     }
                 ],
                 "description": "Transfer a pet from a petstore to another one, the user must be the owner of the pet",
                 "operationId": "TransferPet",
                 "parameters": [
                     {
-                        "$ref":"#/components/parameters/PathId"
+                        "$ref": "#/components/parameters/PathId"
                     }
                 ],
                 "requestBody": {
@@ -749,15 +748,15 @@
         }
     },
     "components": {
-        "parameters":{
-            "PathId":{
+        "parameters": {
+            "PathId": {
                 "name": "id",
-                        "in": "path",
-                        "description": "ID of pet to fetch",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/components/schemas/Id"
-                        }
+                "in": "path",
+                "description": "ID of pet to fetch",
+                "required": true,
+                "schema": {
+                    "$ref": "#/components/schemas/Id"
+                }
             },
             "PathUsername": {
                 "name": "username",
@@ -813,8 +812,8 @@
                             }
                         }
                     },
-                    "application/problem+json":{
-                        "schema":{
+                    "application/problem+json": {
+                        "schema": {
                             "$ref": "#/components/schemas/FwError"
                         }
                     }
@@ -828,8 +827,8 @@
                             "$ref": "#/components/schemas/Error"
                         }
                     },
-                    "application/problem+json":{
-                        "schema":{
+                    "application/problem+json": {
+                        "schema": {
                             "$ref": "#/components/schemas/FwError"
                         }
                     }
@@ -843,8 +842,8 @@
                             "$ref": "#/components/schemas/Error"
                         }
                     },
-                    "application/problem+json":{
-                        "schema":{
+                    "application/problem+json": {
+                        "schema": {
                             "$ref": "#/components/schemas/FwError"
                         }
                     }
@@ -1174,20 +1173,20 @@
                         "maximum": 504,
                         "example": 10
                     },
-                    "title":{
+                    "title": {
                         "type": "string"
                     },
-                    "detail":{
+                    "detail": {
                         "type": "string"
                     },
-                    "uuid":{
-                      "format": "uuid",
-                      "type": "string",
-                      "example": "a83a29f5-0d63-46f2-8f2e-44c2f1d2e07e",
-                      "pattern": "^[0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{12}$",
-                      "minLength": 36,
-                      "maxLength": 36,
-                      "x-42c-format": "o:uuid"
+                    "uuid": {
+                        "format": "uuid",
+                        "type": "string",
+                        "example": "a83a29f5-0d63-46f2-8f2e-44c2f1d2e07e",
+                        "pattern": "^[0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{12}$",
+                        "minLength": 36,
+                        "maxLength": 36,
+                        "x-42c-format": "o:uuid"
                     }
                 }
             }
