@@ -903,6 +903,10 @@ Car la [CNFC Landscape](https://landscape.cncf.io/) ne donne pas la même chose 
 
 ![Cloud Native](assets/cloudnative.jpg)
 
+Pour ceux qui n'ont pas pu participer au workshop d'hier matin, ["Le petit chaperon rouge pratique enfin le Zero Trust"](https://cfp.devoxx.fr/2023/talk/NEI-2442/_Le_petit_chaperon_rouge_pratique_enfin_le_%22Zero_Trust%22_(en_mode_labs)), par [Jérôme Masson](https://twitter.com/sphinxgaiaone), [Jean-Pascal Thiery](@https://twitter.com/jpthiery), [David Drugeon-Hamon](https://twitter.com/zebeurton), voici une très bonne synthèse de ce monde avec le principe des 4 C: Cloud, Cluster, Container, Code.
+<!-- https://github.com/Sphinxgaia/little-red-riding-hood/tree/lab-devoxx -->
+![Les 4C](assets/quatre_c.jpg)
+
 <!-- ------------------------ -->
 ## Félicitations
 Duration: 2
