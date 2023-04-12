@@ -1,6 +1,7 @@
 package main
 
 import (
+	"context"
 	"flag"
 	"fmt"
 	"os"
@@ -8,6 +9,8 @@ import (
 	"github.com/deepmap/oapi-codegen/pkg/middleware"
 	"github.com/labstack/echo/v4"
 	echomiddleware "github.com/labstack/echo/v4/middleware"
+
+	filter "github.com/getkin/kin-openapi/openapi3filter"
 )
 
 /*
@@ -74,13 +77,22 @@ func main() {
 	// Create an instance of our handler which satisfies the generated interface
 	petStore := NewPetStoreAPI()
 
+	validatorOptions := &middleware.Options{}
+
+	validatorOptions.Options.AuthenticationFunc = func(c context.Context, input *filter.AuthenticationInput) error {
+		// Authentication is handle
+		return nil
+	}
+
 	// This is how you set up a basic Echo router
 	e := echo.New()
 	// Log all requests
 	e.Use(echomiddleware.Logger())
 	// Use our validation middleware to check all requests against the
 	// OpenAPI schema.
-	e.Use(middleware.OapiRequestValidator(swagger))
+
+	e.Use(middleware.OapiRequestValidatorWithOptions(swagger, validatorOptions))
+	//e.Use(middleware.OapiRequestValidator(swagger))
 
 	// We now register our petStore above as the handler for the interface
 	RegisterHandlers(e, petStore)

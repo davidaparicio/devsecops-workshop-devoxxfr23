@@ -84,21 +84,17 @@ func NewPetStoreAPI() *PetStoreAPI {
 		},
 		petstores: map[string]*Petstore{
 			"2f909877-e4f1-4161-9f73-8d7b81a197f7": &Petstore{
-				NewPetstore: NewPetstore{
-					Name: "petstore",
-				},
-				Id: Id("2f909877-e4f1-4161-9f73-8d7b81a197f7"),
+				Id:   Id("2f909877-e4f1-4161-9f73-8d7b81a197f7"),
+				Name: "petstore",
 			},
 		},
 		pets: map[string]*Pet{
 			"2f909877-e4f1-4161-9f73-8d7b81a197f7": &Pet{
-				NewPet: NewPet{
-					Age:        &age,
-					Name:       PetName("Billy"),
-					PetstoreId: &petstoreId,
-				},
-				Id:    Id("2f909877-e4f1-4161-9f73-8d7b81a197f7"),
-				Owner: Username("user@42crunch.com"),
+				Id:         Id("2f909877-e4f1-4161-9f73-8d7b81a197f7"),
+				Age:        &age,
+				Name:       PetName("Billy"),
+				PetstoreId: &petstoreId,
+				Owner:      Username("user@42crunch.com"),
 			},
 		},
 	}
@@ -471,9 +467,11 @@ func (api *PetStoreAPI) CreatePet(ctx echo.Context) error {
 	}
 
 	pet := &Pet{
-		NewPet: newPet,
-		Id:     Id(uuid.New().String()),
-		Owner:  Username(username),
+		Id:         Id(uuid.New().String()),
+		Age:        newPet.Age,
+		Name:       newPet.Name,
+		PetstoreId: newPet.PetstoreId,
+		Owner:      Username(username),
 	}
 
 	api.pets[string(pet.Id)] = pet
@@ -624,8 +622,8 @@ func (api *PetStoreAPI) CreatePetstore(ctx echo.Context) error {
 	}
 
 	newPetstore := Petstore{
-		NewPetstore: newPetstoreBody,
-		Id:          Id(uuid.New().String()),
+		Id:   Id(uuid.New().String()),
+		Name: newPetstoreBody.Name,
 	}
 
 	api.Mutex.Lock()

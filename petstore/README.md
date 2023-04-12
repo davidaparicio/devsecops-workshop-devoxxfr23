@@ -19,7 +19,7 @@ To build and run the API execute the following commands:
 
 ```
 cd ./api
-go build
+make build
 ./api
 ```
 

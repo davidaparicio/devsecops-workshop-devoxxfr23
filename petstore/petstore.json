@@ -1127,14 +1127,17 @@
             },
             "Version": {
                 "type": "object",
+                "additionalProperties": false,
                 "required": [
-                    "version"
+                    "version",
+                    "commitId"
                 ],
                 "properties": {
                     "version": {
-                        "type": "integer",
-                        "minimum": 1,
-                        "maximum": 100
+                        "type": "string"
+                    },
+                    "commitId": {
+                        "type": "string"
                     }
                 }
             },
