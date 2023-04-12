@@ -22,7 +22,7 @@ fi
 echo "====  RUN CODELAB  ===="
 #https://developer.mozilla.org/en-US/docs/Learn/Common_questions/Tools_and_setup/set_up_a_local_testing_server
 #https://stackoverflow.com/questions/38485373/from-the-terminal-verify-if-python-3-is-installed
-if ! command -v python3 >/dev/null 2>&1
+if command -v python3 >/dev/null 2>&1
 then
   python3 -m http.server 8000
 else

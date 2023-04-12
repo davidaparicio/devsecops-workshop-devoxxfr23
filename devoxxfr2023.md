@@ -254,7 +254,7 @@ D’une part, l’application de la configuration (HBAC, RBAC, règle pare-feu) 
 Par exemple, le projet [Cilium](https://cilium.io/) permet d’interagir avec le réseau et d’appliquer des politiques de sécurité. De plus, les maillage de services (services-mesh) comme Istio, Traefik maesh ou Solo.io avec GlooEdge génèrent automatiquement des certificats SSL et ne laissent passer ainsi que les communications sécurisées entre vos containers. D'[autres projets](https://platform9.com/blog/the-ultimate-guide-to-using-calico-flannel-weave-and-cilium/) existent comme: [Flannel](https://github.com/flannel-io/flannel), [Calico](https://github.com/projectcalico/calico) ou [Weave](https://github.com/weaveworks/weave).
 
 D’autre part, les commandes `docker scan`, `trivy image mon_Image_Docker:tag` analysent les vulnérabilités connues de votre Dockerfile. Avant de pousser du code contenant des secrets, un hook peut-être installé avec [GitGuardian](https://gitguardian.com/), [ggshield](https://github.com/GitGuardian/ggshield), [Trivy](https://github.com/aquasecurity/trivy) (`trivy fs —security-checks secret ./`) ou le projet [awslabs/git-secrets](https://github.com/awslabs/git-secrets).
-Comme l’erreur est humaine, il est préférable d’automatiser toutes ces actions et analyses.
+Comme l’erreur est humaine, il est préférable d’automatiser toutes ces actions et analyses. Nous vous recommendons le visionnage de cette [vidéo explicative](https://youtu.be/hseEfxCHzYw) de ce qui faut faire en cas d'incident/de fuite (en anglais).
 
 Au final, en plus de la modélisation de l'attaquant et des risques, il faut aussi prendre en compte les différents flux, avoir des diagrammes d'architecture, comme celui ci-dessous... justement, c'est notre prochain sujet.
 
@@ -440,7 +440,10 @@ Au niveau des API, la version Ultimate de GitLab propose le DAST API (REST, SOAP
 Duration: 15
 
 ### Démonstrations des fonctionnalités de 42Crunch
+
 Cette partie sera faite en session live coding, durant l'atelier DevoxxFR2023.
+
+![Sécurité - Dans un projet IT informatique](assets/it_security.png)
 
 > Vulnerable REST API with OWASP top 10 vulnerabilities for security testing 
 
@@ -562,7 +565,7 @@ Au niveau des SCM (Software Configuration Management Tools), les classiques sont
 
 Sans oublier de sécuriser vos secrets avec [Hashicorp Vault](https://www.vaultproject.io/), [Akeyless Vault](https://www.akeyless.io/), [Thycotic Secret Server renommé Delinea](https://delinea.com/products/secret-server), les projets [Mozilla/sops](https://github.com/mozilla/sops) et [cloudflare/gokey](https://github.com/cloudflare/gokey) ou à travers de votre cloud provider par exemple [AWS Secrets Manager](https://aws.amazon.com/fr/secrets-manager/). 
 
-Enfin pour maintenir une infrastructure immutable (IaC), il existe ArgoCD (avec le [concept de Synchronisation](https://www.cncf.io/blog/2020/12/17/solving-configuration-drift-using-gitops-with-argo-cd/)), [Driftctl de CloudSkiff](https://driftctl.com/), [Magalix racheté par Weaveworks GitOps](https://www.weave.works/blog/magalix-joins-weaveworks-to-bring-policy-to-gitops), [Fairwinds Insights](https://www.fairwinds.com/insights), [le projet GitHub Kubediff de Weaveworks](https://github.com/weaveworks/kubediff). 
+Enfin pour maintenir une infrastructure immutable (IaC), il existe ArgoCD (avec le [concept de Synchronisation](https://www.cncf.io/blog/2020/12/17/solving-configuration-drift-using-gitops-with-argo-cd/)), [Driftctl de CloudSkiff](https://driftctl.com/), [Magalix racheté par Weaveworks GitOps](https://www.weave.works/blog/magalix-joins-weaveworks-to-bring-policy-to-gitops), [Fairwinds Insights](https://www.fairwinds.com/insights), [le projet GitHub Kubediff de Weaveworks](https://github.com/weaveworks/kubediff). [Katia HIMEUR de chez Cockpitio](https://blog.cockpitio.com/devops/devops-dday-2022-drift-terraform-gitops/) parle de son Retour d'Expérience à ce sujet.
 
 La combinaison [Trivy+Cosign+Kyverno](https://neonmirrors.net/post/2022-07/attesting-image-scans-kyverno/) peut être utilisée pour imposer un déploiement sur Kubernetes d’une image docker sans vulnérabilité, avec un scan récent inférieur à X jours. Nous vous invitons à lire ce [billet de blog](https://neonmirrors.net/post/2022-07/attesting-image-scans-kyverno/)
 
@@ -793,7 +796,7 @@ Illustrons cela avec Ansible pour le mode "pet", via la commande
 Duration: 3
 
 ### Surveillance : Audit de sécurité et des bonnes pratiques
-En open source, il existe les projets [Popeye](https://github.com/derailed/popeye), [Polaris](https://github.com/FairwindsOps/polaris), [kube-score](https://github.com/zegl/kube-score), [Falco](https://falco.org/docs/rules/) et [Trivy](https://aquasecurity.github.io/trivy/v0.29.2/docs/misconfiguration/scanning/) pour Kubernetes.
+En open source, il existe les projets [Popeye](https://github.com/derailed/popeye), [Polaris](https://github.com/FairwindsOps/polaris), [kube-score](https://github.com/zegl/kube-score), [Falco](https://falco.org/docs/rules/) et [Trivy](https://aquasecurity.github.io/trivy/v0.29.2/docs/misconfiguration/scanning/) et [un tuto](https://thenewstack.io/check-for-container-image-vulnerabilities-with-trivy/) (en anglais) pour Kubernetes.
 
 Pour le multi-cloud [nccgroup/ScoutSuite](https://github.com/nccgroup/ScoutSuite) et [Cloud Security Suite](https://github.com/SecurityFTW/cs-suite), ou [Prowler](https://github.com/prowler-cloud/prowler) pour AWS/Azure, et le NIST [OpenSCAP](https://github.com/OpenSCAP/openscap). Libhunt en recense d'[autres](https://www.libhunt.com/r/ScoutSuite), comme [Linux Security](https://linuxsecurity.expert/tools/scout2/alternatives/) mais une partie est orientée pour les infrastructures spécifiques à AWS, ou non opensourcé comme Cloud Security Suite.
 
@@ -822,6 +825,8 @@ Duration: 3
 
 ### Retour : Analyse de sécurité
 Nous recommandons de maintenir une veille technologique quotidienne ainsi que la lecture des CVE sur les sites [OpenCVE.io](https://www.opencve.io/), [CERT-FR](https://www.cert.ssi.gouv.fr/). La plate-forme [Feedly.com](https://feedly.com/) propose une [“Threat Intelligence”](https://feedly.com/i/landing/cybersecurity) sur différents thèmes (abonnement payant). En complément, [ANSSI](https://www.ssi.gouv.fr/) a créé le projet libre [OpenCTI.io](https://github.com/OpenCTI-Platform/opencti) et [AlienVault OTX](https://otx.alienvault.com/) présente les menaces actuelles dans le cybermonde. Et pour finir, voici quelques podcasts en français, [NoLimitSecu](https://www.nolimitsecu.fr/), [La French Connection](https://securite.fm/), [Le comptoir Sécu](https://www.comptoirsecu.fr/podcast/), [RadioFrance](https://www.radiofrance.fr/societe/tech-web/cybersecurite) a proposé quelques explications sur l’attaque récente d’un rançongiciel à l’encontre de La [Poste Mobile](https://www.radiofrance.fr/franceinter/sept-questions-pour-comprendre-le-piratage-de-l-operateur-la-poste-mobile-et-ses-consequences-6393466).
+
+Un exemple récent avec les nouvelles menaces du [Indirect Pipeline Poisoning](https://youtu.be/fcibOy-zoN8) ou du [Proxyjacking](https://sysdig.com/blog/proxyjacking-attackers-log4j-exploited/) (4 Avril 2023, Sysdig, en anglais). De même concernant les outils, avec la théorie ancienne de [TLA+ (Leslie Lamport)](https://learntla.com/), qui donne le simulateur [Maelström de Jepsen.io](https://github.com/jepsen-io/maelstrom), [SLSA++ de Chainguard](https://www.chainguard.dev/unchained/new-slsa-survey-reveals-real-world-developer-approaches-to-software-supply-chain-security), ou le dernier billet de blog, [Crossplane+DAPR](https://blog.crossplane.io/crossplane-and-dapr/) (28 Mars 2023, Crossplane, en anglais).
 
 <!-- ------------------------ -->
 ## Ex: Veille
@@ -890,6 +895,7 @@ Duration: 3
 * Ni de version/nom de framework
 * Vérifier les entrées/sorties des clients/noeuds/microservices (injection/XSS, protocoles)
 * Faire des backups régulièrement et déconnectées du réseau
+* Se protéger des DDOS (go avec des timeouts, ou [BIRD](https://vincent.bernat.ch/fr/blog/2023-akvorado-ddos-flowspec)) ou laisser Cloudflare ou son cloud provider les gérer
 * Mettre à jour infra/docker images (CI/CD|[GitOps](https://www.infoq.com/news/2020/02/wksctl-kubernetes-gitops/))
 * Surveiller le traffic sortant (comme le DNS qui n'est pas souvent = [Exfiltration de données possible](https://twitter.com/rsobers/status/1293539543115862016) / [DNSSEC](https://blog.ovhcloud.com/an-introduction-to-dnssec/))
 * Joker: Utiliser une PaaS 🇪🇺 si vous ne souhaitez pas vous embêter avec la sécurité: CleverCloud/OVHcloud/Scaleway
@@ -906,6 +912,8 @@ Car la [CNFC Landscape](https://landscape.cncf.io/) ne donne pas la même chose 
 Pour ceux qui n'ont pas pu participer au workshop d'hier matin, ["Le petit chaperon rouge pratique enfin le Zero Trust"](https://cfp.devoxx.fr/2023/talk/NEI-2442/_Le_petit_chaperon_rouge_pratique_enfin_le_%22Zero_Trust%22_(en_mode_labs)), par [Jérôme Masson](https://twitter.com/sphinxgaiaone), [Jean-Pascal Thiery](@https://twitter.com/jpthiery), [David Drugeon-Hamon](https://twitter.com/zebeurton), voici une très bonne synthèse de ce monde avec le principe des 4 C: Cloud, Cluster, Container, Code.
 <!-- https://github.com/Sphinxgaia/little-red-riding-hood/tree/lab-devoxx -->
 ![Les 4C](assets/quatre_c.jpg)
+
+N'hésitez pas à nous contacter pour en savoir plus sur ce domaine, et à nous poser des questions ;-)
 
 <!-- ------------------------ -->
 ## Félicitations
@@ -1053,9 +1061,9 @@ __Objectifs de cette étape__:
 Duration: 5
 
 ### Comment se préparer au pire ?
-![Photo by Growtika on Unsplash](assets/kubernetes.jpg)
+![Site Officiel Kubernetes](assets/kubernetes_site.png)
 
-En découvrant comment [Chainguard Enforce](https://www.chainguard.dev/chainguard-enforce) permet d'aider les développeurs à réaliser cette migration (fastidieuse), surtout si nous n'avons pas un inventaire d'entreprise (et donc éviter du Shadow IT)
+En découvrant comment [Chainguard Enforce](https://www.chainguard.dev/chainguard-enforce) permet d'aider les développeurs à réaliser cette migration (qui peut-être oubliée, fastidieuse ou tout simplement ignorée), surtout si nous n'avons pas un inventaire d'entreprise (et donc éviter du Shadow IT)
 
 ``` YAML
 apiVersion: policy.sigstore.dev/v1beta1
@@ -1088,9 +1096,53 @@ spec:
      }
 ```
 
+Si on reste avec [Kyverno](https://kyverno.io/), utilisé précédement (si vous avez besoin de l'installer à [nouveau](https://github.com/davidaparicio/little-red-riding-hood/blob/lab-devoxx/labs/00-preconfig/01-kyverno/install.sh))
+
+``` YAML
+apiVersion: kyverno.io/v1
+# The `ClusterPolicy` kind applies to the entire cluster.
+kind: ClusterPolicy
+metadata:
+  name: requirements-registry
+# The `spec` defines properties of the policy.
+spec:
+  # The `validationFailureAction` tells Kyverno if the resource being validated should be allowed but reported (`audit`) or blocked (`enforce`).
+  validationFailureAction: enforce
+
+  # The `rules` is one or more rules which must be true.
+  rules:
+    - name: require-red-label
+      # exclude:
+      #   any:
+      #   - resources:
+      #       namespaces:
+      #       - myns
+      # The `match` statement sets the scope of what will be checked. In this case, it is any `Namespace` resource.
+      match:
+        all:
+        - resources:
+            kinds:
+            - Deployment
+            # namespaces:
+            # - "myns"
+      # The `validate` statement tries to positively check what is defined. If the statement, when compared with the requested resource, is true, it is allowed. If false, it is blocked.
+      validate:
+        # The `message` is what gets displayed to a user if this rule fails validation and is therefore blocked.
+        message: "You must use a specific registry for your image (k8s.gcr.io -> registry.k8s.io)"
+        # The `pattern` object defines what pattern will be checked in the resource. In this case, it is looking for `metadata.labels` with `purpose=production`.
+        pattern:
+          spec:
+            template:
+              spec:
+                containers:
+                - image: "registry.k8s.io/*:*"
+```
+
+![Photo by Growtika on Unsplash](assets/kubernetes.jpg)
+
 __Objectifs de cette étape__: 
-* Analyser le [billet de blog de Chainguard](https://www.chainguard.dev/unchained/using-chainguard-enforce-to-prepare-for-the-kubernetes-registry-deprecation) et le tester sur un environnement de test/une sandbox
+* Utiliser Kyverno pour empêcher de nouveaux déploiements avec l'ancien registry
+* Et/Ou analyser le [billet de blog de Chainguard](https://www.chainguard.dev/unchained/using-chainguard-enforce-to-prepare-for-the-kubernetes-registry-deprecation) et le tester sur un environnement de test/une sandbox
 * Facultatif: Le tester sur un environnement plus conséquent/important
 
-<!-- docker scan ou Snyk -->
 <!-- ------------------------ -->
