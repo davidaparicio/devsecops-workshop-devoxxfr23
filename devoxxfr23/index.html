@@ -216,7 +216,7 @@ To github.com:davidaparicio/devsecops-workshop-devoxxfr23.git
 <p>D&#39;après O&#39;Reilly, SaC (Security as Code) consiste à intégrer la sécurité dans les flux DevOps, alias CI/CD. Néanmoins, si l&#39;outil n&#39;est pas trop gourmand en ressources, il peut être installé dans l&#39;éditeur. Car nous avons des ordinateurs plus puissants, grâce à l&#39;apparition des puces ARM ou les IDE en ligne, comme AWS Cloud9, Gitpod, ou GitHub Codespaces. Au niveau des containers sécurisés, des implémentations existent avec <a href="https://gvisor.dev/" target="_blank">gVisor</a>, les <a href="https://katacontainers.io/" target="_blank">Kata Containers</a> et les <a href="https://youtu.be/G0SwSWKGyuM" target="_blank">Confidential containers</a>.</p>
 <p>D&#39;une part, l&#39;application de la configuration (HBAC, RBAC, règle pare-feu) peut-être une opération critique en cas d&#39;oubli (<a href="https://www.websiteplanet.com/blog/beetleeye-leak-report/" target="_blank">bucket S3 accessible en public sur Internet</a>, <a href="https://blog.newsblur.com/2021/06/28/story-of-a-hacking/" target="_blank">base de données sans mot de passe</a>). Il est préférable de déclarer son besoin avec des fichiers et de laisser l&#39;orchestrateur les réaliser plutôt qu&#39;agir de manière impérative sur le système.</p>
 <p>Par exemple, le projet <a href="https://cilium.io/" target="_blank">Cilium</a> permet d&#39;interagir avec le réseau et d&#39;appliquer des politiques de sécurité. De plus, les maillage de services (services-mesh) comme Istio, Traefik maesh ou Solo.io avec GlooEdge génèrent automatiquement des certificats SSL et ne laissent passer ainsi que les communications sécurisées entre vos containers. D&#39;<a href="https://platform9.com/blog/the-ultimate-guide-to-using-calico-flannel-weave-and-cilium/" target="_blank">autres projets</a> existent comme: <a href="https://github.com/flannel-io/flannel" target="_blank">Flannel</a>, <a href="https://github.com/projectcalico/calico" target="_blank">Calico</a> ou <a href="https://github.com/weaveworks/weave" target="_blank">Weave</a>.</p>
-<p>D&#39;autre part, les commandes <code>docker scan</code>, <code>trivy image mon_Image_Docker:tag</code> analysent les vulnérabilités connues de votre Dockerfile. Avant de pousser du code contenant des secrets, un hook peut-être installé avec <a href="https://gitguardian.com/" target="_blank">GitGuardian</a>, <a href="https://github.com/GitGuardian/ggshield" target="_blank">ggshield</a>, <a href="https://github.com/aquasecurity/trivy" target="_blank">Trivy</a> (<code>trivy fs —security-checks secret ./</code>) ou le projet <a href="https://github.com/awslabs/git-secrets" target="_blank">awslabs/git-secrets</a>. Comme l&#39;erreur est humaine, il est préférable d&#39;automatiser toutes ces actions et analyses.</p>
+<p>D&#39;autre part, les commandes <code>docker scan</code>, <code>trivy image mon_Image_Docker:tag</code> analysent les vulnérabilités connues de votre Dockerfile. Avant de pousser du code contenant des secrets, un hook peut-être installé avec <a href="https://gitguardian.com/" target="_blank">GitGuardian</a>, <a href="https://github.com/GitGuardian/ggshield" target="_blank">ggshield</a>, <a href="https://github.com/aquasecurity/trivy" target="_blank">Trivy</a> (<code>trivy fs —security-checks secret ./</code>) ou le projet <a href="https://github.com/awslabs/git-secrets" target="_blank">awslabs/git-secrets</a>. Comme l&#39;erreur est humaine, il est préférable d&#39;automatiser toutes ces actions et analyses. Nous vous recommendons le visionnage de cette <a href="https://youtu.be/hseEfxCHzYw" target="_blank">vidéo explicative</a> de ce qui faut faire en cas d&#39;incident/de fuite (en anglais).</p>
 <p>Au final, en plus de la modélisation de l&#39;attaquant et des risques, il faut aussi prendre en compte les différents flux, avoir des diagrammes d&#39;architecture, comme celui ci-dessous... justement, c&#39;est notre prochain sujet.</p>
 <p class="image-container"><img alt="Exemple d&amp;rsquo;architecture (cloudcraft.co)" src="img/6354ca6168ac64c2.png"></p>
 
@@ -385,6 +385,7 @@ jobs:
       <google-codelab-step label="Ex: Scan d&#39;API" duration="15">
         <h2 is-upgraded>Démonstrations des fonctionnalités de 42Crunch</h2>
 <p>Cette partie sera faite en session live coding, durant l&#39;atelier DevoxxFR2023.</p>
+<p class="image-container"><img alt="Sécurité - Dans un projet IT informatique" src="img/39d2c76fe90908c8.png"></p>
 <p>Vulnerable REST API with OWASP top 10 vulnerabilities for security testing</p>
 <p>Vous pouvez également, à la fin de l&#39;atelier, jouer avec ce repo GitHub <a href="https://github.com/erev0s/VAmPI" target="_blank">VAmPI</a></p>
 <p>Une remontée des vulnérabilités du container d&#39;API, à travers l&#39;outil/registry <a href="https://goharbor.io/" target="_blank">Harbor</a>.</p>
@@ -490,7 +491,7 @@ jobs:
         <h2 is-upgraded>Déploiement : Configuration sécurisée</h2>
 <p>Au niveau des SCM (Software Configuration Management Tools), les classiques sont : <a href="https://www.ansible.com/" target="_blank">Ansible</a>, <a href="https://www.puppet.com/" target="_blank">Puppet</a>, <a href="https://www.chef.io/" target="_blank">Chef</a>, mais également <a href="https://www.atlassian.com/software/bamboo" target="_blank">Bamboo</a>, <a href="https://blog.jetbrains.com/teamcity/2019/03/teamcity-and-plastic-scm/" target="_blank">TeamCity</a>, <a href="https://octopus.com/" target="_blank">Octopus Deploy</a>, <a href="https://www.rudder.io/" target="_blank">Rudder</a>, <a href="https://jaas.ai/" target="_blank">Juju/JAAS</a>, <a href="https://saltproject.io/" target="_blank">SaltStack</a>, <a href="https://cfengine.com/" target="_blank">CFEngine</a>, <a href="https://www.auvik.com/" target="_blank">Auvik</a>, <a href="https://www.solarwinds.com/" target="_blank">SolarWinds</a>.</p>
 <p>Sans oublier de sécuriser vos secrets avec <a href="https://www.vaultproject.io/" target="_blank">Hashicorp Vault</a>, <a href="https://www.akeyless.io/" target="_blank">Akeyless Vault</a>, <a href="https://delinea.com/products/secret-server" target="_blank">Thycotic Secret Server renommé Delinea</a>, les projets <a href="https://github.com/mozilla/sops" target="_blank">Mozilla/sops</a> et <a href="https://github.com/cloudflare/gokey" target="_blank">cloudflare/gokey</a> ou à travers de votre cloud provider par exemple <a href="https://aws.amazon.com/fr/secrets-manager/" target="_blank">AWS Secrets Manager</a>.</p>
-<p>Enfin pour maintenir une infrastructure immutable (IaC), il existe ArgoCD (avec le <a href="https://www.cncf.io/blog/2020/12/17/solving-configuration-drift-using-gitops-with-argo-cd/" target="_blank">concept de Synchronisation</a>), <a href="https://driftctl.com/" target="_blank">Driftctl de CloudSkiff</a>, <a href="https://www.weave.works/blog/magalix-joins-weaveworks-to-bring-policy-to-gitops" target="_blank">Magalix racheté par Weaveworks GitOps</a>, <a href="https://www.fairwinds.com/insights" target="_blank">Fairwinds Insights</a>, <a href="https://github.com/weaveworks/kubediff" target="_blank">le projet GitHub Kubediff de Weaveworks</a>.</p>
+<p>Enfin pour maintenir une infrastructure immutable (IaC), il existe ArgoCD (avec le <a href="https://www.cncf.io/blog/2020/12/17/solving-configuration-drift-using-gitops-with-argo-cd/" target="_blank">concept de Synchronisation</a>), <a href="https://driftctl.com/" target="_blank">Driftctl de CloudSkiff</a>, <a href="https://www.weave.works/blog/magalix-joins-weaveworks-to-bring-policy-to-gitops" target="_blank">Magalix racheté par Weaveworks GitOps</a>, <a href="https://www.fairwinds.com/insights" target="_blank">Fairwinds Insights</a>, <a href="https://github.com/weaveworks/kubediff" target="_blank">le projet GitHub Kubediff de Weaveworks</a>. <a href="https://blog.cockpitio.com/devops/devops-dday-2022-drift-terraform-gitops/" target="_blank">Katia HIMEUR de chez Cockpitio</a> parle de son Retour d&#39;Expérience à ce sujet.</p>
 <p>La combinaison <a href="https://neonmirrors.net/post/2022-07/attesting-image-scans-kyverno/" target="_blank">Trivy+Cosign+Kyverno</a> peut être utilisée pour imposer un déploiement sur Kubernetes d&#39;une image docker sans vulnérabilité, avec un scan récent inférieur à X jours. Nous vous invitons à lire ce <a href="https://neonmirrors.net/post/2022-07/attesting-image-scans-kyverno/" target="_blank">billet de blog</a></p>
 <p>Pour votre connaissance, en voici son code pour la GitHub Action:</p>
 <pre><code language="language-YAML" class="language-YAML">name: vulnerability-scan
@@ -710,7 +711,7 @@ spec:
     
       <google-codelab-step label="Audit" duration="3">
         <h2 is-upgraded>Surveillance : Audit de sécurité et des bonnes pratiques</h2>
-<p>En open source, il existe les projets <a href="https://github.com/derailed/popeye" target="_blank">Popeye</a>, <a href="https://github.com/FairwindsOps/polaris" target="_blank">Polaris</a>, <a href="https://github.com/zegl/kube-score" target="_blank">kube-score</a>, <a href="https://falco.org/docs/rules/" target="_blank">Falco</a> et <a href="https://aquasecurity.github.io/trivy/v0.29.2/docs/misconfiguration/scanning/" target="_blank">Trivy</a> pour Kubernetes.</p>
+<p>En open source, il existe les projets <a href="https://github.com/derailed/popeye" target="_blank">Popeye</a>, <a href="https://github.com/FairwindsOps/polaris" target="_blank">Polaris</a>, <a href="https://github.com/zegl/kube-score" target="_blank">kube-score</a>, <a href="https://falco.org/docs/rules/" target="_blank">Falco</a> et <a href="https://aquasecurity.github.io/trivy/v0.29.2/docs/misconfiguration/scanning/" target="_blank">Trivy</a> et <a href="https://thenewstack.io/check-for-container-image-vulnerabilities-with-trivy/" target="_blank">un tuto</a> (en anglais) pour Kubernetes.</p>
 <p>Pour le multi-cloud <a href="https://github.com/nccgroup/ScoutSuite" target="_blank">nccgroup/ScoutSuite</a> et <a href="https://github.com/SecurityFTW/cs-suite" target="_blank">Cloud Security Suite</a>, ou <a href="https://github.com/prowler-cloud/prowler" target="_blank">Prowler</a> pour AWS/Azure, et le NIST <a href="https://github.com/OpenSCAP/openscap" target="_blank">OpenSCAP</a>. Libhunt en recense d&#39;<a href="https://www.libhunt.com/r/ScoutSuite" target="_blank">autres</a>, comme <a href="https://linuxsecurity.expert/tools/scout2/alternatives/" target="_blank">Linux Security</a> mais une partie est orientée pour les infrastructures spécifiques à AWS, ou non opensourcé comme Cloud Security Suite.</p>
 <p>Si vous ou vos clients en avez besoin, vous pouvez passer des certifications normatives pour vos produits: ISO/CEI 27001 - 27017 - 27018, PCI, HITRUST, CSA STAR, HDS.</p>
 <p>Pour la robustesse SI/logiciel: CSPN, CC EAL 3+, CC EAL 4+.</p>
@@ -732,6 +733,7 @@ spec:
       <google-codelab-step label="Veille technologique" duration="3">
         <h2 is-upgraded>Retour : Analyse de sécurité</h2>
 <p>Nous recommandons de maintenir une veille technologique quotidienne ainsi que la lecture des CVE sur les sites <a href="https://www.opencve.io/" target="_blank">OpenCVE.io</a>, <a href="https://www.cert.ssi.gouv.fr/" target="_blank">CERT-FR</a>. La plate-forme <a href="https://feedly.com/" target="_blank">Feedly.com</a> propose une <a href="https://feedly.com/i/landing/cybersecurity" target="_blank">&#34;Threat Intelligence&#34;</a> sur différents thèmes (abonnement payant). En complément, <a href="https://www.ssi.gouv.fr/" target="_blank">ANSSI</a> a créé le projet libre <a href="https://github.com/OpenCTI-Platform/opencti" target="_blank">OpenCTI.io</a> et <a href="https://otx.alienvault.com/" target="_blank">AlienVault OTX</a> présente les menaces actuelles dans le cybermonde. Et pour finir, voici quelques podcasts en français, <a href="https://www.nolimitsecu.fr/" target="_blank">NoLimitSecu</a>, <a href="https://securite.fm/" target="_blank">La French Connection</a>, <a href="https://www.comptoirsecu.fr/podcast/" target="_blank">Le comptoir Sécu</a>, <a href="https://www.radiofrance.fr/societe/tech-web/cybersecurite" target="_blank">RadioFrance</a> a proposé quelques explications sur l&#39;attaque récente d&#39;un rançongiciel à l&#39;encontre de La <a href="https://www.radiofrance.fr/franceinter/sept-questions-pour-comprendre-le-piratage-de-l-operateur-la-poste-mobile-et-ses-consequences-6393466" target="_blank">Poste Mobile</a>.</p>
+<p>Un exemple récent avec les nouvelles menaces du <a href="https://youtu.be/fcibOy-zoN8" target="_blank">Indirect Pipeline Poisoning</a> ou du <a href="https://sysdig.com/blog/proxyjacking-attackers-log4j-exploited/" target="_blank">Proxyjacking</a> (4 Avril 2023, Sysdig, en anglais). De même concernant les outils, avec la théorie ancienne de <a href="https://learntla.com/" target="_blank">TLA+ (Leslie Lamport)</a>, qui donne le simulateur <a href="https://github.com/jepsen-io/maelstrom" target="_blank">Maelström de Jepsen.io</a>, <a href="https://www.chainguard.dev/unchained/new-slsa-survey-reveals-real-world-developer-approaches-to-software-supply-chain-security" target="_blank">SLSA++ de Chainguard</a>, ou le dernier billet de blog, <a href="https://blog.crossplane.io/crossplane-and-dapr/" target="_blank">Crossplane+DAPR</a> (28 Mars 2023, Crossplane, en anglais).</p>
 
 
       </google-codelab-step>
@@ -795,6 +797,7 @@ spec:
 <li>Ni de version/nom de framework</li>
 <li>Vérifier les entrées/sorties des clients/noeuds/microservices (injection/XSS, protocoles)</li>
 <li>Faire des backups régulièrement et déconnectées du réseau</li>
+<li>Se protéger des DDOS (go avec des timeouts, ou <a href="https://vincent.bernat.ch/fr/blog/2023-akvorado-ddos-flowspec" target="_blank">BIRD</a>) ou laisser Cloudflare ou son cloud provider les gérer</li>
 <li>Mettre à jour infra/docker images (CI/CD|<a href="https://www.infoq.com/news/2020/02/wksctl-kubernetes-gitops/" target="_blank">GitOps</a>)</li>
 <li>Surveiller le traffic sortant (comme le DNS qui n&#39;est pas souvent = <a href="https://twitter.com/rsobers/status/1293539543115862016" target="_blank">Exfiltration de données possible</a> / <a href="https://blog.ovhcloud.com/an-introduction-to-dnssec/" target="_blank">DNSSEC</a>)</li>
 <li>Joker: Utiliser une PaaS 🇪🇺 si vous ne souhaitez pas vous embêter avec la sécurité: CleverCloud/OVHcloud/Scaleway</li>
@@ -806,6 +809,9 @@ spec:
       <google-codelab-step label="Cloud Native" duration="2">
         <p>Si nous devions synthétiser une partie des outils, dans le monde Cloud Native, voici le résultat Car la <a href="https://landscape.cncf.io/" target="_blank">CNFC Landscape</a> ne donne pas la même chose si on choisit Industrie = Sécurité ^^</p>
 <p class="image-container"><img alt="Cloud Native" src="img/24eb8dda306f563b.jpg"></p>
+<p>Pour ceux qui n&#39;ont pas pu participer au workshop d&#39;hier matin, <a href="https://cfp.devoxx.fr/2023/talk/NEI-2442/_Le_petit_chaperon_rouge_pratique_enfin_le_%22Zero_Trust%22_(en_mode_labs)" target="_blank">&#34;Le petit chaperon rouge pratique enfin le Zero Trust&#34;</a>, par <a href="https://twitter.com/sphinxgaiaone" target="_blank">Jérôme Masson</a>, <a href="@https://twitter.com/jpthiery" target="_blank">Jean-Pascal Thiery</a>, <a href="https://twitter.com/zebeurton" target="_blank">David Drugeon-Hamon</a>, voici une très bonne synthèse de ce monde avec le principe des 4 C: Cloud, Cluster, Container, Code.</p>
+<p class="image-container"><img alt="Les 4C" src="img/8263bed65042e7d9.jpg"></p>
+<p>N&#39;hésitez pas à nous contacter pour en savoir plus sur ce domaine, et à nous poser des questions ;-)</p>
 
 
       </google-codelab-step>
@@ -930,8 +936,8 @@ I suspect this will be big next week...
     
       <google-codelab-step label="E4 - K8s deprecation" duration="5">
         <h2 is-upgraded>Comment se préparer au pire ?</h2>
-<p class="image-container"><img alt="Photo by Growtika on Unsplash" src="img/b01bcc3b732e5b2c.jpg"></p>
-<p>En découvrant comment <a href="https://www.chainguard.dev/chainguard-enforce" target="_blank">Chainguard Enforce</a> permet d&#39;aider les développeurs à réaliser cette migration (fastidieuse), surtout si nous n&#39;avons pas un inventaire d&#39;entreprise (et donc éviter du Shadow IT)</p>
+<p class="image-container"><img alt="Site Officiel Kubernetes" src="img/1acebfe23fa27e2f.png"></p>
+<p>En découvrant comment <a href="https://www.chainguard.dev/chainguard-enforce" target="_blank">Chainguard Enforce</a> permet d&#39;aider les développeurs à réaliser cette migration (qui peut-être oubliée, fastidieuse ou tout simplement ignorée), surtout si nous n&#39;avons pas un inventaire d&#39;entreprise (et donc éviter du Shadow IT)</p>
 <pre><code language="language-YAML" class="language-YAML">apiVersion: policy.sigstore.dev/v1beta1
 kind: ClusterImagePolicy
 metadata:
@@ -961,9 +967,50 @@ spec:
        }
      }
 </code></pre>
+<p>Si on reste avec <a href="https://kyverno.io/" target="_blank">Kyverno</a>, utilisé précédement (si vous avez besoin de l&#39;installer à <a href="https://github.com/davidaparicio/little-red-riding-hood/blob/lab-devoxx/labs/00-preconfig/01-kyverno/install.sh" target="_blank">nouveau</a>)</p>
+<pre><code language="language-YAML" class="language-YAML">apiVersion: kyverno.io/v1
+# The `ClusterPolicy` kind applies to the entire cluster.
+kind: ClusterPolicy
+metadata:
+  name: requirements-registry
+# The `spec` defines properties of the policy.
+spec:
+  # The `validationFailureAction` tells Kyverno if the resource being validated should be allowed but reported (`audit`) or blocked (`enforce`).
+  validationFailureAction: enforce
+
+  # The `rules` is one or more rules which must be true.
+  rules:
+    - name: require-red-label
+      # exclude:
+      #   any:
+      #   - resources:
+      #       namespaces:
+      #       - myns
+      # The `match` statement sets the scope of what will be checked. In this case, it is any `Namespace` resource.
+      match:
+        all:
+        - resources:
+            kinds:
+            - Deployment
+            # namespaces:
+            # - &#34;myns&#34;
+      # The `validate` statement tries to positively check what is defined. If the statement, when compared with the requested resource, is true, it is allowed. If false, it is blocked.
+      validate:
+        # The `message` is what gets displayed to a user if this rule fails validation and is therefore blocked.
+        message: &#34;You must use a specific registry for your image (k8s.gcr.io -&gt; registry.k8s.io)&#34;
+        # The `pattern` object defines what pattern will be checked in the resource. In this case, it is looking for `metadata.labels` with `purpose=production`.
+        pattern:
+          spec:
+            template:
+              spec:
+                containers:
+                - image: &#34;registry.k8s.io/*:*&#34;
+</code></pre>
+<p class="image-container"><img alt="Photo by Growtika on Unsplash" src="img/b01bcc3b732e5b2c.jpg"></p>
 <p><strong>Objectifs de cette étape</strong>:</p>
 <ul>
-<li>Analyser le <a href="https://www.chainguard.dev/unchained/using-chainguard-enforce-to-prepare-for-the-kubernetes-registry-deprecation" target="_blank">billet de blog de Chainguard</a> et le tester sur un environnement de test/une sandbox</li>
+<li>Utiliser Kyverno pour empêcher de nouveaux déploiements avec l&#39;ancien registry</li>
+<li>Et/Ou analyser le <a href="https://www.chainguard.dev/unchained/using-chainguard-enforce-to-prepare-for-the-kubernetes-registry-deprecation" target="_blank">billet de blog de Chainguard</a> et le tester sur un environnement de test/une sandbox</li>
 <li>Facultatif: Le tester sur un environnement plus conséquent/important</li>
 </ul>
 
