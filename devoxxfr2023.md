@@ -463,6 +463,8 @@ Sauf si vous avez une équipe de pentesteurs en interne, ou vous êtes experts d
 
 Même les grands groupes utilisent ces techniques. En effet, Google a annoncé récemment (Février 2023) avoir attribué plus de 12 millions de dollars de récompenses en 2022 pour l’identification de plus de 2 900 problèmes de sécurité (cf [ZDNet](https://www.zdnet.fr/actualites/google-s-aligne-financierement-sur-microsoft-pour-son-programme-de-bug-bounty-39954634.htm) et le tweet de [Stormshield](https://twitter.com/Stormshield/status/1630206661167050754)).
 
+OpenAI vient de lancer le sien, avec une [récompense maximale est de 20 000 dollars](https://www.lemondeinformatique.fr/actualites/lire-open-ai-lance-un-bug-bounty-90115.html) (Lien du [site officiel](https://openai.com/blog/bug-bounty-program)).
+
 ![Google - Tweet de Stormshield](assets/google_bug.jpg)
 
 <!-- ------------------------ -->
@@ -826,7 +828,7 @@ Duration: 3
 ### Retour : Analyse de sécurité
 Nous recommandons de maintenir une veille technologique quotidienne ainsi que la lecture des CVE sur les sites [OpenCVE.io](https://www.opencve.io/), [CERT-FR](https://www.cert.ssi.gouv.fr/). La plate-forme [Feedly.com](https://feedly.com/) propose une [“Threat Intelligence”](https://feedly.com/i/landing/cybersecurity) sur différents thèmes (abonnement payant). En complément, [ANSSI](https://www.ssi.gouv.fr/) a créé le projet libre [OpenCTI.io](https://github.com/OpenCTI-Platform/opencti) et [AlienVault OTX](https://otx.alienvault.com/) présente les menaces actuelles dans le cybermonde. Et pour finir, voici quelques podcasts en français, [NoLimitSecu](https://www.nolimitsecu.fr/), [La French Connection](https://securite.fm/), [Le comptoir Sécu](https://www.comptoirsecu.fr/podcast/), [RadioFrance](https://www.radiofrance.fr/societe/tech-web/cybersecurite) a proposé quelques explications sur l’attaque récente d’un rançongiciel à l’encontre de La [Poste Mobile](https://www.radiofrance.fr/franceinter/sept-questions-pour-comprendre-le-piratage-de-l-operateur-la-poste-mobile-et-ses-consequences-6393466).
 
-Un exemple récent avec les nouvelles menaces du [Indirect Pipeline Poisoning](https://youtu.be/fcibOy-zoN8) ou du [Proxyjacking](https://sysdig.com/blog/proxyjacking-attackers-log4j-exploited/) (4 Avril 2023, Sysdig, en anglais). De même concernant les outils, avec la théorie ancienne de [TLA+ (Leslie Lamport)](https://learntla.com/), qui donne le simulateur [Maelström de Jepsen.io](https://github.com/jepsen-io/maelstrom), [SLSA++ de Chainguard](https://www.chainguard.dev/unchained/new-slsa-survey-reveals-real-world-developer-approaches-to-software-supply-chain-security), ou le dernier billet de blog, [Crossplane+DAPR](https://blog.crossplane.io/crossplane-and-dapr/) (28 Mars 2023, Crossplane, en anglais).
+Un exemple récent avec les nouvelles menaces du [Indirect Pipeline Poisoning](https://youtu.be/fcibOy-zoN8), le [Bornes de recharge / Juice jacking](https://www.lemondeinformatique.fr/actualites/lire-bornes-publiques-de-recharge-le-fbi-alerte-sur-le-juice-jacking-90105.html) (11 Avril 2023) ou du [Proxyjacking](https://sysdig.com/blog/proxyjacking-attackers-log4j-exploited/) (4 Avril 2023, Sysdig, en anglais). De même concernant les outils, avec la théorie ancienne de [TLA+ (Leslie Lamport)](https://learntla.com/), qui donne le simulateur [Maelström de Jepsen.io](https://github.com/jepsen-io/maelstrom), [SLSA++ de Chainguard](https://www.chainguard.dev/unchained/new-slsa-survey-reveals-real-world-developer-approaches-to-software-supply-chain-security), ou le dernier billet de blog, [Crossplane+DAPR](https://blog.crossplane.io/crossplane-and-dapr/) (28 Mars 2023, Crossplane, en anglais).
 
 <!-- ------------------------ -->
 ## Ex: Veille
@@ -903,6 +905,9 @@ Duration: 3
 <!-- ------------------------ -->
 ## Cloud Native
 Duration: 2
+
+Tout d'abord, avant de parler de Kubernetes, il faut sécuriser les containers. L'ANSSI (Agence nationale de la sécurité des systèmes d'information) a présenté les [bonnes pratiques de sécurité relatives](https://www.ssi.gouv.fr/uploads/2020/12/docker_fiche_technique.pdf) au déploiement et à l’exécution de conteneur Docker. Si vous préférez le format conférenc, Yann Schepens en a donné à Volcamp.io 2022 par : Et l'ANSSI dit "Voici comment sécuriser un container" (https://youtu.be/WWzG5ps2v14).
+<!-- https://www.ssi.gouv.fr/guide/recommandations-de-securite-relatives-au-deploiement-de-conteneurs-docker/ -->
 
 Si nous devions synthétiser une partie des outils, dans le monde Cloud Native, voici le résultat
 Car la [CNFC Landscape](https://landscape.cncf.io/) ne donne pas la même chose si on choisit Industrie = Sécurité ^^
