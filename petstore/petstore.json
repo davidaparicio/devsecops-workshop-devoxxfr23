@@ -21,6 +21,12 @@
         },
         {
             "url": "https://petstore-secured:4241"
+        },
+        {
+            "url": "http://172.17.0.1:4010"
+        },
+        {
+            "url": "http://host.docker.internal:4010"
         }
     ],
     "paths": {
@@ -886,7 +892,8 @@
                         "type": "string",
                         "format": "password",
                         "minLength": 1,
-                        "maxLength": 100
+                        "maxLength": 100,
+                        "example":"azertyuiop"
                     }
                 }
             },
@@ -906,7 +913,8 @@
                         "type": "string",
                         "format": "password",
                         "minLength": 1,
-                        "maxLength": 100
+                        "maxLength": 100,
+                        "example":"azertyuiop"
                     },
                     "isAdmin": {
                         "default": false,
@@ -1134,10 +1142,12 @@
                 ],
                 "properties": {
                     "version": {
-                        "type": "string"
+                        "type": "string",
+                        "example":"v1.0.0"
                     },
                     "commitId": {
-                        "type": "string"
+                        "type": "string",
+                        "example":"3271bd2a72002b6a730d6da541c5da355390c4ff"
                     }
                 }
             },

@@ -129,7 +129,7 @@ There are two ways to run the scan:
 
 ## Protection the API (Firewall)
 
-To protect the API, follow the readme file located in the 'fw' directory
+To protect the API, follow the readme file present in the 'fw' directory
 
 
 ## API Issues
