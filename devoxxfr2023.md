@@ -151,12 +151,15 @@ Après ces définitions, passons à la pratique en rédigeant un petit document 
 
 Un exemple pour le [proxy Traefik](https://github.com/traefik/traefik/blob/master/SECURITY.md) ou celui d'un [autre repôt](https://github.com/davidaparicio/namecheck/blob/main/SECURITY.md). Comme autre source d'inspiration, voici la documentation K8s sur le sujet: [Kubernetes Security and Disclosure Information (en)](https://kubernetes.io/docs/reference/issues-security/security/)
 
+De même, pour un serveur HTTPs, vous pouvez répondre au path `https://monserveurweb/.well-known/security.txt` conformément au [RFC9116](https://www.rfc-editor.org/rfc/rfc9116). Un exemple avec celui de [Google](https://www.google.com/.well-known/security.txt), ou [plus d'infos sur ce site](https://securitytxt.org/).
+
 __Objectifs de cette étape__: 
 * Copier l'une d'entre elles pour la modifier ultérieurement
 * Préparer un formulaire de signalement (facultatif)
+* Si vous avez un serveur web/HTTPS, vous devez également avoir un `security.txt` dans le dossier `.well-known` à la racine de votre site
 
 <!-- ------------------------ -->
-## Réduire la surface d’attaque
+## La surface d’attaque
 Duration: 6
 
 ### Planifier: Réduction de la menace

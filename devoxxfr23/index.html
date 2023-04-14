@@ -133,16 +133,18 @@
       <google-codelab-step label="Ex: Créer SECURITY.md" duration="5">
         <p>Après ces définitions, passons à la pratique en rédigeant un petit document <code>SECURITY.md</code> dans votre repôt de code. La &#34;Security Policy&#34;, politique de sécurité décrit comment vous allez supporter vos versions et surtout permettre à vos utilisateur.trice.s de pouvoir remonter des bugs ou des failles de sécurité à travers un canal sécurisé avec vous, développeur.se.</p>
 <p>Un exemple pour le <a href="https://github.com/traefik/traefik/blob/master/SECURITY.md" target="_blank">proxy Traefik</a> ou celui d&#39;un <a href="https://github.com/davidaparicio/namecheck/blob/main/SECURITY.md" target="_blank">autre repôt</a>. Comme autre source d&#39;inspiration, voici la documentation K8s sur le sujet: <a href="https://kubernetes.io/docs/reference/issues-security/security/" target="_blank">Kubernetes Security and Disclosure Information (en)</a></p>
+<p>De même, pour un serveur HTTPs, vous pouvez répondre au path <code>https://monserveurweb/.well-known/security.txt</code> conformément au <a href="https://www.rfc-editor.org/rfc/rfc9116" target="_blank">RFC9116</a>. Un exemple avec celui de <a href="https://www.google.com/.well-known/security.txt" target="_blank">Google</a>, ou <a href="https://securitytxt.org/" target="_blank">plus d&#39;infos sur ce site</a>.</p>
 <p><strong>Objectifs de cette étape</strong>:</p>
 <ul>
 <li>Copier l&#39;une d&#39;entre elles pour la modifier ultérieurement</li>
 <li>Préparer un formulaire de signalement (facultatif)</li>
+<li>Si vous avez un serveur web/HTTPS, vous devez également avoir un <code>security.txt</code> dans le dossier <code>.well-known</code> à la racine de votre site</li>
 </ul>
 
 
       </google-codelab-step>
     
-      <google-codelab-step label="Réduire la surface d&#39;attaque" duration="6">
+      <google-codelab-step label="La surface d&#39;attaque" duration="6">
         <h2 is-upgraded>Planifier: Réduction de la menace</h2>
 <p>Réduire la surface d&#39;attaque est très courant dans le monde de la sécurité, d&#39;autant plus, depuis l&#39;essor des containers. Snyk a dénombré <a href="https://snyk.io/opensourcesecurity-2019" target="_blank">78% des vulnérabilités d&#39;applications</a>, dans les dépendances profondes/internes (c&#39;est à dire, à minima, les dépendances de vos dépendances). Notamment, les images Docker &#34;node&#34; ou &#34;postgres&#34; peuvent embarquer les failles de Debian ou d&#39;Alpine, puisqu&#39;elles sont construites par-dessus. Il en va de même pour les containers basés sur d&#39;autres systèmes d&#39;exploitation.</p>
 <p>Pour notre <strong>MVP</strong> ou bien même pour nos <strong>projets finaux</strong>: Faut-il implémenter une solution complète d&#39;authentification, avec le choix de l&#39;<strong>algorithme de chiffrement</strong> en BDD ainsi que les sels (salt) à utiliser ? Ou pouvons-nous nous contenter d&#39;utiliser celui du <strong>framework</strong> ? Un mot de passe fort est-il indispensable (et donc oubliable par l&#39;utilisateur) ? Pourquoi ces questions ? Car la désactivation des fonctionnalités inutiles permet de limiter les risques de sécurité.</p>
