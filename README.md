@@ -8,7 +8,7 @@ https://davidaparicio.gitlab.io/fr/codelabs/devoxxfr23/
 
 https://github.com/davidaparicio/namecheck
 
-## Lien vers le sypnosis de la demo 42Crunch
+## Lien vers le synopsis de la demo 42Crunch
 
 https://github.com/davidaparicio/devsecops-workshop-devoxxfr23/blob/main/petstore/README.md
 

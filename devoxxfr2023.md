@@ -144,7 +144,7 @@ Enfin, pour illustrer une attaque d’ampleur préparée par un attaquant isolé
 Pour notre atelier, on vous laisse ces informations pour réaliser ces spécifications ultérieurement.
 
 <!-- ------------------------ -->
-## Ex: Créer SECURITY.md
+## Ex: SECURITY.md/txt
 Duration: 5
 
 Après ces définitions, passons à la pratique en rédigeant un petit document `SECURITY.md` dans votre repôt de code. La "Security Policy", politique de sécurité décrit comment vous allez supporter vos versions et surtout permettre à vos utilisateur.trice.s de pouvoir remonter des bugs ou des failles de sécurité à travers un canal sécurisé avec vous, développeur.se.
@@ -254,7 +254,7 @@ D’après O’Reilly, SaC (Security as Code) consiste à intégrer la sécurit�
 
 D’une part, l’application de la configuration (HBAC, RBAC, règle pare-feu) peut-être une opération critique en cas d’oubli ([bucket S3 accessible en public sur Internet](https://www.websiteplanet.com/blog/beetleeye-leak-report/), [base de données sans mot de passe](https://blog.newsblur.com/2021/06/28/story-of-a-hacking/)). Il est préférable de déclarer son besoin avec des fichiers et de laisser l’orchestrateur les réaliser plutôt qu’agir de manière impérative sur le système. 
 
-Par exemple, le projet [Cilium](https://cilium.io/) permet d’interagir avec le réseau et d’appliquer des politiques de sécurité. De plus, les maillage de services (services-mesh) comme Istio, Traefik maesh ou Solo.io avec GlooEdge génèrent automatiquement des certificats SSL et ne laissent passer ainsi que les communications sécurisées entre vos containers. D'[autres projets](https://platform9.com/blog/the-ultimate-guide-to-using-calico-flannel-weave-and-cilium/) existent comme: [Flannel](https://github.com/flannel-io/flannel), [Calico](https://github.com/projectcalico/calico) ou [Weave](https://github.com/weaveworks/weave).
+Par exemple, le projet [Cilium](https://cilium.io/)([petite introduction vidéo](https://lydra.fr/securite-des-applications-cloud-via-le-reseau-avec-cilium-ebpf-live-meetup-avec-raphael-pinson/)) permet d’interagir avec le réseau et d’appliquer des politiques de sécurité. De plus, les maillage de services (services-mesh) comme Istio, Traefik maesh ou Solo.io avec GlooEdge génèrent automatiquement des certificats SSL et ne laissent passer ainsi que les communications sécurisées entre vos containers. D'[autres projets](https://platform9.com/blog/the-ultimate-guide-to-using-calico-flannel-weave-and-cilium/) existent comme: [Flannel](https://github.com/flannel-io/flannel), [Calico](https://github.com/projectcalico/calico) ou [Weave](https://github.com/weaveworks/weave).
 
 D’autre part, les commandes `docker scan`, `trivy image mon_Image_Docker:tag` analysent les vulnérabilités connues de votre Dockerfile. Avant de pousser du code contenant des secrets, un hook peut-être installé avec [GitGuardian](https://gitguardian.com/), [ggshield](https://github.com/GitGuardian/ggshield), [Trivy](https://github.com/aquasecurity/trivy) (`trivy fs —security-checks secret ./`) ou le projet [awslabs/git-secrets](https://github.com/awslabs/git-secrets).
 Comme l’erreur est humaine, il est préférable d’automatiser toutes ces actions et analyses. Nous vous recommendons le visionnage de cette [vidéo explicative](https://youtu.be/hseEfxCHzYw) de ce qui faut faire en cas d'incident/de fuite (en anglais).
@@ -462,7 +462,7 @@ Duration: 3
 
 ### Test : Pentest
 
-Sauf si vous avez une équipe de pentesteurs en interne, ou vous êtes experts des outils [Kali Linux](https://www.kali.org/), [Parrot Security](https://www.parrotsec.org/), [hetty](https://hetty.xyz/) ou [Burp Suite Pro](https://portswigger.net/burp/), [SuperTruder](https://github.com/ElSicarius/SuperTruder), [ffuf](https://github.com/ffuf/ffuf), [Metasploit](https://www.metasploit.com/)..., il est possible de demander à une entreprise spécialisée de réaliser les pentests ou vous pouvez participer à un programme de [Bug Bounty](https://geekflare.com/bug-bounty-platforms/): [YesWeHack](https://www.yeswehack.com/), [Yogosha](https://yogosha.com/), [Open Bug Bounty](https://www.openbugbounty.org/), [Hackerone](https://www.hackerone.com/), [Bugcrowd](https://www.bugcrowd.com/), [SafeHats](https://app.safehats.com/enterprises/programs), [Intigriti](https://www.intigriti.com/), [Synack](https://www.synack.com/).
+Sauf si vous avez une équipe de pentesteurs en interne, ou vous êtes experts des outils [Kali Linux](https://www.kali.org/), [Parrot Security](https://www.parrotsec.org/), [hetty](https://hetty.xyz/) ou [Burp Suite Pro](https://portswigger.net/burp/), [SuperTruder](https://github.com/ElSicarius/SuperTruder), [ffuf](https://github.com/ffuf/ffuf), [Wfuzz](https://github.com/xmendez/wfuzz), [Metasploit](https://www.metasploit.com/), [Fimap](https://github.com/crunchsec/fimap) avec son [pense-bête](https://twitter.com/bluetouff/status/1647261358960922629), etc..., il est possible de demander à une entreprise spécialisée de réaliser les pentests ou vous pouvez participer à un programme de [Bug Bounty](https://geekflare.com/bug-bounty-platforms/): [YesWeHack](https://www.yeswehack.com/), [Yogosha](https://yogosha.com/), [Open Bug Bounty](https://www.openbugbounty.org/), [Hackerone](https://www.hackerone.com/), [Bugcrowd](https://www.bugcrowd.com/), [SafeHats](https://app.safehats.com/enterprises/programs), [Intigriti](https://www.intigriti.com/), [Synack](https://www.synack.com/).
 
 Même les grands groupes utilisent ces techniques. En effet, Google a annoncé récemment (Février 2023) avoir attribué plus de 12 millions de dollars de récompenses en 2022 pour l’identification de plus de 2 900 problèmes de sécurité (cf [ZDNet](https://www.zdnet.fr/actualites/google-s-aligne-financierement-sur-microsoft-pour-son-programme-de-bug-bounty-39954634.htm) et le tweet de [Stormshield](https://twitter.com/Stormshield/status/1630206661167050754)).
 
@@ -490,6 +490,7 @@ Duration: 10
 
 ### Génération des SBOM avec GoReleaser et Syft
 Reprenons notre programme écrit en Go, de tout à l’heure et y ajoutons une GitHub Action pour générer le SBOM avec Syft, pendant la génération des binaires par GoReleaser.
+Surtout que les impacts des dépendances ne sont pas négligeables et peuvent être importantes ([casser les builds avec PyPi Codecov](https://www.reddit.com/r/Python/comments/12kukhk/codecov_gone_from_pypi/), ou [casser la PROD, pour colors ou faker.js](https://snyk.io/blog/open-source-npm-packages-colors-faker/))
 
 ```YAML
 name: Release (GoReleaser)
@@ -801,7 +802,7 @@ Illustrons cela avec Ansible pour le mode "pet", via la commande
 Duration: 3
 
 ### Surveillance : Audit de sécurité et des bonnes pratiques
-En open source, il existe les projets [Popeye](https://github.com/derailed/popeye), [Polaris](https://github.com/FairwindsOps/polaris), [kube-score](https://github.com/zegl/kube-score), [Falco](https://falco.org/docs/rules/) et [Trivy](https://aquasecurity.github.io/trivy/v0.29.2/docs/misconfiguration/scanning/) et [un tuto](https://thenewstack.io/check-for-container-image-vulnerabilities-with-trivy/) (en anglais) pour Kubernetes.
+En open source, il existe les projets [gcp_scanner](https://github.com/google/gcp_scanner), [Popeye](https://github.com/derailed/popeye), [Polaris](https://github.com/FairwindsOps/polaris), [kube-score](https://github.com/zegl/kube-score), [Falco](https://falco.org/docs/rules/) et [Trivy](https://aquasecurity.github.io/trivy/v0.29.2/docs/misconfiguration/scanning/) et [un tuto](https://thenewstack.io/check-for-container-image-vulnerabilities-with-trivy/) (en anglais) pour Kubernetes.
 
 Pour le multi-cloud [nccgroup/ScoutSuite](https://github.com/nccgroup/ScoutSuite) et [Cloud Security Suite](https://github.com/SecurityFTW/cs-suite), ou [Prowler](https://github.com/prowler-cloud/prowler) pour AWS/Azure, et le NIST [OpenSCAP](https://github.com/OpenSCAP/openscap). Libhunt en recense d'[autres](https://www.libhunt.com/r/ScoutSuite), comme [Linux Security](https://linuxsecurity.expert/tools/scout2/alternatives/) mais une partie est orientée pour les infrastructures spécifiques à AWS, ou non opensourcé comme Cloud Security Suite.
 
@@ -895,7 +896,7 @@ Duration: 3
 * Détection de connexion, proposer/activer MFA
 * Pas de configuration/permissions par défaut (K8s, [MongoDB](https://www.theregister.com/2016/04/25/mexico_voter_data_breach/))
 * Pas de secrets dans les Docker images ou les repositories Git (Vault, .gitignore)
-* Pas de données sensibles dans les GUI (RGPD + permettre la captation durant une visio/conférences)
+* Pas de données sensibles dans les GUI ([RGPD/le code HTTP 451](https://twitter.com/kvlly/status/1647325854094045185) ou la captation durant une visio/conférence)
 * Ne pas afficher de stacktrace (pas debug | Fail securely)
 * Ni de version/nom de framework
 * Vérifier les entrées/sorties des clients/noeuds/microservices (injection/XSS, protocoles)
