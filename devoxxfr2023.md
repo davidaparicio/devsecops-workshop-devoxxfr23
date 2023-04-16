@@ -910,7 +910,7 @@ Duration: 3
 ## Cloud Native
 Duration: 2
 
-Tout d'abord, avant de parler de Kubernetes, il faut sécuriser les containers. L'ANSSI (Agence nationale de la sécurité des systèmes d'information) a présenté les [bonnes pratiques de sécurité relatives](https://www.ssi.gouv.fr/uploads/2020/12/docker_fiche_technique.pdf) au déploiement et à l’exécution de conteneur Docker. Si vous préférez le format conférenc, Yann Schepens en a donné à Volcamp.io 2022 par : Et l'ANSSI dit "Voici comment sécuriser un container" (https://youtu.be/WWzG5ps2v14).
+Tout d'abord, avant de parler de Kubernetes, il faut sécuriser les containers. L'ANSSI (Agence nationale de la sécurité des systèmes d'information) a présenté les [bonnes pratiques de sécurité relatives](https://www.ssi.gouv.fr/uploads/2020/12/docker_fiche_technique.pdf) au déploiement et à l’exécution de conteneur Docker. Stéphane ROBERT a fait un [billet de blog sur ce sujet](https://blog.stephane-robert.info/post/docker-rootless-securite-seccomp-namespace-capabilities/). Si vous préférez le format conférenc, Yann Schepens en a donné à Volcamp.io 2022 par : Et l'ANSSI dit "Voici comment sécuriser un container" (https://youtu.be/WWzG5ps2v14).
 <!-- https://www.ssi.gouv.fr/guide/recommandations-de-securite-relatives-au-deploiement-de-conteneurs-docker/ -->
 
 Si nous devions synthétiser une partie des outils, dans le monde Cloud Native, voici le résultat
