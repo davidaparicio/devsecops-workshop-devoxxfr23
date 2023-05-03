@@ -4,7 +4,7 @@
 
 https://davidaparicio.gitlab.io/fr/codelabs/devoxxfr23/
 
-## Lien vers le projet Go 
+## Lien vers le projet Go
 
 https://github.com/davidaparicio/namecheck
 
@@ -20,11 +20,11 @@ Vous connaissez probablement les Linux [Install Parties](https://fr.wikipedia.or
 
 - Suivre la méthologie DevSecOps
 - Modéliser la menace
-- Outiller son éditeur de texte ou IDE favori 
+- Outiller son éditeur de texte ou IDE favori
 - Appliquer la sécurité as code, en ayant une confiance nulle (Zéro Trust)
 - Programmer des tests de sécurité
-- Configurer des tests statiques et dynamiques des applications 
-- Activer la signature numérique 
+- Configurer des tests statiques et dynamiques des applications
+- Activer la signature numérique
 - Transférer les binaires de manière sécurisée
 - Mettre en place des scans et des patchs de sécurité
 - Étudier les Audits de sécurité

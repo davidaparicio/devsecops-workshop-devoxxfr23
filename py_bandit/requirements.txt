@@ -1,0 +1,26 @@
+bandit
+pre-commit
+
+# To install these requirements, DO
+# pip3 install -r requirements.txt
+
+# To install and run pre-commit, DO
+# pre-commit install
+# pre-commit autoupdate && pre-commit run --all-files; pre-commit run --all-files
+
+# Enjoy to update pip at the same time
+# python3 -m pip install --upgrade pip
+# alias venv="if [ -e ./.venv/bin/activate ]; then source ./.venv/bin/activate; else python3 -m venv .venv && source ./.venv/bin/activate; fi"
+
+###### Requirements without Version Specifiers ######
+
+# nose
+# nose-cov
+# beautifulsoup4
+
+###### Requirements with Version Specifiers ######
+
+# docopt == 0.6.1             # Version Matching. Must be version 0.6.1
+# keyring >= 4.1.1            # Minimum version 4.1.1
+# coverage != 3.5             # Version Exclusion. Anything except version 3.5
+# Mopidy-Dirble ~= 1.1        # Compatible release. Same as >= 1.1, == 1.*

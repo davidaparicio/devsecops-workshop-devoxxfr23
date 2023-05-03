@@ -1,4 +1,4 @@
-build: build-server build-go 
+build: build-server build-go
 
 build-go:
 	echo "Build go file"

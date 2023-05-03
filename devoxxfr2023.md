@@ -2,18 +2,18 @@ summary: La sécurité, par où commencer ? Install party
 id: devoxxfr23
 categories: devsecops, security
 tags: devoxxfr, GBU-7756
-status: Published 
+status: Published
 authors: David Aparicio
 Feedback Link: https://github.com/davidaparicio/devsecops-workshop-devoxxfr23/issues
 
 # La sécurité, par où commencer ? Install party 🎉
 <!-- ------------------------ -->
-## Présentation 
+## Présentation
 Duration: 3
 
-Votre entreprise a connu une croissance inattendue, des carnets de commandes qui débordent, un tas d'idées nouvelles de projets, et avec la crise actuelle outre-atlantique touchant les GAFAM, la conjecture n'est pas favorable à recruter massivement. 
+Votre entreprise a connu une croissance inattendue, des carnets de commandes qui débordent, un tas d'idées nouvelles de projets, et avec la crise actuelle outre-atlantique touchant les GAFAM, la conjecture n'est pas favorable à recruter massivement.
 
-De plus, votre dernier produit de l'équipe a connu un succès fou, DevoxxGPT. Tous les médias en parlent, les serveurs tiennent tant bien que mal à la charge, et après quelques analyses de logs, vous remarquez que certains petits malins réussissent à bénéficier de l'offre commerciale, sans débourser le moindre sou. 
+De plus, votre dernier produit de l'équipe a connu un succès fou, DevoxxGPT. Tous les médias en parlent, les serveurs tiennent tant bien que mal à la charge, et après quelques analyses de logs, vous remarquez que certains petits malins réussissent à bénéficier de l'offre commerciale, sans débourser le moindre sou.
 
 ![DevoxxGPT logo](assets/devoxxgpt.jpg)
 
@@ -50,7 +50,7 @@ Responsable du Back-end chez [42Crunch](https://42crunch.com/) et développeur d
 __PS:__ Comme vous pouvez en doutez, les entreprises qui nous emploient, continuent à recruter activement ;-)
 
 <!-- ------------------------ -->
-## Motivations 
+## Motivations
 Duration: 3
 
 ### Le saviez-vous ?
@@ -78,7 +78,7 @@ Ou un autre exemple, parmi tant qu'autres sur la Sécurité Dès la Conception, 
 ## OWASP
 Duration: 2
 
-Un constat, en l'espace de 8 ans, le [Top 10](https://owasp.org/Top10/fr/) des attaques **n'a pas évolué**. Ce classement est realisé et mis à jour par l'[OWASP, Open Web Application Security Project](https://owasp.org/), une organisation internationale à but non lucratif qui se consacre à la sécurité des applications web. 
+Un constat, en l'espace de 8 ans, le [Top 10](https://owasp.org/Top10/fr/) des attaques **n'a pas évolué**. Ce classement est realisé et mis à jour par l'[OWASP, Open Web Application Security Project](https://owasp.org/), une organisation internationale à but non lucratif qui se consacre à la sécurité des applications web.
 
 42Crunch a realisée une [vidéo](https://info.42crunch.com/112119-webinar-owasp-recording) sur le [Top10 des API (2019)](https://owasp.org/www-project-api-security/)
 
@@ -91,11 +91,11 @@ Duration: 1
 ### Ce que nous allons réaliser durant ce workshop
 - Suivre la méthologie DevSecOps
 - Modéliser la menace
-- Outiller son éditeur de texte ou IDE favori 
+- Outiller son éditeur de texte ou IDE favori
 - Appliquer la sécurité as code, en ayant une confiance nulle (Zéro Trust)
 - Programmer des tests de sécurité
-- Configurer des tests statiques et dynamiques des applications 
-- Activer la signature numérique 
+- Configurer des tests statiques et dynamiques des applications
+- Activer la signature numérique
 - Transférer les binaires de manière sécurisée
 - Mettre en place des scans et des patchs de sécurité
 - Étudier les Audits de sécurité
@@ -107,7 +107,7 @@ Duration: 1
 
 Pour catégoriser les outils et les différentes étapes, de la DEV jusqu’à la PROD, en passant par le cycle de vie et la maintenance de l’application, on se base sur les bonnes pratiques de la “US DoD Enterprise DevSecOps Reference Design” (du Département de la Défense américaine), publiées à l’adresse suivante : [https://public.cyber.mil/devsecops/](https://public.cyber.mil/devsecops/)
 
-Et nous allons plus précisément nous attarder sur le diagramme/**Figure 1** à la page 19/89. Êtes-vous prêt.e.s ? Alors allons-y ! 
+Et nous allons plus précisément nous attarder sur le diagramme/**Figure 1** à la page 19/89. Êtes-vous prêt.e.s ? Alors allons-y !
 
 ![DevSecOps Figure 1](assets/devsecops.png)
 
@@ -118,11 +118,11 @@ Duration: 3
 ### Planifier: Modélisation de la menace (le fameux Threat Model)
 
 Avant de partir dans les spécifications de notre MVP et la programmation itérative, nous devons réunir toute l’équipe
-autour d’un ou plusieurs ateliers sur l’Analyse du Risque. Mozilla nous propose le format de 30 minutes du [RRA : Analyse/évaluation rapide des risques](https://infosec.mozilla.org/guidelines/risk/rapid_risk_assessment.html) (anglais). 
+autour d’un ou plusieurs ateliers sur l’Analyse du Risque. Mozilla nous propose le format de 30 minutes du [RRA : Analyse/évaluation rapide des risques](https://infosec.mozilla.org/guidelines/risk/rapid_risk_assessment.html) (anglais).
 
 ![RRA Risk table](assets/rra.png)
 
-Et les guides de l’ANSSI, comme l'[“Agilité & Sécurité Numériques”](https://www.ssi.gouv.fr/uploads/2018/11/guide-securite-numerique-agile-anssi-pa-v1.pdf) présente les ateliers à réaliser ainsi que le vocabulaire adéquat, comme la définition du DICT: 
+Et les guides de l’ANSSI, comme l'[“Agilité & Sécurité Numériques”](https://www.ssi.gouv.fr/uploads/2018/11/guide-securite-numerique-agile-anssi-pa-v1.pdf) présente les ateliers à réaliser ainsi que le vocabulaire adéquat, comme la définition du DICT:
 * Disponibilité
 * Intégrité
 * Confidentialité
@@ -153,7 +153,7 @@ Un exemple pour le [proxy Traefik](https://github.com/traefik/traefik/blob/maste
 
 De même, pour un serveur HTTPs, vous pouvez répondre au path `https://monserveurweb/.well-known/security.txt` conformément au [RFC9116](https://www.rfc-editor.org/rfc/rfc9116). Un exemple avec celui de [Google](https://www.google.com/.well-known/security.txt), ou [plus d'infos sur ce site](https://securitytxt.org/).
 
-__Objectifs de cette étape__: 
+__Objectifs de cette étape__:
 * Copier l'une d'entre elles pour la modifier ultérieurement
 * Préparer un formulaire de signalement (facultatif)
 * Si vous avez un serveur web/HTTPS, vous devez également avoir un `security.txt` dans le dossier `.well-known` à la racine de votre site
@@ -166,9 +166,9 @@ Duration: 6
 
 Réduire la surface d'attaque est très courant dans le monde de la sécurité, d’autant plus, depuis l’essor des containers. Snyk a dénombré [78% des vulnérabilités d’applications](https://snyk.io/opensourcesecurity-2019), dans les dépendances profondes/internes (c’est à dire, à minima, les dépendances de vos dépendances). Notamment, les images Docker “node” ou “postgres” peuvent embarquer les failles de Debian ou d’Alpine, puisqu’elles sont construites par-dessus. Il en va de même pour les containers basés sur d’autres systèmes d’exploitation.
 
-Pour notre **MVP** ou bien même pour nos **projets finaux**: Faut-il implémenter une solution complète d’authentification, avec le choix de l’**algorithme de chiffrement** en BDD ainsi que les sels (salt) à utiliser ? Ou pouvons-nous nous contenter d’utiliser celui du **framework** ? Un mot de passe fort est-il indispensable (et donc oubliable par l’utilisateur) ? Pourquoi ces questions ? Car la désactivation des fonctionnalités inutiles permet de limiter les risques de sécurité. 
+Pour notre **MVP** ou bien même pour nos **projets finaux**: Faut-il implémenter une solution complète d’authentification, avec le choix de l’**algorithme de chiffrement** en BDD ainsi que les sels (salt) à utiliser ? Ou pouvons-nous nous contenter d’utiliser celui du **framework** ? Un mot de passe fort est-il indispensable (et donc oubliable par l’utilisateur) ? Pourquoi ces questions ? Car la désactivation des fonctionnalités inutiles permet de limiter les risques de sécurité.
 
-De plus, nous savons que les mots de passe sont une contrainte pour la plupart de nos clients. Dans le papier [“Secrets, Lies, and Account Recovery [...]”](https://goog.gl/v1dBmj) à la conférence internationale WWW’15, Google relève que plus d’1/5 de ses utilisateurs oubliaient leurs mots de passe de leur compte ainsi que la réponse à la question secrète dans les 3 premiers mois. 
+De plus, nous savons que les mots de passe sont une contrainte pour la plupart de nos clients. Dans le papier [“Secrets, Lies, and Account Recovery [...]”](https://goog.gl/v1dBmj) à la conférence internationale WWW’15, Google relève que plus d’1/5 de ses utilisateurs oubliaient leurs mots de passe de leur compte ainsi que la réponse à la question secrète dans les 3 premiers mois.
 
 Plus récemment, en 2021, ANSSI recommande l’utilisation de [coffre-forts (KeePass) et de l’authentification multi-facteurs](https://www.ssi.gouv.fr/particulier/guide/recommandations-relatives-a-lauthentification-multifacteur-et-aux-) au lieu de forcer le changement régulier des mots de passe (car contre-productif).  Microsoft, Apple et Google ont annoncé le [5 Mai 2022](https://fidoalliance.org/apple-google-and-microsoft-commit-to-expanded-support-for-fido-standard-to-accelerate-), le souhait de supprimer les mots de passe, dès 2023 grâce à la norme WebAuth ainsi que FIDO.
 
@@ -189,7 +189,7 @@ Duration: 5
 
 Dans la philosophie du “Security Shift-Left”, nous allons nous outiller afin de remonter directement dans l’éditeur ou l’IDE du développeur. Il existe déjà les “linters” pour chaque langage de programmation (ShellCheck, golangci-lint, etc ...), mais également des extensions dédiées à la sécurité et la liste est longue (pourtant pas [exhaustive](https://owasp.org/www-community/Vulnerability_Scanning_Tools)): SonarLint, Sonatype Nexus IQ, Snyk, Qualys IaC, RedHat Dependency Analytics, GitHub Code Scanning, JFrog XRay... Et la liste complète pour VSCode est [disponible](https://s.42l.fr/vs_sec)
 
-D’autant plus, que leur nom [change régulièrement](https://devdojo.com/yoda/top-vs-code-extensions-for-application-security-in-2021) au fil des rachats, exemple avec DeepCode.AI (acheté par Snyk) ou Mend Advise (ex-WhiteSource), ou sont spécifique à un langage comme C#/XML avec Microsoft Security IntelliSense, node.JS avec npm audit, Redshift Security pour Java, [gosec](https://golangci-lint.run/usage/linters/#gosec) pour Go.
+D’autant plus, que leur nom [change régulièrement](https://devdojo.com/yoda/top-vs-code-extensions-for-application-security-in-2021) au fil des rachats, exemple avec DeepCode.AI (acheté par Snyk) ou Mend Advise (ex-WhiteSource), ou sont spécifique à un langage comme C#/XML avec Microsoft Security IntelliSense, node.JS avec npm audit, Redshift Security pour Java, [gosec](https://golangci-lint.run/usage/linters/#gosec) pour Go, [bandit](https://calmcode.io/bandit/introduction.html) pour Python.
 
 Pour les utilisateurs de Github Copilot, s'il est installé dans votre IDE, l'[extension](https://marketplace.visualstudio.com/items?itemName=GitHub.copilot) devrait vous faire quelques remontées par rapport à des attaques classiques (injections SQL et cie) d'après leur site...
 
@@ -197,7 +197,7 @@ En plus des linters, il faut aussi consulter différents guidelines de son langu
 
 Enfin, en anglais, quelques [règles élémentaires](https://owasp.org/www-project-secure-coding-practices-quick-reference-guide/) et son [résumé](https://levelup.gitconnected.com/how-to-build-secure-applications-a-guide-to-owasp-best-practices-3d11ba406f41)
 
-__Objectifs de cette étape__: 
+__Objectifs de cette étape__:
 * Installer une ou plusieurs extensions pour votre éditeur ou IDE favori.
 * Par exemple, [Snyk Code (lien pour VSCode)](https://marketplace.visualstudio.com/items?itemName=snyk-security.snyk-vulnerability-scanner)
 * Si vous développez souvent des API ou des spécifications format OpenAPI (Swagger), nous vous recommendons l'installation de l'[extension de 42Crunch](https://marketplace.visualstudio.com/items?itemName=42Crunch.vscode-openapi) (lien pour [VSCode](https://marketplace.visualstudio.com/items?itemName=42Crunch.vscode-openapi), [Eclipse](https://marketplace.eclipse.org/content/openapi-swagger-editor#group-details), [JetBrains](https://plugins.jetbrains.com/plugin/14837-openapi-swagger-editor))
@@ -245,6 +245,26 @@ To github.com:davidaparicio/devsecops-workshop-devoxxfr23.git
    3040a1d..698757c  main -> main
 ```
 
+Nous pouvons faire la même chose localement, en configurant les tests pre-commit de git. Prenons l'exemple du projet Python "py_bandit" avec un check sécurité réalisé par l'outil [Bandit](https://github.com/PyCQA/bandit).
+
+``` YAML
+repos:
+- repo: https://github.com/pre-commit/pre-commit-hooks
+  rev: v4.4.0
+  hooks:
+  - id: trailing-whitespace
+  - id: end-of-file-fixer
+  - id: check-added-large-files
+    args: ['--maxkb=100'] # (default=500kB)
+  - id: detect-aws-credentials
+- repo: https://github.com/PyCQA/bandit
+  rev: '1.7.5' # Update me!
+  hooks:
+  - id: bandit
+    name: security check for python (bandit)
+    description: 'Bandit is a tool for finding common security issues in Python code'
+```
+
 <!-- ------------------------ -->
 ## Virage à gauche toute
 Duration: 4
@@ -252,7 +272,7 @@ Duration: 4
 ### Développer : Sécurité comme Code
 D’après O’Reilly, SaC (Security as Code) consiste à intégrer la sécurité dans les flux DevOps, alias CI/CD. Néanmoins, si l’outil n’est pas trop gourmand en ressources, il peut être installé dans l’éditeur. Car nous avons des ordinateurs plus puissants, grâce à l’apparition des puces ARM ou les IDE en ligne, comme AWS Cloud9, Gitpod, ou GitHub Codespaces. Au niveau des containers sécurisés, des implémentations existent avec [gVisor](https://gvisor.dev/), les [Kata Containers](https://katacontainers.io/) et les [Confidential containers](https://youtu.be/G0SwSWKGyuM).
 
-D’une part, l’application de la configuration (HBAC, RBAC, règle pare-feu) peut-être une opération critique en cas d’oubli ([bucket S3 accessible en public sur Internet](https://www.websiteplanet.com/blog/beetleeye-leak-report/), [base de données sans mot de passe](https://blog.newsblur.com/2021/06/28/story-of-a-hacking/)). Il est préférable de déclarer son besoin avec des fichiers et de laisser l’orchestrateur les réaliser plutôt qu’agir de manière impérative sur le système. 
+D’une part, l’application de la configuration (HBAC, RBAC, règle pare-feu) peut-être une opération critique en cas d’oubli ([bucket S3 accessible en public sur Internet](https://www.websiteplanet.com/blog/beetleeye-leak-report/), [base de données sans mot de passe](https://blog.newsblur.com/2021/06/28/story-of-a-hacking/)). Il est préférable de déclarer son besoin avec des fichiers et de laisser l’orchestrateur les réaliser plutôt qu’agir de manière impérative sur le système.
 
 Par exemple, le projet [Cilium](https://cilium.io/)([petite introduction vidéo](https://lydra.fr/securite-des-applications-cloud-via-le-reseau-avec-cilium-ebpf-live-meetup-avec-raphael-pinson/)) permet d’interagir avec le réseau et d’appliquer des politiques de sécurité. De plus, les maillage de services (services-mesh) comme Istio, Traefik maesh ou Solo.io avec GlooEdge génèrent automatiquement des certificats SSL et ne laissent passer ainsi que les communications sécurisées entre vos containers. D'[autres projets](https://platform9.com/blog/the-ultimate-guide-to-using-calico-flannel-weave-and-cilium/) existent comme: [Flannel](https://github.com/flannel-io/flannel), [Calico](https://github.com/projectcalico/calico) ou [Weave](https://github.com/weaveworks/weave).
 
@@ -273,7 +293,7 @@ Nous allons définir les règles pour passer de la sécurité périmétrique ([m
 
 ![Exemple d'interactions entre services](assets/kiali.png)
 
-__Objectifs de cette étape__: 
+__Objectifs de cette étape__:
 * Définir les interactions de votre projet avec:
     * les autres microservices
     * les bases de données (SQL/NoSQL/Clé-Valeur)
@@ -298,7 +318,7 @@ La réponse se cache dans la banalité, comme nous pouvons le lire en images
 
 ![DNS exfiltration 😈](assets/dns_exfiltration.jpg)
 
-__Objectifs de cette étape__: 
+__Objectifs de cette étape__:
 * Définir les interactions, même celles qui sembleraient être légitimes
 * Reprendre l'exercice précédent, si besoin ;)
 
@@ -308,7 +328,7 @@ Duration: 3
 
 ### Compilation : Tests statiques de sécurité des applications
 
-Le podium des SAST est [Checkmarx](https://checkmarx.com/), [SonarQube](https://www.sonarsource.com/products/sonarqube/), [Veracode](https://www.veracode.com/), suivi de [OpenSCAP](https://www.open-scap.org/), [Insider CLI](https://github.com/insidersec/insider) (couvrant OWASP Top 10), [PMD - Don’t shoot the messenger](https://pmd.github.io/), [Mend Advise (ex-WhiteSource)](https://mend.io/), [Argon Supply Chain](https://www.argon.io/) qui a rejoint [Aqua](https://blog.aquasec.com/argon-supply-chain-security), [Brakeman](https://brakemanscanner.org/), [Codacy](https://www.codacy.com/), [Contrast Security](https://www.contrastsecurity.com/), [CyberRes](https://www.microfocus.com/en-us/cyberres), [Find Security Bugs](https://find-sec-bugs.github.io/) (Java), [Grammatech](https://www.grammatech.com/), [HCL AppScan](https://www.hcltechsw.com/appscan), [JIT.io](https://www.jit.io/), [Klocwork](https://www.perforce.com/products/klocwork), [LGTM.com](https://lgtm.com/) racheté par [Github](https://github.blog/2022-08-15-the-next-step-for-lgtm-com-github-code-scanning/), [Perforce SAST](https://www.perforce.com/blog/kw/what-is-sast), Redshift renommé récemment en [Software Secured](https://www.softwaresecured.com/) probablement pour un différent juridique avec AWS, [Snyk](https://snyk.io/), [SpectralOps](https://spectralops.io/), [Synopsys Coverity](https://www.synopsys.com/software-integrity/security-testing/static-analysis-sast.html), [slscan.io](https://slscan.io/), [42Crunch API SAST](https://42crunch.com/free-tools/). 
+Le podium des SAST est [Checkmarx](https://checkmarx.com/), [SonarQube](https://www.sonarsource.com/products/sonarqube/), [Veracode](https://www.veracode.com/), suivi de [OpenSCAP](https://www.open-scap.org/), [Insider CLI](https://github.com/insidersec/insider) (couvrant OWASP Top 10), [PMD - Don’t shoot the messenger](https://pmd.github.io/), [Mend Advise (ex-WhiteSource)](https://mend.io/), [Argon Supply Chain](https://www.argon.io/) qui a rejoint [Aqua](https://blog.aquasec.com/argon-supply-chain-security), [Brakeman](https://brakemanscanner.org/), [Codacy](https://www.codacy.com/), [Contrast Security](https://www.contrastsecurity.com/), [CyberRes](https://www.microfocus.com/en-us/cyberres), [Find Security Bugs](https://find-sec-bugs.github.io/) (Java), [Grammatech](https://www.grammatech.com/), [HCL AppScan](https://www.hcltechsw.com/appscan), [JIT.io](https://www.jit.io/), [Klocwork](https://www.perforce.com/products/klocwork), [LGTM.com](https://lgtm.com/) racheté par [Github](https://github.blog/2022-08-15-the-next-step-for-lgtm-com-github-code-scanning/), [Perforce SAST](https://www.perforce.com/blog/kw/what-is-sast), Redshift renommé récemment en [Software Secured](https://www.softwaresecured.com/) probablement pour un différent juridique avec AWS, [Snyk](https://snyk.io/), [SpectralOps](https://spectralops.io/), [Synopsys Coverity](https://www.synopsys.com/software-integrity/security-testing/static-analysis-sast.html), [slscan.io](https://slscan.io/), [42Crunch API SAST](https://42crunch.com/free-tools/).
 
 ![Gitlab - SAST](assets/gitlab_sast.jpg)
 Exemple: lorsqu'on crée un nouveau projet sur Gitlab. Ce dernier nous propose dès l'[initiation du projet](https://gitlab.com/projects/new#blank_project), d'activer le GitLab SAST.
@@ -372,7 +392,7 @@ jobs:
       uses: github/codeql-action/analyze@v2
 ```
 
-__Objectifs de cette étape__: 
+__Objectifs de cette étape__:
 * Activer l'action GitHub de CodeQL
 * Définir le language de programmation de scan
 * Valider l'exécution correcte de sa GitHub action en réalisant une PR
@@ -401,7 +421,7 @@ Visible directement sur [Github](https://github.com/davidaparicio/namecheck/secu
 
 ![Exemple avec gosec](assets/gosec_fix.jpg)
 
-__Objectifs de cette étape__: 
+__Objectifs de cette étape__:
 * Si vous avez le temps,
 * Fixer une des erreurs éventuelles remontées par CodeQL
 * Committer dans une nouvelle branche, et créer une PR
@@ -417,7 +437,7 @@ Duration: 10
 
 En effet, vous vous rappelez des conséquences de l'attaque contre fournisseur de données pour DevoxxGPT: [NewsBlur](https://blog.newsblur.com/2021/06/28/story-of-a-hacking/). Pour éviter la même mésaventure, vous prenez les devant. Tester votre déploiement, en vérifiant les Best Practices en Sécurité.
 
-__Objectifs de cette étape__: 
+__Objectifs de cette étape__:
 * Codez deux petites fonctions de test qui valide (SUCCÈS) si elle n'arrive à se connecter à votre BDD sans identifiants, et ceux par défaut comme `admin:admin`
 * Intégrez ce test dans votre CI/CD, pour valider la bascule Bleue/Verte ([blue/green](https://traefik.io/glossary/kubernetes-deployment-strategies-blue-green-canary/)) avant la mise à jour progressive/[rolling update](https://kubernetes.io/blog/2018/04/30/zero-downtime-deployment-kubernetes-jenkins/) (facultatif)
 * Bonus: Implémenter d'autres tests avec d'autres mots de passes génériques/leakés sur internet, comme avec le dépôt de code GitHub [ihebski/DefaultCreds-cheat-sheet](https://github.com/ihebski/DefaultCreds-cheat-sheet/blob/main/DefaultCreds-Cheat-Sheet.csv)
@@ -448,7 +468,7 @@ Cette partie sera faite en session live coding, durant l'atelier DevoxxFR2023.
 
 ![Sécurité - Dans un projet IT informatique](assets/it_security.png)
 
-> Vulnerable REST API with OWASP top 10 vulnerabilities for security testing 
+> Vulnerable REST API with OWASP top 10 vulnerabilities for security testing
 
 Vous pouvez également, à la fin de l'atelier, jouer avec ce repo GitHub [VAmPI](https://github.com/erev0s/VAmPI)
 
@@ -477,7 +497,7 @@ Duration: 3
 
 ### Distribution : Signature numérique
 
-SCA (Software Composition Analysis) et les SBOM (Software Bill Of Materials) permettent de générer la nomenclature logicielle : l’ensemble des packages du système d’exploitation ainsi que vos dépendances présentes dans votre programme ou dans votre image Docker. 
+SCA (Software Composition Analysis) et les SBOM (Software Bill Of Materials) permettent de générer la nomenclature logicielle : l’ensemble des packages du système d’exploitation ainsi que vos dépendances présentes dans votre programme ou dans votre image Docker.
 
 Le site [OWASP CycloneDX](https://cyclonedx.org/tool-center/) recense [le standard](https://github.com/CycloneDX/bom-examples) dont les implémentations sont : [Syft d’Anchore](https://github.com/anchore/syft), [tern-tools/tern](https://github.com/tern-tools/tern), [microsoft/sbom-tool](https://github.com/microsoft/sbom-tool), [SPDX SBOM Generator](https://github.com/opensbom-generator/spdx-sbom-generator) et les [produits](https://www.csoonline.com/article/3667483/8-top-sbom-tools-to-consider.html) de [Dependency Track](https://dependencytrack.org/), [FOSSA](https://fossa.com/lp/simplify-sbom-generation-fossa), [Mend](https://www.mend.io/sbom/), [Rezilion](https://www.rezilion.com/platform/sca-dynamic-sbom/), [TauruSeer](https://www.tauruseer.com/platform/dynamic-software-bill-of-materials-SBOM), [Vigilant Ops](https://www.vigilant-ops.com/products/).
 
@@ -548,7 +568,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GH_PAT }}
 ```
 
-__Objectifs de cette étape__: 
+__Objectifs de cette étape__:
 * Activer l'action GitHub de GoReleaser
 * Lancer la pipeline pour générer les binaires
 * Explorer le fichier SBOM créé
@@ -558,7 +578,7 @@ __Objectifs de cette étape__:
 Duration: 3
 
 ### Transfert : Transfert sécurisé
-Les gestionnaires d’artefacts, paquets d’OS, d’images Docker, les plus connus sont [JFrog Artifactory](https://jfrog.com/artifactory/), [Sonatype Nexus](https://www.sonatype.com/products/nexus-repository), [ProGet](https://inedo.com/proget). 
+Les gestionnaires d’artefacts, paquets d’OS, d’images Docker, les plus connus sont [JFrog Artifactory](https://jfrog.com/artifactory/), [Sonatype Nexus](https://www.sonatype.com/products/nexus-repository), [ProGet](https://inedo.com/proget).
 
 Il est possible de renforcer l’intégrité en certifiant vos images [Docker avec Notary](https://blog.octo.com/la-signature-dimages-docker-sur-une-registry-avec-notary/). Plus d’informations sur la documentation spécifique [“Content trust in Docker”](https://docs.docker.com/engine/security/trust/)
 
@@ -567,9 +587,9 @@ Il est possible de renforcer l’intégrité en certifiant vos images [Docker av
 Duration: 3
 
 ### Déploiement : Configuration sécurisée
-Au niveau des SCM (Software Configuration Management Tools), les classiques sont : [Ansible](https://www.ansible.com/), [Puppet](https://www.puppet.com/), [Chef](https://www.chef.io/), mais également [Bamboo](https://www.atlassian.com/software/bamboo), [TeamCity](https://blog.jetbrains.com/teamcity/2019/03/teamcity-and-plastic-scm/), [Octopus Deploy](https://octopus.com/), [Rudder](https://www.rudder.io/), [Juju/JAAS](https://jaas.ai/), [SaltStack](https://saltproject.io/), [CFEngine](https://cfengine.com/), [Auvik](https://www.auvik.com/), [SolarWinds](https://www.solarwinds.com/). 
+Au niveau des SCM (Software Configuration Management Tools), les classiques sont : [Ansible](https://www.ansible.com/), [Puppet](https://www.puppet.com/), [Chef](https://www.chef.io/), mais également [Bamboo](https://www.atlassian.com/software/bamboo), [TeamCity](https://blog.jetbrains.com/teamcity/2019/03/teamcity-and-plastic-scm/), [Octopus Deploy](https://octopus.com/), [Rudder](https://www.rudder.io/), [Juju/JAAS](https://jaas.ai/), [SaltStack](https://saltproject.io/), [CFEngine](https://cfengine.com/), [Auvik](https://www.auvik.com/), [SolarWinds](https://www.solarwinds.com/).
 
-Sans oublier de sécuriser vos secrets avec [Hashicorp Vault](https://www.vaultproject.io/), [Akeyless Vault](https://www.akeyless.io/), [Thycotic Secret Server renommé Delinea](https://delinea.com/products/secret-server), les projets [Mozilla/sops](https://github.com/mozilla/sops) et [cloudflare/gokey](https://github.com/cloudflare/gokey) ou à travers de votre cloud provider par exemple [AWS Secrets Manager](https://aws.amazon.com/fr/secrets-manager/). 
+Sans oublier de sécuriser vos secrets avec [Hashicorp Vault](https://www.vaultproject.io/), [Akeyless Vault](https://www.akeyless.io/), [Thycotic Secret Server renommé Delinea](https://delinea.com/products/secret-server), les projets [Mozilla/sops](https://github.com/mozilla/sops) et [cloudflare/gokey](https://github.com/cloudflare/gokey) ou à travers de votre cloud provider par exemple [AWS Secrets Manager](https://aws.amazon.com/fr/secrets-manager/).
 
 Enfin pour maintenir une infrastructure immutable (IaC), il existe ArgoCD (avec le [concept de Synchronisation](https://www.cncf.io/blog/2020/12/17/solving-configuration-drift-using-gitops-with-argo-cd/)), [Driftctl de CloudSkiff](https://driftctl.com/), [Magalix racheté par Weaveworks GitOps](https://www.weave.works/blog/magalix-joins-weaveworks-to-bring-policy-to-gitops), [Fairwinds Insights](https://www.fairwinds.com/insights), [le projet GitHub Kubediff de Weaveworks](https://github.com/weaveworks/kubediff). [Katia HIMEUR de chez Cockpitio](https://blog.cockpitio.com/devops/devops-dday-2022-drift-terraform-gitops/) parle de son Retour d'Expérience à ce sujet.
 
@@ -595,7 +615,7 @@ jobs:
     steps:
     - name: Scan for vulnerabilities
       uses: aquasecurity/trivy-action@1db49f532692e649dc5dc43c7c0444dac4790137 # v0.7.0 (Trivy v0.31.2)
-      with: 
+      with:
         image-ref: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
         format: cosign-vuln
         ignore-unfixed: true
@@ -606,7 +626,7 @@ jobs:
       run: |
         SCAN_DIGEST=$(sha256sum scan.json | awk '{print $1}')
         echo "::set-output name=scan_digest::$SCAN_DIGEST"
-        echo "Hash of scan.json is: $SCAN_DIGEST"        
+        echo "Hash of scan.json is: $SCAN_DIGEST"
 
     - name: Upload vulnerability scan report
       uses: actions/upload-artifact@3cea5372237819ed00197afe530f5a7ea3e805c8 # v3.1.0
@@ -638,7 +658,7 @@ jobs:
         COMPUTED_HASH=$(sha256sum scan.json | awk '{print $1}')
         echo "The current computed hash for scan.json is: $COMPUTED_HASH"
         echo "If the two above hashes don't match, scan.json has been tampered with."
-        echo "$SCAN_DIGEST scan.json" | sha256sum --strict --check --status || exit -2        
+        echo "$SCAN_DIGEST scan.json" | sha256sum --strict --check --status || exit -2
 
     - name: Install Cosign
       uses: sigstore/cosign-installer@09a077b27eb1310dcfb21981bee195b30ce09de0 # v2.5.0
@@ -697,7 +717,7 @@ spec:
 Duration: 3
 
 ### Déploiement : Scans de sécurité
-[Shodan.io](https://shodan.io/) est un site assez connu qui crawle Internet à la recherche de ports ouverts, de failles de sécurité connues. [FullHunt.io](https://fullhunt.io/) est aussi une plate-forme pour découvrir tous vos équipements connectés à Internet et votre surface d’attaque. Le scanner d'API de [42Crunch](https://42crunch.com/free-tools/) présenté ultérieurement (à l'étape 21). 
+[Shodan.io](https://shodan.io/) est un site assez connu qui crawle Internet à la recherche de ports ouverts, de failles de sécurité connues. [FullHunt.io](https://fullhunt.io/) est aussi une plate-forme pour découvrir tous vos équipements connectés à Internet et votre surface d’attaque. Le scanner d'API de [42Crunch](https://42crunch.com/free-tools/) présenté ultérieurement (à l'étape 21).
 
 Enfin pour les infrastructures Kubernetes, nous pouvons utiliser les scanners de [quay/clair](https://github.com/quay/clair), [Trivy d'Aqua Security](https://aquasecurity.github.io/trivy/), [Falco](https://falco.org) ou [cnitch](https://github.com/nicholasjackson/cnitch) (pour surveiller si aucun processus se lançant en tant qu'administrateur/root). Concernant cet dernier outil, Liz Rice signale sur son blog Medium qu'il est présent dans l'outil SaaS [Aqua Security](https://medium.com/@lizrice/non-privileged-containers-based-on-the-scratch-image-a80105d6d341)
 
@@ -706,11 +726,11 @@ Enfin pour les infrastructures Kubernetes, nous pouvons utiliser les scanners de
 Duration: 3
 
 ### Opération : Patchs de sécurité
-Pour activer les patchs de sécurité pour les environnements “pets”, vous pouvez utiliser vos playbooks [Ansible](https://www.ansible.com/) (avec [AWX](https://github.com/ansible/awx)/[Ansible Tower](https://www.ansible.com/products/controller) ou [HP Squest](https://hewlettpackard.github.io/squest/)), [SaltStack](https://saltproject.io/), [Puppet](https://www.puppet.com/), [Chef](https://www.chef.io/), ou [Rudder](https://www.rudder.io/). 
+Pour activer les patchs de sécurité pour les environnements “pets”, vous pouvez utiliser vos playbooks [Ansible](https://www.ansible.com/) (avec [AWX](https://github.com/ansible/awx)/[Ansible Tower](https://www.ansible.com/products/controller) ou [HP Squest](https://hewlettpackard.github.io/squest/)), [SaltStack](https://saltproject.io/), [Puppet](https://www.puppet.com/), [Chef](https://www.chef.io/), ou [Rudder](https://www.rudder.io/).
 
 Pour la partie “cattle” alias Cloud Native, vous pouvez utiliser votre pipeline CI/CD, [ArgoCI](https://argoproj.github.io/), [Flux](https://fluxcd.io/), [Tekton](https://tekton.dev/) avec la nouvelle image Docker construite, avec vos procédures de mise à jour habituelles (rolling update). [Une récente vidéo de Flamingo](https://twitter.com/chanwit/status/1645099560744935424) semble même consilier Argo CD UI avec Flux (WeaveGitOps).
 
-Illustrons cela avec Ansible pour le mode "pet", via la commande 
+Illustrons cela avec Ansible pour le mode "pet", via la commande
 ```ansible-playbook -i inventory.yml playbook.yml -k -K --check```
 
 ``` YAML
@@ -806,22 +826,22 @@ En open source, il existe les projets [gcp_scanner](https://github.com/google/gc
 
 Pour le multi-cloud [nccgroup/ScoutSuite](https://github.com/nccgroup/ScoutSuite) et [Cloud Security Suite](https://github.com/SecurityFTW/cs-suite), ou [Prowler](https://github.com/prowler-cloud/prowler) pour AWS/Azure, et le NIST [OpenSCAP](https://github.com/OpenSCAP/openscap). Libhunt en recense d'[autres](https://www.libhunt.com/r/ScoutSuite), comme [Linux Security](https://linuxsecurity.expert/tools/scout2/alternatives/) mais une partie est orientée pour les infrastructures spécifiques à AWS, ou non opensourcé comme Cloud Security Suite.
 
-Si vous ou vos clients en avez besoin, vous pouvez passer des certifications normatives pour vos produits: ISO/CEI 27001 - 27017 - 27018, PCI, HITRUST, CSA STAR, HDS. 
+Si vous ou vos clients en avez besoin, vous pouvez passer des certifications normatives pour vos produits: ISO/CEI 27001 - 27017 - 27018, PCI, HITRUST, CSA STAR, HDS.
 
-Pour la robustesse SI/logiciel: CSPN, CC EAL 3+, CC EAL 4+. 
+Pour la robustesse SI/logiciel: CSPN, CC EAL 3+, CC EAL 4+.
 
 Enfin les qualifications des services SSI: SecNumCloud, PSCE, PRIS, PDIS, PASSI, PSHE.
 
-Je vous recommende de jeter un coup d'oeil sur [Mastodon](https://social.imirhil.fr/@aeris) / [Twitter](https://twitter.com/aeris_v2) / [les outils du site web](https://imirhil.fr/) d'aeris pour découvrir plus sur les problèmes/contraintes liés à ces certifications. 
+Je vous recommende de jeter un coup d'oeil sur [Mastodon](https://social.imirhil.fr/@aeris) / [Twitter](https://twitter.com/aeris_v2) / [les outils du site web](https://imirhil.fr/) d'aeris pour découvrir plus sur les problèmes/contraintes liés à ces certifications.
 
 <!-- ------------------------ -->
 ## Surveillance
 Duration: 3
 
 ### Surveillance : Sécurité monitorée
-Le logiciel open source [Falco](https://falco.org/) permet de surveiller l’activité de Kubernetes et détecter des comportements anormaux ou malicieux. Nous vous recommandons de visionner la conférence de [Kris Nova](https://archive.fosdem.org/2020/schedule/event/kubernetes/) au FOSDEM 2020 [“ Fixing the Kubernetes clusterfuck - Understanding security from the kernel up”](https://youtu.be/6NhHnVYpOFw) (en anglais). Les Système de détection d’intrusion (IDS), sont aussi pratiques, les projets [CrowdSec](https://www.crowdsec.net/), [suricata](https://suricata.io/), [fail2ban](https://www.fail2ban.org/), [OSSEC](https://www.ossec.net/), [Wazuh](https://wazuh.com/), [Snort](https://www.snort.org/), [pfSense](https://www.pfsense.org/), [Tripwire Enterprise](https://www.tripwire.com/products/tripwire-enterprise), [Samhain](https://www.la-samhna.de/samhain/), [Security Onion](https://securityonionsolutions.com/) valent la peine d’être consultés. 
+Le logiciel open source [Falco](https://falco.org/) permet de surveiller l’activité de Kubernetes et détecter des comportements anormaux ou malicieux. Nous vous recommandons de visionner la conférence de [Kris Nova](https://archive.fosdem.org/2020/schedule/event/kubernetes/) au FOSDEM 2020 [“ Fixing the Kubernetes clusterfuck - Understanding security from the kernel up”](https://youtu.be/6NhHnVYpOFw) (en anglais). Les Système de détection d’intrusion (IDS), sont aussi pratiques, les projets [CrowdSec](https://www.crowdsec.net/), [suricata](https://suricata.io/), [fail2ban](https://www.fail2ban.org/), [OSSEC](https://www.ossec.net/), [Wazuh](https://wazuh.com/), [Snort](https://www.snort.org/), [pfSense](https://www.pfsense.org/), [Tripwire Enterprise](https://www.tripwire.com/products/tripwire-enterprise), [Samhain](https://www.la-samhna.de/samhain/), [Security Onion](https://securityonionsolutions.com/) valent la peine d’être consultés.
 
-Pour l’ensemble de l’infrastructure, un système SIEM (Security information and event management) est indispensable. [Splunk](https://www.splunk.com/), [Elastic Security](https://www.elastic.co/security), [IBM QRadar](https://www.ibm.com/products/qradar-siem), [AlienVault USM](https://www.unifiedthreatworks.com/USM-Appliance) ou [SolarWinds Threat Monitor](https://www.solarwinds.com/security-event-manager/use-cases/threat-detection) sont dans ce domaine. 
+Pour l’ensemble de l’infrastructure, un système SIEM (Security information and event management) est indispensable. [Splunk](https://www.splunk.com/), [Elastic Security](https://www.elastic.co/security), [IBM QRadar](https://www.ibm.com/products/qradar-siem), [AlienVault USM](https://www.unifiedthreatworks.com/USM-Appliance) ou [SolarWinds Threat Monitor](https://www.solarwinds.com/security-event-manager/use-cases/threat-detection) sont dans ce domaine.
 
 Si vous devez vous connecter en SSH sur votre infrastructure, passez par une machine intermédiaire, dite de rebond, qui apporte la gestion d’utilisateurs/groupes, l’auditabilité ainsi que la traçabilité des actions. [OVHcloud](https://www.ovhcloud.com/fr/) a opensourcé leur projet de [bastion sur GitHub](https://github.com/ovh/the-bastion/)
 
@@ -856,7 +876,7 @@ avec des logins spécialement créés pour DevoxxFR 2023
 Duration: 3
 
 ### Fin de vie : Donnez une date d'échéance à vos projets
-Voici une vue d’ensemble rapide sur une liste d’outils (non exhaustive) qui vont vous accompagner durant le cycle de vie du projet : de la conception jusqu’à la **fin de vie de votre logiciel**. Cette dernière étape est également __indispensable__. Sinon votre produit vivra trop longtemps, au-delà de la maintenance de vos dépendances, mais aussi de votre système d’exploitation. Les exemples à ce sujet sont nombreux: les banques ont payé les mises à jours étendues de **Windows XP** en 2014 car ce système d’exploitation équipait toujours [90% des distributeurs automatiques de billets](https://www.numerama.com/politique/28852-windows-xp-distributeurs.html). 
+Voici une vue d’ensemble rapide sur une liste d’outils (non exhaustive) qui vont vous accompagner durant le cycle de vie du projet : de la conception jusqu’à la **fin de vie de votre logiciel**. Cette dernière étape est également __indispensable__. Sinon votre produit vivra trop longtemps, au-delà de la maintenance de vos dépendances, mais aussi de votre système d’exploitation. Les exemples à ce sujet sont nombreux: les banques ont payé les mises à jours étendues de **Windows XP** en 2014 car ce système d’exploitation équipait toujours [90% des distributeurs automatiques de billets](https://www.numerama.com/politique/28852-windows-xp-distributeurs.html).
 
 Ajoutons encore la panne globale du système météorologique de l’aéroport d’Orly, le 7 Novembre 2015, qui a empêché les avions de décoller ou atterrir, et qui tournait toujours sur [Windows 3.1](https://www.lemondeinformatique.fr/actualites/lire-le-trafic-aerien-d-orly-paralyse-a-cause-d-une-panne-systeme-windows-31-62953.html).
 
@@ -872,13 +892,13 @@ Duration: 15
 
 Vous vous souvenez à nouveau des conséquences de l'attaque contre fournisseur de données pour DevoxxGPT: [NewsBlur](https://blog.newsblur.com/2021/06/28/story-of-a-hacking/). Pour éviter une mésaventure, vous prenez les devant: Tester de manière fréquente vos procédures de snapshot backup/restore.
 
-__Objectifs de cette étape__: 
+__Objectifs de cette étape__:
 * Lister ce qui est indispensable pour votre sauvegarde (état mais aussi fichiers de configuration/secrets chiffrés)
 * Automatiser la procédure qui réalise vos sauvegardes
 * Tester de manière régulière la procédure qui charge vos sauvegardes
 * Profitez-en pour tester votre toute dernière base de code en même temps, la branche principale main/master (facultatif)
 * Facultatif: Réaliser des sauvegardes régulières en hors-ligne (offline) afin de réduire le risque
-* Bonus: Tester vos sauvegardes, durant vos tests de Chaos Monkey 
+* Bonus: Tester vos sauvegardes, durant vos tests de Chaos Monkey
 
 ![CommitStrip - Backup](assets/backup.jpg)
 
@@ -904,7 +924,8 @@ Duration: 3
 * Se protéger des DDOS (go avec des timeouts, ou [BIRD](https://vincent.bernat.ch/fr/blog/2023-akvorado-ddos-flowspec)) ou laisser Cloudflare ou son cloud provider les gérer
 * Mettre à jour infra/docker images (CI/CD|[GitOps](https://www.infoq.com/news/2020/02/wksctl-kubernetes-gitops/))
 * Surveiller le traffic sortant (comme le DNS qui n'est pas souvent = [Exfiltration de données possible](https://twitter.com/rsobers/status/1293539543115862016) / [DNSSEC](https://blog.ovhcloud.com/an-introduction-to-dnssec/))
-* Joker: Utiliser une PaaS 🇪🇺 si vous ne souhaitez pas vous embêter avec la sécurité: CleverCloud/OVHcloud/Scaleway
+* Utiliser les Best Practices de son outil, schématiser et synthétiser comme cette [MindMap AWS](https://twitter.com/hackinarticles/status/1653434534304571394)
+* Joker: Le PaaS 🇪🇺 si vous ne souhaitez pas vous gérer toute la sécurité: CleverCloud/OVHcloud/Scaleway
 
 <!-- ------------------------ -->
 ## Cloud Native
@@ -956,9 +977,9 @@ Duration: 4
 ## Conclusion
 Duration: 4
 
-Pour Guillaume Poupard, patron de l’ANSSI, oublier la cyber-sécurité, c’est [“rouler à 200 km/h à moto sans casque”](https://www.lepoint.fr/high-tech-internet/oublier-la-cybersecurite-c-est-rouler-a-200km-h-a-moto-sans-casque-06-10-2016-2074073_47.php). 
+Pour Guillaume Poupard, patron de l’ANSSI, oublier la cyber-sécurité, c’est [“rouler à 200 km/h à moto sans casque”](https://www.lepoint.fr/high-tech-internet/oublier-la-cybersecurite-c-est-rouler-a-200km-h-a-moto-sans-casque-06-10-2016-2074073_47.php).
 
-Nous connaissons bien l’adage “Nul n’est censé ignorer la loi” ? Selon moi, son équivalent en informatique existe “Nul développeur n’est censé ignorer la sécurité”. C’est ainsi que je voudrais mon premier atelier : qu’il soit un ensemble d’outils pour votre chaîne de CI/CD. 
+Nous connaissons bien l’adage “Nul n’est censé ignorer la loi” ? Selon moi, son équivalent en informatique existe “Nul développeur n’est censé ignorer la sécurité”. C’est ainsi que je voudrais mon premier atelier : qu’il soit un ensemble d’outils pour votre chaîne de CI/CD.
 
 Et comme une [image vaut mille mots](https://davidaparicio.gitlab.io/fr/post/kiwicon/), voilà une de la [Kiwicon 2009](https://kiwicon.org/site_media/poster_shit.pdf) pour conclure.
 
@@ -978,7 +999,7 @@ Nous vous souhaitons un excellent DevoxxFR 2023 !! ;-D
 
 S'il vous plaît, laissez-nous votre note et vos commentaires sur [OpenFeedBack](https://openfeedback.io/2M9FzZ6xSI2POKX1TrXM/2023-04-13/iWUCq9jRftwiLuxrqhdl)
 
-## E1 - Utip 
+## E1 - Utip
 Duration: 5
 
 ### Utip et Mongopay
@@ -989,7 +1010,7 @@ DevoxxGPT connait une croissance incroyable, comme l'illustre le graphique: de n
 
 Mais votre CEO découvre cette [nouvelle](https://www.numerama.com/tech/1325518-utip-ferme-pourquoi-la-plateforme-francaise-de-financement-disparait-elle-si-abruptement.html) avec effroi : "uTip, la plateforme de financement participatif française (Cocorico) concurrente de Tipeee, vient fermer. L’entreprise a été placée en liquidation judiciaire le 23 mars 2023, et son activité s'est arrêtée le 4 avril 2023" ([Source](https://www.numerama.com/tech/1325518-utip-ferme-pourquoi-la-plateforme-francaise-de-financement-disparait-elle-si-abruptement.html)). uTip ferme à cause d'un intermédiaire financier, Mangopay, qui a décidé de mettre fin à leur contrat. Vous avez pour objectif, de le rasurer face à cette triste annonce, ébranlant toute la [French Tech](https://lafrenchtech.com/fr/).
 
-__Objectifs de cette étape__: 
+__Objectifs de cette étape__:
 * Identifier le problème rencontré par uTip, le formaliser
 * Pour un de vos assets de votre projet, trouver ce genre de problème éventuel et une résolution possible
 * Bonus: Pour tous vos prestataires, ou fournisseurs de services (Cloud par exemple), trouvez des alernatives possibles pour éviter de faire banqueroute comme uTip, et ainsi, rassurer votre CEO
@@ -1028,7 +1049,7 @@ and the repository exists.
 
 Votre CEO ainsi que votre CTO s'inquiètent. Car ces messages sont bloquants pour les développements ainsi que les déploiements. En tant que Champion de la sécurité, ielles vous demandent d'investiguer sur la cause de ce message d'erreur. Est-ce que votre startup s'est-elle faite attaquée depuis le live sur XFM, hier soir, au JT du 20h ?
 
-__Objectifs de cette étape__: 
+__Objectifs de cette étape__:
 * Identifier la cause de ce message d'erreur (Avez-vous trouvé un article qui parle de ce souci ?)
 * Etes-vous familié avec le terme ```Man In The Middle``` ? ([Attaque de l'homme du milieu](https://fr.wikipedia.org/wiki/Attaque_de_l%27homme_du_milieu))
 * Faut-il accepter cette nouvelle clé ?
@@ -1052,13 +1073,13 @@ Bientôt le week-end prolongé.. Mais le vendredi matin 7 Avril 2023, la lecture
 FYSA, there's a trivially exploitable CVSS 10.0 vuln in a VERY popular JS library
  resulting in arbitrary command execution that has POCs in the wild.
 
-Happy Friday to everyone - enjoy your weekend if you can, 
+Happy Friday to everyone - enjoy your weekend if you can,
 I suspect this will be big next week...
 ```
 
 Votre CTO ainsi que votre CEO s'inquiètent.. À la veille du [DevoxxFR2023](https://www.devoxx.fr/) et de sa grande plénière, où votre startup fera son show devant 2950 participants durant une session live coding: Est-ce que votre startup est-elle vulnérable à cette faille majeure, pouvant mettre en péril cette démo importante, devant des passionnés de la Tech ainsi que la presse ?
 
-__Objectifs de cette étape__: 
+__Objectifs de cette étape__:
 * Analyser le language et la librairie impactée (trop facile)
 * Observer les indicateurs suivants, produits par Snyk, au sujet de la [lib](https://snyk.io/advisor/npm-package/vm2), de ses [vulnérabilités](https://security.snyk.io/package/npm/vm2) ([1](https://security.snyk.io/vuln/SNYK-JS-VM2-5415299),[2](https://security.snyk.io/vuln/SNYK-JS-VM2-2990237))
 * Identifier si votre projet est vulnérable à cette faille majeure et fournir les preuves à votre CTO/CEO
@@ -1149,7 +1170,7 @@ spec:
 
 ![Photo by Growtika on Unsplash](assets/kubernetes.jpg)
 
-__Objectifs de cette étape__: 
+__Objectifs de cette étape__:
 * Utiliser Kyverno pour empêcher de nouveaux déploiements avec l'ancien registry
 * Et/Ou analyser le [billet de blog de Chainguard](https://www.chainguard.dev/unchained/using-chainguard-enforce-to-prepare-for-the-kubernetes-registry-deprecation) et le tester sur un environnement de test/une sandbox
 * Facultatif: Le tester sur un environnement plus conséquent/important

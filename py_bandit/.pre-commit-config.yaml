@@ -1,0 +1,71 @@
+repos:
+- repo: https://github.com/pre-commit/pre-commit-hooks
+  rev: v4.4.0
+  hooks:
+  - id: trailing-whitespace
+  - id: end-of-file-fixer
+  - id: check-added-large-files
+    args: ['--maxkb=100'] # (default=500kB)
+  - id: check-ast
+  - id: check-builtin-literals
+  - id: check-executables-have-shebangs
+  #- id: detect-aws-credentials
+  - id: check-yaml
+  - id: debug-statements
+  - id: requirements-txt-fixer
+- repo: https://github.com/PyCQA/bandit
+  rev: '1.7.5' # Update me!
+  hooks:
+  - id: bandit
+    name: security check for python (bandit)
+    description: 'Bandit is a tool for finding common security issues in Python code'
+    #args: ["-c", "pyproject.toml"]
+    #additional_dependencies: ["bandit[toml]"]
+
+# -   repo: local
+#     hooks:
+#     -   id: bandit
+#         name: security check for python (bandit)
+#         description: 'Bandit is a tool for finding common security issues in Python code'
+#         entry: bandit
+#         language: python
+#         language_version: python3
+#         types: [python]
+
+# DEPRACTED pre-commit-hooks
+# -   repo: https://github.com/Lucas-C/pre-commit-hooks-bandit
+#     rev: v1.0.5
+#     -   id: python-bandit-vulnerability-check
+#         args: [--verbose] #, --ini, .banditrc, -ll, --skip, "B321,B402", --recursive, src/lib]
+
+# -   repo: https://github.com/asottile/setup-cfg-fmt
+#     rev: v2.2.0
+#     hooks:
+#     -   id: setup-cfg-fmt
+# -   repo: https://github.com/psf/black
+#     rev: 23.3.0
+#     hooks:
+#     -   id: black
+#         args: [--config=pyproject.toml]
+# -   repo: https://github.com/hadialqattan/pycln
+#     rev: v2.1.3
+#     hooks:
+#     -   id: pycln
+#         args: [--config=pyproject.toml]
+# -   repo: https://github.com/pycqa/isort
+#     rev: 5.12.0
+#     hooks:
+#     -   id: isort
+#         files: "\\.(py)$"
+#         args: [--settings-path=pyproject.toml]
+
+# -   repo: local
+#     hooks:
+#     -   id: claat
+#         name: build workshop (claat)
+#         description: 'Claat is a tool to create workshop from Markdown files'
+#         entry: build_codelab.sh
+#         language: script
+#         #language: golang
+#         #language_version: go
+#         #types: [go]

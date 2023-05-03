@@ -2,11 +2,11 @@
 
 Documentation :  https://learning.postman.com/docs/collections/running-collections/working-with-data-files/
 
-# Postman Environment 
+# Postman Environment
 
 Managing environment : https://learning.postman.com/docs/sending-requests/managing-environments/
 
-Please update the hosts file with the following data to reflect the environment on your machine : 
+Please update the hosts file with the following data to reflect the environment on your machine :
 
 ```
 127.0.0.1    pixi-secured.42crunch.test
