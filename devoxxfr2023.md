@@ -925,6 +925,7 @@ Duration: 3
 * Mettre à jour infra/docker images (CI/CD|[GitOps](https://www.infoq.com/news/2020/02/wksctl-kubernetes-gitops/))
 * Surveiller le traffic sortant (comme le DNS qui n'est pas souvent = [Exfiltration de données possible](https://twitter.com/rsobers/status/1293539543115862016) / [DNSSEC](https://blog.ovhcloud.com/an-introduction-to-dnssec/))
 * Utiliser les Best Practices de son outil, schématiser et synthétiser comme cette [MindMap AWS](https://twitter.com/hackinarticles/status/1653434534304571394)
+* Réduire le risque humain avec la sensibilisation des employés (dans les [transports en commun](https://twitter.com/rophilogene/status/1653697963150000130/photo/1), ou chez [Tesla](https://arstechnica.com/information-technology/2020/08/russian-tourist-offered-employee-1-million-to-cripple-tesla-with-malware/))
 * Joker: Le PaaS 🇪🇺 si vous ne souhaitez pas vous gérer toute la sécurité: CleverCloud/OVHcloud/Scaleway
 
 <!-- ------------------------ -->
