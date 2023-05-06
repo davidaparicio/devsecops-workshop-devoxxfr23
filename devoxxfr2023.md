@@ -179,6 +179,10 @@ Ce sont les questions que nous devons nous poser, selon le risque pris et le typ
 Illustration de ce chapitre, avec l'obligation du MFA (Authentification multifacteur/Multi-factor authentication) chez Heroku (probablement la conséquence de leur politique sécurité, suite à la [faille majeure](https://blog.heroku.com/april-2022-incident-review)/[incident](https://status.heroku.com/incidents/2413) impliquant le réinitialisation de tous les mots de passe clients)
 ![Heroku - MFA](assets/heroku_mfa.jpg)
 
+Ou sur un autre site de E-commerce, Gumroad (qui nécessite une vérification par e-mail, lors d'un nouvel accès depuis un ordinateur/IP inconnu)
+
+![Gumroad - MFA](assets/gumroad_mfa.jpg)
+
 Poursuivons avec la suite de l'atelier :D
 
 <!-- ------------------------ -->
@@ -871,6 +875,13 @@ avec des logins spécialement créés pour DevoxxFR 2023
 
 ![alienvault logo](assets/alienvault.jpg)
 
+#### Exemple d'une CVE récente
+
+[CVE-2023-0386 (GitHub de l'exploit](https://github.com/xkaneiki/CVE-2023-0386), [tweet)](https://twitter.com/hack_git/status/1654460176240373760) qui est une faille découverte dans le noyau Linux, où un accès non autorisé à l'exécution du fichier setuid avec des capacités a été trouvé dans le sous-système OverlayFS du noyau Linux dans la façon dont un utilisateur copie un fichier capable d'un montage nosuid dans un autre montage. Ce bug de mappage d'uid permet à un utilisateur local d'élever ses privilèges sur le système.
+Les différents liens d'analyse/versions impactées sur [Ubuntu Security](https://ubuntu.com/security/CVE-2023-0386), [Debian Security](https://security-tracker.debian.org/tracker/CVE-2023-0386), [NIST](https://nvd.nist.gov/vuln/detail/CVE-2023-0386), [CVE MITRE](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2023-0386)
+
+![Ubuntu Security - CVE-2023-0386](assets/ubuntu_cve.jpg)
+
 <!-- ------------------------ -->
 ## Cycle de vie
 Duration: 3
@@ -972,7 +983,9 @@ Duration: 4
 * [Et l'ANSSI dit "Voici comment sécuriser un container"](https://youtu.be/WWzG5ps2v14) de Yann Schepens (Volcamp 2022)
 * [TV5 Monde Analyse d'Incident](https://youtu.be/9D__deRM7vw), ANSSI (SSTIC 2017)
 * [La Sécurité dès la conception, Programmez!](https://programmez.com/magazine/article/la-securite-des-la-conception-secure-design) (Hors-série 8 Septembre/Octobre 2022), et le prochain en Septembre 2023
+* Le magazine [Programmez! Hors série #8 - 100% Sécurité](https://programmez.com/magazine/programmez-hors-serie-8-pdf) (Paru le 09/09/2022) avec plusieurs articles, dont "Une vulnérabilité peut en cacher une autre : exemple du canal nommé dans RDP"
 
+![Programmez! Hors série #8](assets/programmez_HS8.jpg)
 
 <!-- ------------------------ -->
 ## Conclusion

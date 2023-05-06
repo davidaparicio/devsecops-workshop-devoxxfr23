@@ -153,6 +153,8 @@
 <p>De ce fait, est-ce possible et acceptable pour votre projet d&#39;utiliser de l&#39;<strong>OpenID Connect</strong>, de l&#39;OAuth2 ? Ou au contraire un outil SaaS comme <a href="https://magic.link/" target="_blank">Magic</a>, un logiciel open source dit <strong>passwordless</strong> tel que <a href="https://github.com/mxstbr/passport-magic-login" target="_blank">passport-magic-login</a> qui envoie un lien temporaire à l&#39;email demandé ? Sinon, dans le cas où vous utilisez une authentification basique : votre outil se protège-t-il bien contre les <a href="https://owasp.org/www-community/attacks/SQL_Injection" target="_blank">injections</a> ? Tolère-t-il des limites d&#39;essais/compte ? Bannit-il des IP après un trop gros nombre de tentatives ? Utilise-t-il des sels avec des algorithmes de chiffrement à jour ?</p>
 <p>Ce sont les questions que nous devons nous poser, selon le risque pris et le type d&#39;attaquant. Cet exemple concerne la brique d&#39;authentification, mais cela s&#39;applique également aux autres éléments qui composent votre système.</p>
 <p>Illustration de ce chapitre, avec l&#39;obligation du MFA (Authentification multifacteur/Multi-factor authentication) chez Heroku (probablement la conséquence de leur politique sécurité, suite à la <a href="https://blog.heroku.com/april-2022-incident-review" target="_blank">faille majeure</a>/<a href="https://status.heroku.com/incidents/2413" target="_blank">incident</a> impliquant le réinitialisation de tous les mots de passe clients) <img alt="Heroku - MFA" src="img/a9a9d7d56b10078c.jpg"></p>
+<p>Ou sur un autre site de E-commerce, Gumroad (qui nécessite une vérification par e-mail, lors d&#39;un nouvel accès depuis un ordinateur/IP inconnu)</p>
+<p class="image-container"><img alt="Gumroad - MFA" src="img/a437d89a2cc4ade6.jpg"></p>
 <p>Poursuivons avec la suite de l&#39;atelier :D</p>
 
 
@@ -771,6 +773,9 @@ spec:
 <li>otx.alienvault.com, login: devoxxFR2023/devoxxFR2023</li>
 </ul>
 <p class="image-container"><img alt="alienvault logo" src="img/736aa4fa4697cb91.jpg"></p>
+<h3 is-upgraded>Exemple d&#39;une CVE récente</h3>
+<p><a href="https://github.com/xkaneiki/CVE-2023-0386" target="_blank">CVE-2023-0386 (GitHub de l&#39;exploit</a>, <a href="https://twitter.com/hack_git/status/1654460176240373760" target="_blank">tweet)</a> qui est une faille découverte dans le noyau Linux, où un accès non autorisé à l&#39;exécution du fichier setuid avec des capacités a été trouvé dans le sous-système OverlayFS du noyau Linux dans la façon dont un utilisateur copie un fichier capable d&#39;un montage nosuid dans un autre montage. Ce bug de mappage d&#39;uid permet à un utilisateur local d&#39;élever ses privilèges sur le système. Les différents liens d&#39;analyse/versions impactées sur <a href="https://ubuntu.com/security/CVE-2023-0386" target="_blank">Ubuntu Security</a>, <a href="https://security-tracker.debian.org/tracker/CVE-2023-0386" target="_blank">Debian Security</a>, <a href="https://nvd.nist.gov/vuln/detail/CVE-2023-0386" target="_blank">NIST</a>, <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2023-0386" target="_blank">CVE MITRE</a></p>
+<p class="image-container"><img alt="Ubuntu Security - CVE-2023-0386" src="img/1e380bad98af479d.jpg"></p>
 
 
       </google-codelab-step>
@@ -859,7 +864,9 @@ spec:
 <li><a href="https://youtu.be/WWzG5ps2v14" target="_blank">Et l&#39;ANSSI dit &#34;Voici comment sécuriser un container&#34;</a> de Yann Schepens (Volcamp 2022)</li>
 <li><a href="https://youtu.be/9D__deRM7vw" target="_blank">TV5 Monde Analyse d&#39;Incident</a>, ANSSI (SSTIC 2017)</li>
 <li><a href="https://programmez.com/magazine/article/la-securite-des-la-conception-secure-design" target="_blank">La Sécurité dès la conception, Programmez!</a> (Hors-série 8 Septembre/Octobre 2022), et le prochain en Septembre 2023</li>
+<li>Le magazine <a href="https://programmez.com/magazine/programmez-hors-serie-8-pdf" target="_blank">Programmez! Hors série #8 - 100% Sécurité</a>(Paru le 09/09/2022) avec plusieurs articles, dont le &#34;Une vulnérabilité peut en cacher une autre : exemple du canal nommé dans RDP&#34;</li>
 </ul>
+<p class="image-container"><img alt="Programmez! Hors série #8" src="img/3dc55aa59c33a184.jpg"></p>
 
 
       </google-codelab-step>
